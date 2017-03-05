@@ -15,7 +15,7 @@ const errorLoading = (err) => console.error('Dynamic screen loading failed', err
 const loadRoute = (callback) => (module) => callback(null, module.default);
 
 const configureRoutes = () => ([
-  <Route path="/" component={Login}>
+  <Route path="/" component={Dashboard}>
     <IndexRoute component={Dashboard} />
 
     <Route path="faktury" component={Invoices} />
@@ -23,6 +23,7 @@ const configureRoutes = () => ([
     <Route path="nastaveni" component={Settings} />
 
   </Route>,
+  <Route path="/login" component={Login} />,
   <Route path="/registrace" component={Signup} />,
 ]);
 

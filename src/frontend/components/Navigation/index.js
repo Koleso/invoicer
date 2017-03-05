@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { PropTypes as T } from 'react';
+import { Link, IndexLink } from 'react-router';
+import cx from 'helpers/classes';
+
+// CSS
 import './index.less';
 
-import { Link } from 'react-router';
 
-const Navigation = () => (
-	<div>
-		<Link to="/">Dashboard</Link>
-		<Link to="/faktury">Faktury</Link>
-		<Link to="/subjekty">Subjekty</Link>
-    <Link to="/nastaveni">Nastaveni</Link>
-    <Link to="/registrace">Login</Link>
-	</div>
-);
+export default class Navigation extends React.Component {
 
-export default Navigation;
+  render() {
+    const bm = 'Navigation';
+
+    return (
+      <div className={cx(bm, '')}>
+        <IndexLink to="/" className={cx(bm, 'item', ['dashboard'])} activeClassName="isActive">
+          Dashboard
+        </IndexLink>
+        <Link to="/faktury" className={cx(bm, 'item', ['invoices'])} activeClassName="isActive">
+          Faktury
+        </Link>
+        <Link to="/subjekty" className={cx(bm, 'item', ['subjects'])} activeClassName="isActive">
+          Subjekty
+        </Link>
+        <Link to="/nastaveni" className={cx(bm, 'item', ['settings'])} activeClassName="isActive">
+          Nastavení
+        </Link>
+      </div>
+    );
+  }
+}

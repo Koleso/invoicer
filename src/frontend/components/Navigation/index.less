@@ -1,0 +1,87 @@
+@import '../../styles/utils.less';
+
+.Navigation {
+  background-color: @black;
+  height: 70px;
+}
+
+.Navigation-item {
+  height: 70px;
+  line-height: 70px;
+  position: relative;
+  float: left;
+  padding-right: 15px;
+  padding-left: 40px;
+  font-size: 15px;
+  color: @navy;
+  cursor: pointer;
+  overflow: hidden;
+  .trans;
+
+  &:hover {
+    color: @white;
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:before {
+    content: '';
+    background-color: @blue;
+    .size(100%, 4px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    .translateY(4px);
+    .trans;
+  }
+
+  &:after {
+    content: '';
+    background: no-repeat center center;
+    .square(20px);
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    margin-top: -10px;
+    opacity: .4;
+    .trans;
+  }
+
+  &.isActive {
+    color: @white;
+
+    &:before {
+      .translateY(0);
+    }
+
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.Navigation-item--dashboard {
+  &:after {
+    background-image: url('./icons/home.svg');
+  }
+}
+
+.Navigation-item--invoices {
+  &:after {
+    background-image: url('./icons/invoices.svg');
+  }
+}
+
+.Navigation-item--subjects {
+  &:after {
+    background-image: url('./icons/subjects.svg');
+  }
+}
+
+.Navigation-item--settings {
+  &:after {
+    background-image: url('./icons/settings.svg');
+  }
+}
