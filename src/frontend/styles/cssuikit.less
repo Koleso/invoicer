@@ -1,0 +1,152 @@
+// Arrow down - default size 8x4px, color @black
+.dk-arrow(@color: @black; @width: 8px; @height: 4px) {
+  content: '';
+  .square(0);
+  position: absolute;
+
+  border-style: solid;
+  border-width: @height @width/2 0 @width/2;
+  border-color: @color transparent transparent transparent;
+}
+
+// Caret down - default size 8x4px, color @black
+.dk-caret(@color: @black; @width: 1px; @length: 4px; @angle: 50deg) {
+  overflow: visible;
+
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    .size(@width, @length);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform-origin: 50% 0;
+  }
+
+  &:before {
+    .rotate(90 - @angle);
+  }
+
+  &:after {
+    .rotate(90 + @angle);
+  }
+}
+
+// Cross icon
+.dk-cross(@color) {
+  overflow: visible;
+
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    .size(1px, 8px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -3px;
+    margin-left: -3px;
+  }
+
+  &:before { .rotate(45deg); }
+  &:after { .rotate(-45deg); }
+}
+
+.dk-cross-medium(@color) {
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    .size(1px, 10px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -7px;
+    margin-left: -1px;
+  }
+
+  &:before { .rotate(45deg); }
+  &:after { .rotate(-45deg); }
+}
+
+.dk-cross-big(@color) {
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    .size(2px,14px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -7px;
+    margin-left: -1px;
+  }
+
+  &:before { .rotate(45deg); }
+  &:after { .rotate(-45deg); }
+}
+
+// Plus icon
+.dk-plus(@color) {
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &:before {
+    .size(1px, 5px);
+    margin-top: -2px;
+  }
+
+  &:after {
+    .size(5px, 1px);
+    margin-left: -2px;
+  }
+}
+
+.dk-plus-medium(@color) {
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &:before {
+    .size(1px, 7px);
+    margin-top: -3px;
+  }
+
+  &:after {
+    .size(7px, 1px);
+    margin-left: -3px;
+  }
+}
+
+.dk-plus-big(@color) {
+  &:before,
+  &:after {
+    content: '';
+    background-color: @color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &:before {
+    .size(2px, 10px);
+    margin-top: -4px;
+  }
+
+  &:after {
+    .size(10px, 2px);
+    margin-left: -4px;
+  }
+}

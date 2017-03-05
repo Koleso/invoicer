@@ -1,0 +1,89 @@
+.i-header {
+	background-color: @black;
+  height: 70px;
+}
+
+.i-header-logo {
+  background: url("@{images}/logo.png") no-repeat 0 center;
+  .size(87px, 70px);
+  float: left;
+  margin-right: 50px;
+}
+
+.i-nav {
+  height: 70px;
+  float: left;
+}
+
+.i-nav-item {
+  height: 70px;
+  line-height: 70px;
+  position: relative;
+  float: left;
+  padding-right: 15px;
+  padding-left: 40px;
+  color: @navy;
+  cursor: pointer;
+  overflow: hidden;
+  .trans;
+
+  &:hover {
+    color: @white;
+  }
+
+  &:before {
+    content: '';
+    background-color: @blue;
+    .size(100%, 4px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    .translateY(4px);
+  }
+}
+
+.i-nav-item--active {
+  color: @white;
+
+  &:before {
+    .translateY(0);
+  }
+}
+
+.i-userbox {
+  width: auto;
+  float: right;
+  margin-top: 20px;
+
+  .i-dropdown-trigger {
+    background: none !important;
+    width: auto;
+    border: none !important;
+    color: @navy !important;
+
+    &:before {
+      content: '';
+      height: 1px;
+      position: absolute;
+      bottom: 6px;
+      left: 9px;
+      right: 25px;
+      border-bottom: 1px dotted @navy;
+      opacity: .5;
+    }
+
+    &:after {
+      .dk-arrow(@navy);
+    }
+  }
+
+  .i-dropdown-content {
+    margin-top: 4px;
+    border-radius: @border-radius !important;
+  }
+
+  .i-dropdown-option {
+    font-size: 12px;
+    line-height: 22px;
+  }
+}

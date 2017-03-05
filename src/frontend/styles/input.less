@@ -1,0 +1,29 @@
+.Input {
+  position: relative;
+  display: inline-block;
+}
+
+.Input-label {
+  display: block;
+  color: @black;
+  font-weight: 700;
+  line-height: 1.8em;
+}
+
+.Input-input {
+  background-color: @white;
+  .size(300px, 30px);
+  display: inline-block;
+  padding: 5px 8px;
+  border: 1px solid @UIborder;
+  color: @textColor;
+  outline: none;
+  .border-radius;
+  .border-box;
+  .trans;
+
+  &:focus {
+    box-shadow: 0 0 5px 1px rgba(21,152,230,.2);
+    border-color: @blue;
+  }
+}

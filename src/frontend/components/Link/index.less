@@ -1,0 +1,26 @@
+@import '../../styles/utils.less';
+
+.Link {
+  color: @blue;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  text-shadow: 0 0 2px 2px @white;
+
+  &:before {
+    content: '';
+    background-color: @blue;
+    .size(100%, 1px);
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    opacity: .3;
+    .trans;
+  }
+
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+}

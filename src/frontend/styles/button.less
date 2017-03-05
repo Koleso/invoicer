@@ -1,0 +1,49 @@
+.i-button {
+  background: none;
+  height: 30px;
+  display: inline-block;
+  padding: 0 15px;
+  color: @gray;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid @UIborder;
+  .user-select(none);
+  .border-radius;
+  .border-box;
+  .trans;
+
+  &:hover, &:active {
+    border-color: @gray;
+    color: @black;
+  }
+
+  &:focus {
+    box-shadow: 0 0 5px 1px rgba(21,152,230,.2);
+    border-color: @gray;
+  }
+}
+
+.i-button--primary {
+  background-color: @blue;
+  color: @white;
+  border: none;
+
+  &:hover {
+    background-color: #2FA5EC;
+    color: @white;
+  }
+
+  &:active {
+    background-color: #138BD2;
+  }
+
+  &:focus {
+    box-shadow: 0 0 5px 1px rgba(21,152,230,.2);
+    border-color: @blue;
+  }
+}
+
+.i-button--big {
+  height: 36px;
+  padding: 0 20px;
+}

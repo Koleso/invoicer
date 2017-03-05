@@ -1,0 +1,305 @@
+// Code snippets
+//
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size, @size);
+}
+
+.clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.c() {
+  .clearfix;
+}
+
+.border-box() {
+  box-sizing: border-box;
+}
+
+.content-box() {
+  box-sizing: content-box;
+}
+
+.ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.truncate-line(@width: 100%, @max-width: @width) {
+  width: @width;
+  max-width: @max-width;
+  display: inline-block;
+  vertical-align: top;
+  .ellipsis;
+}
+
+.hide-text() {
+  font-size: 0 !important;
+  color: transparent !important;
+  text-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.hidden() {
+  display: none !important;
+}
+
+.visible() {
+  display: block !important;
+}
+
+.word-break() {
+  white-space: normal;
+  word-break: break-all; // Needs to be here for Firefox
+  .word-break-linterHack;
+}
+
+.word-break-linterHack() {
+  word-break: break-word;
+}
+
+.line-clamp(@num: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: @num;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+// Default values
+//
+.trans() {
+  transition: all .2s ease-in-out;
+}
+
+.border-radius() {
+  border-radius: @border-radius;
+}
+
+
+// Border radius
+//
+.border-radius-top(@radius: @border-radius) {
+  border-top-left-radius: @radius;
+  border-top-right-radius: @radius;
+}
+
+.border-radius-bottom(@radius: @border-radius) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+
+.border-radius-right(@radius: @border-radius) {
+  border-top-right-radius: @radius;
+  border-bottom-right-radius: @radius;
+}
+
+.border-radius-left(@radius: @border-radius) {
+  border-top-left-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+
+.border-radius-top-right(@radius: @border-radius) {
+  border-top-right-radius: @radius;
+}
+
+.border-radius-bottom-right(@radius: @border-radius) {
+  border-bottom-right-radius: @radius;
+}
+
+.border-radius-top-left(@radius: @border-radius) {
+  border-top-left-radius: @radius;
+}
+
+.border-radius-bottom-left(@radius: @border-radius) {
+  border-bottom-left-radius: @radius;
+}
+
+
+// Flexbox mixins
+//
+// Used for Phantom which needs -webkit- prefix
+.display(@param: flex) {
+  display: @param;
+  .display-linterHack(@param);
+}
+
+.display-linterHack(@param) {
+  display: ~"-webkit-@{param}";
+}
+
+.flex(...) {
+  flex: @arguments;
+  -webkit-flex: @arguments;
+}
+
+.flex-direction(@direction: row) {
+  flex-direction: @direction;
+  -webkit-flex-direction: @direction;
+}
+
+.flex-wrap(@wrap: nowrap) {
+  flex-wrap: @wrap;
+  -webkit-flex-wrap: @wrap;
+}
+
+.flex-flow(@flow) {
+  flex-flow: @flow;
+  -webkit-flex-flow: @flow;
+}
+
+.order(@order: 0) {
+  order: @order;
+  -webkit-order: @order;
+}
+
+.flex-grow(@grow: 0) {
+  flex-grow: @grow;
+  -webkit-flex-grow: @grow;
+}
+
+.flex-shrink(@shrink: 1) {
+  flex-shrink: @shrink;
+  -webkit-flex-shrink: @shrink;
+}
+
+.flex-basis(@width: auto) {
+  flex-basis: @width;
+  -webkit-flex-basis: @width;
+}
+
+.justify-content(@justify: flex-start) {
+  justify-content: @justify;
+  -webkit-justify-content: @justify;
+}
+
+.align-content(@align: stretch) {
+  align-content: @align;
+  -webkit-align-content: @align;
+}
+
+.align-items(@align: stretch) {
+  align-items: @align;
+  -webkit-align-items: @align;
+}
+
+.align-self(@align: auto) {
+  align-self: @align;
+  -webkit-align-self: @align;
+}
+
+
+// Shortening mixins
+//
+.linear-gradient(@angle, @var) {
+  background: linear-gradient(@angle, @var);
+}
+
+.linear-gradient(@angle, @color-start, @color-end, @saturation-start: 0%, @saturation-end: 100%) {
+  background: linear-gradient(@angle, @color-start @saturation-start, @color-end @saturation-end);
+}
+
+.translateX(@params) {
+  transform: translateX(@params);
+}
+
+.translateY(@params) {
+  transform: translateY(@params);
+}
+
+.translateZ(@params) {
+  transform: translateZ(@params);
+}
+
+.translate(@x: 0, @y: 0) {
+  transform: translate(@x, @y);
+}
+
+.translate2d(@x: 0, @y: 0) {
+  transform: translate(@x, @y);
+}
+
+.translate2D(@x: 0, @y: 0) {
+  transform: translate(@x, @y);
+}
+
+.translate3d(@x: 0, @y: 0, @z: 0) {
+  transform: translate3d(@x, @y, @z);
+}
+
+.translate3D(@x: 0, @y: 0, @z: 0) {
+  transform: translate3d(@x, @y, @z);
+}
+
+.rotate(@radius) {
+  transform: rotate(@radius);
+}
+
+.scale(@ratio) {
+  transform: scale(@ratio);
+}
+
+.user-select(@select: none) {
+  user-select: @select;
+  -webkit-user-select: @select;
+  -moz-user-select: @select;
+  -ms-user-select: @select;
+}
+
+.keyframes (@name, @fromRules, @toRules) {
+  @keyframes @name {
+    0% {
+      @fromRules();
+    }
+    100% {
+      @toRules();
+    }
+  }
+}
+
+.placeholder(@color: #aaa, @element: 08121991) {
+  .inception (@arguments) when not (@element = 08121991) {
+    @{element}::-webkit-input-placeholder {
+       color: @color;
+    }
+    @{element}:-moz-placeholder {
+       color: @color;
+    }
+    @{element}::-moz-placeholder {
+       color: @color;
+    }
+    @{element}:-ms-input-placeholder {
+       color: @color;
+    }
+  }
+  .inception (@arguments) when (@element = 08121991) {
+    &::-webkit-input-placeholder {
+       color: @color;
+    }
+    &:-moz-placeholder {
+       color: @color;
+    }
+    &::-moz-placeholder {
+       color: @color;
+    }
+    &:-ms-input-placeholder {
+       color: @color;
+    }
+  }
+  .inception(@arguments);
+}
