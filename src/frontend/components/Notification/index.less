@@ -1,0 +1,66 @@
+@import '../../styles/utils.less';
+
+.NotificationsList {
+  .size(100%, 0px);
+  position: absolute;
+  top: 90px;
+  left: 0;
+  overflow: visible;
+  z-index: 1000;
+}
+
+.Notification {
+  position: relative;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.Notification-item {
+  background-color: @white;
+  max-width: 400px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid @border;
+  box-shadow: 1px 1px 7px rgba(0,0,0,.05);
+  .border-radius;
+}
+
+.Notification-icon {
+  background: no-repeat center center;
+  .square(20px);
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  border-radius: 10px;
+}
+
+.Notification-icon--success {
+  background-color: #66D885;
+  background-image: url('./icons/success.svg');
+}
+
+.Notification-icon--error {
+  background-color: @red;
+  background-image: url('./icons/error.svg');
+}
+
+.Notification-close {
+  .size(35px, 40px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  opacity: .3;
+  .dk-cross-medium(@black);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.Notification-content {
+  position: relative;
+  padding: 8px 40px;
+  color: @gray;
+  text-align: left;
+}
