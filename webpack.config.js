@@ -72,8 +72,20 @@ module.exports = {
     publicPath: '/',
   },
 
+  eslint: {
+    configFile: './.eslintrc',
+    failOnWarning: false,
+    failOnError: true
+  },
+
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/, 
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      },
       {
         test: /\.js$/,
         loaders: ['babel-loader'],

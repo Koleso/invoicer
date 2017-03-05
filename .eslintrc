@@ -1,0 +1,35 @@
+{
+  "extends": "stacks",
+  "plugins": [
+  "flowtype",
+  "flow-vars"
+  ],
+  "globals": {
+  "FS": true
+  },
+  "rules": {
+  "linebreak-style": [
+    0
+  ],
+  "indent": ["error", 2],
+  "max-len": [2, 120, 2, {
+    "ignoreUrls": true,
+    "ignoreComments": false
+  }],
+  "no-nested-ternary": [
+    0
+  ],
+  "import/no-unresolved": [
+    0
+  ],
+  "global-require": [
+    0
+  ],
+  "arrow-body-style": [
+    0
+  ],
+  "react/prop-types": [
+    0
+  ]
+  }
+}
