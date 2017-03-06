@@ -11,24 +11,24 @@ export default class Button extends React.Component {
 
   static propTypes = {
     children: T.node,
-    page: T.string
+    page: T.string,
   };
 
   render() {
     const bm = 'LoginLayout';
     const {
       children,
-      page
+      page,
     } = this.props;
 
-    let bottomLinkLogin = (<p>
+    const bottomLinkLogin = (<p>
       Nemáte uživatelský účet? &nbsp;
       <Link to="/registrace" className="Link">
         Vytvořte si ho!
       </Link>
     </p>);
 
-    let bottomLinkSignup = (<p>
+    const bottomLinkSignup = (<p>
       Máte již uživatelský účet? &nbsp;
       <Link to="/registrace" className="Link">
         Přihlašte se!
@@ -52,4 +52,3 @@ export default class Button extends React.Component {
     );
   }
 }
-

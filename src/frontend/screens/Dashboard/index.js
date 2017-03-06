@@ -3,13 +3,14 @@ import React from 'react';
 // Components
 import Wrap from 'components/Wrap';
 import Header from 'components/Header';
-import Grid, {GridColumn} from 'components/Grid';
+import Grid, { GridColumn } from 'components/Grid';
 import Screen from 'components/Screen';
 import Box from 'components/Box';
 import Button from 'components/Button';
+import WidgetSummary from 'components/WidgetSummary';
 
 let actions = [
-  <Button to={'/faktury/nova-faktura'} modifiers={['primary', 'big']}>Nová faktura</Button>
+  <Button to={'/faktury/nova-faktura'} modifiers={['primary', 'big']}>Nová faktura</Button>,
 ];
 
 const Dashboard = () => (
@@ -20,7 +21,7 @@ const Dashboard = () => (
         <Grid>
           <GridColumn>
             <Box title="Pohledávky" modifiers={['smallMargin']}>
-              
+              <WidgetSummary paid={1234} notPaid={12345} />
             </Box>
 
             <Box title="Neuhrazené faktury" modifiers={['smallMargin']}>
@@ -30,7 +31,7 @@ const Dashboard = () => (
 
           <GridColumn>
             <Box title="Příjem za posledních 6 měsíců" modifiers={['smallMargin']}>
-              
+
             </Box>
           </GridColumn>
         </Grid>

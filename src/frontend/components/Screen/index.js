@@ -4,7 +4,6 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-
 export default class Screen extends React.Component {
 
   static propTypes = {

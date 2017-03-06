@@ -4,7 +4,6 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-
 export default class Grid extends React.Component {
 
   static propTypes = {

@@ -6,6 +6,6 @@ const classes = (moduleName, elementName, modifiers = []) => {
   }
 
   return className;
-}
+};
 
 export default classes;

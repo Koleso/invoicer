@@ -10,7 +10,7 @@ export default class Link extends React.Component {
   static propTypes = {
     to: T.any,
     children: T.node,
-    modifiers: T.array
+    modifiers: T.array,
   };
 
   render() {

@@ -1,10 +1,8 @@
 import React, { PropTypes as T } from 'react';
-import { Link } from 'react-router';
 import cx from 'helpers/classes';
 
 // CSS
 import './index.less';
-
 
 export default class Input extends React.Component {
 

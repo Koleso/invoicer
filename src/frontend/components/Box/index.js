@@ -4,7 +4,6 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-
 export default class Box extends React.Component {
 
   static propTypes = {
@@ -22,7 +21,7 @@ export default class Box extends React.Component {
     } = this.props;
 
     let boxTitle = '';
-    if(title) {
+    if (title) {
       boxTitle = (
         <div className={cx(bm, 'title')}>
           <h2>{title}</h2>
