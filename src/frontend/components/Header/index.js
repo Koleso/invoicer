@@ -11,25 +11,25 @@ import './index.less';
 
 export default class Header extends React.Component {
 
-  static propTypes = {
-    modifiers: T.array,
-  };
+	static propTypes = {
+		modifiers: T.array,
+	};
 
-  render() {
-    const bm = 'Header';
-    const {
-      modifiers,
-    } = this.props;
+	render() {
+		const bm = 'Header';
+		const {
+			modifiers,
+		} = this.props;
 
-    return (
-      <div
-        className={cx(bm, '', modifiers)}
-      >
-        <Wrap>
-          <Logo />
-          <Navigation />
-        </Wrap>
-      </div>
-    );
-  }
+		return (
+			<div
+				className={cx(bm, '', modifiers)}
+			>
+				<Wrap>
+					<Logo />
+					<Navigation />
+				</Wrap>
+			</div>
+		);
+	}
 }

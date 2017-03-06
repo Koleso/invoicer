@@ -7,9 +7,9 @@ import '../../styles/app.less';
 
 
 const AppLayout = ({ children }) => (
-  <div>
-    {children}
-  </div>
+	<div>
+		{children}
+	</div>
 );
 
 export default AppLayout;

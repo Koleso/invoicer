@@ -7,55 +7,55 @@ import './index.less';
 
 export default class Button extends React.Component {
 
-  static propTypes = {
-    children: T.node,
-    href: T.any,
-    to: T.any,
-    modifiers: T.array,
-  };
+	static propTypes = {
+		children: T.node,
+		href: T.any,
+		to: T.any,
+		modifiers: T.array,
+	};
 
-  render() {
-    const bm = 'Button';
-    const {
-      children,
-      href,
-      to,
-      modifiers,
-      type,
-      ...other,
-    } = this.props;
+	render() {
+		const bm = 'Button';
+		const {
+			children,
+			href,
+			to,
+			modifiers,
+			type,
+			...other,
+		} = this.props;
 
-    let BtnTag = 'button';
-    if (href) {
-      BtnTag = 'a';
-    }
+		let BtnTag = 'button';
+		if (href) {
+			BtnTag = 'a';
+		}
 
-    if (to) {
-      return (
-        <Link
-          className={cx(bm, '', modifiers)}
-          to={to}
-          activeClassName="isActive"
-        >
-          {children}
-        </Link>
-      );
-    }
+		if (to) {
+			return (
+				<Link
+					className={cx(bm, '', modifiers)}
+					to={to}
+					activeClassName="isActive"
+				>
+					{children}
+				</Link>
+			);
+		}
 
-    let finalType = type;
-    if (!finalType) {
-      finalType = 'button';
-    }
+		let finalType = type;
+		if (!finalType) {
+			finalType = 'button';
+		}
 
-    return (
-      <BtnTag
-        className={cx(bm, '', modifiers)}
-        {...other}
-        href={href}
-        type={finalType}
-      >
-        {children}
-      </BtnTag>
-    );
-  }
+		return (
+			<BtnTag
+				className={cx(bm, '', modifiers)}
+				{...other}
+				href={href}
+				type={finalType}
+			>
+				{children}
+			</BtnTag>
+		);
+	}
 }

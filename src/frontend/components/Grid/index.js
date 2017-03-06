@@ -6,46 +6,46 @@ import './index.less';
 
 export default class Grid extends React.Component {
 
-  static propTypes = {
-    children: T.node,
-  };
+	static propTypes = {
+		children: T.node,
+	};
 
-  render() {
-    const bm = 'Grid';
-    const {
-      children,
-      size,
-    } = this.props;
+	render() {
+		const bm = 'Grid';
+		const {
+			children,
+			size,
+		} = this.props;
 
-    let gridSize = 'twoColumn';
-    if (size === '3') {
-      gridSize = 'threeColumn';
-    }
+		let gridSize = 'twoColumn';
+		if (size === '3') {
+			gridSize = 'threeColumn';
+		}
 
-    return (
-      <div className={cx(bm, '', [gridSize])}>
-        {children}
-      </div>
-    );
-  }
+		return (
+			<div className={cx(bm, '', [gridSize])}>
+				{children}
+			</div>
+		);
+	}
 }
 
 export class GridColumn extends React.Component {
 
-  static propTypes = {
-    children: T.node,
-  };
+	static propTypes = {
+		children: T.node,
+	};
 
-  render() {
-    const bm = 'GridColumn';
-    const {
-      children,
-    } = this.props;
+	render() {
+		const bm = 'GridColumn';
+		const {
+			children,
+		} = this.props;
 
-    return (
-      <div className={cx(bm, '')}>
-        {children}
-      </div>
-    );
-  }
+		return (
+			<div className={cx(bm, '')}>
+				{children}
+			</div>
+		);
+	}
 }

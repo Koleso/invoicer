@@ -7,11 +7,11 @@ import './index.less';
 
 export default class Logo extends React.Component {
 
-  render() {
-    const bm = 'Logo';
+	render() {
+		const bm = 'Logo';
 
-    return (
-      <IndexLink to="/" className={cx(bm, '')} />
-    );
-  }
+		return (
+			<IndexLink to="/" className={cx(bm, '')} />
+		);
+	}
 }

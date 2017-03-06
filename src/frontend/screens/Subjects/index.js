@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Subjects = () => (
-  <div>
-    Subjects
-  </div>
+	<div>
+		Subjects
+	</div>
 );
 
 export default Subjects;

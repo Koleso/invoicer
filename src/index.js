@@ -7,26 +7,26 @@ import configureStore from 'frontend/configureStore';
 const store = configureStore();
 
 if (DEVSERVER) {
-  const AppContainer = require('react-hot-loader').AppContainer;
+	const AppContainer = require('react-hot-loader').AppContainer;
 
-  ReactDOM.render(
-    <AppContainer>
-      <App store={store} />
-    </AppContainer>,
-    document.getElementById('root')
-  );
+	ReactDOM.render(
+		<AppContainer>
+			<App store={store} />
+		</AppContainer>,
+		document.getElementById('root')
+	);
 
-  if (module.hot) {
-    module.hot.accept('frontend', () => {
-      const NextApp = require('frontend').default;
-      ReactDOM.render(
-        <AppContainer>
-          <NextApp store={store} />
-        </AppContainer>,
-        document.getElementById('root')
-      );
-    });
-  }
+	if (module.hot) {
+		module.hot.accept('frontend', () => {
+			const NextApp = require('frontend').default;
+			ReactDOM.render(
+				<AppContainer>
+					<NextApp store={store} />
+				</AppContainer>,
+				document.getElementById('root')
+			);
+		});
+	}
 } else {
-  ReactDOM.render(<App store={store} />, document.getElementById('root'));
+	ReactDOM.render(<App store={store} />, document.getElementById('root'));
 }

@@ -10,20 +10,20 @@ import 'frontend/static/favicon.png';
 import './styles/style.less';
 
 const withStore = Component => ({ ...props, store }) => (
-  <Provider store={store}>
-    <Component {...props} />
-  </Provider>
+	<Provider store={store}>
+		<Component {...props} />
+	</Provider>
 );
 
 const renderApp = ({ store }) => (
-  <Router
-    history={syncHistoryWithStore(browserHistory, store)}
-    routes={configureRoutes()}
-  />
+	<Router
+		history={syncHistoryWithStore(browserHistory, store)}
+		routes={configureRoutes()}
+	/>
 );
 
 const App = compose(
-  withStore,
+	withStore,
 )(renderApp);
 
 export default App;
