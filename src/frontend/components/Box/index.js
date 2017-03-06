@@ -7,7 +7,7 @@ import './index.less';
 export default class Box extends React.Component {
 
 	static propTypes = {
-		children: T.node.isRequired,
+		children: T.node, //.isRequired
 		title: T.string,
 		modifiers: T.array,
 	};

@@ -17,7 +17,10 @@ export default class Grid extends React.Component {
 			size,
 		} = this.props;
 
-		let gridSize = 'twoColumn';
+		let gridSize = '';
+		if (size === '2') {
+			gridSize = 'twoColumn';
+		}
 		if (size === '3') {
 			gridSize = 'threeColumn';
 		}

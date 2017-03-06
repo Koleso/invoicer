@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 // Components
@@ -20,7 +18,7 @@ const Dashboard = () => (
 		<Header />
 		<Wrap>
 			<Screen title="Dashboard" actions={actions}>
-				<Grid>
+				<Grid size={2}>
 					<GridColumn>
 						<Box title="Pohledávky" modifiers={['smallMargin']}>
 							<WidgetSummary paid={1234} notPaid={12345} />
