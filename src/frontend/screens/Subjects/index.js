@@ -1,13 +1,12 @@
 import React from 'react';
 
 // Components
-import Wrap from 'components/Wrap';
-import Header from 'components/Header';
 import Grid, { GridColumn } from 'components/Grid';
 import Screen from 'components/Screen';
+import Button from 'components/Button';
+import Box from 'components/Box';
 import Table from 'components/Table';
 
-const columns = ['Name', 'E-mail', 'Phone'];
 const data = [
 	{
 		'name': 'Ernest Howard',
@@ -72,19 +71,21 @@ const data = [
 	}
 ];
 
+let actions = [
+	<Button to={'/subjekty/novy-odberatel'} modifiers={['primary', 'big']}>Nový odběratel</Button>,
+	<Button to={'/subjekty/novy-dodavatel'} modifiers={['big']}>Nový dodavatel</Button>,
+];
+
 const Subjects = () => (
-	<div>
-		<Header />
-		<Wrap>
-			<Screen title="Subjekty">
-				<Grid>
-					<GridColumn>
-						<Table header={true} columns={columns} data={data} />
-					</GridColumn>
-				</Grid>
-			</Screen>
-		</Wrap>
-	</div>
+	<Screen title="Subjekty" actions={actions}>
+		<Grid>
+			<GridColumn>
+				<Box title='Dodavatelé'>
+					<Table data={data} />
+				</Box>
+			</GridColumn>
+		</Grid>
+	</Screen>
 );
 
 export default Subjects;

@@ -1,0 +1,63 @@
+@import '../../styles/utils.less';
+
+.Form {
+  position: relative;
+  padding: 50px 0; 
+  .c;
+}
+
+.Form-col {
+  width: 50%;
+  position: relative;
+  float: left;
+  padding: 0 100px;
+  .border-box;
+
+  &:before {
+    content: '1';
+    position: absolute;
+    top: 0;
+    left: 30px;
+    color: @light;
+    font-size: 96px;
+    line-height: 96px;
+    .user-select;
+  }
+
+  &:nth-child(2) {
+    &:before {
+      content: '2';
+    }
+  }
+}
+
+.Form-line {
+  position: relative;
+  padding-top: 15px;
+  margin: 0 -10px;
+  .c;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.Form-cell {
+  width: 100%;
+  float: left;
+  padding: 0 5px;
+  .border-box;
+}
+
+.Form-cell--70 {  width: 70%; }
+.Form-cell--50 {  width: 50%; }
+.Form-cell--34 {  width: 34%; }
+.Form-cell--33 {  width: 33%; }
+.Form-cell--30 {  width: 30%; }
+
+.Form-footer {
+  width: 100%;
+  float: left;
+  padding: 20px 100px 0;
+  .border-box;
+}

@@ -1,8 +1,6 @@
 import React from 'react';
 
 // Components
-import Wrap from 'components/Wrap';
-import Header from 'components/Header';
 import Grid, { GridColumn } from 'components/Grid';
 import Screen from 'components/Screen';
 import Box from 'components/Box';
@@ -14,26 +12,21 @@ let actions = [
 ];
 
 const Dashboard = () => (
-	<div>
-		<Header />
-		<Wrap>
-			<Screen title="Dashboard" actions={actions}>
-				<Grid size={2}>
-					<GridColumn>
-						<Box title="Pohledávky" modifiers={['smallMargin']}>
-							<WidgetSummary paid={1234} notPaid={12345} />
-						</Box>
+	<Screen title="Dashboard" actions={actions}>
+		<Grid size={2}>
+			<GridColumn>
+				<Box title="Pohledávky" modifiers={['smallMargin']}>
+					<WidgetSummary paid={1234} notPaid={12345} />
+				</Box>
 
-						<Box title="Neuhrazené faktury" modifiers={['smallMargin']} />
-					</GridColumn>
+				<Box title="Neuhrazené faktury" modifiers={['smallMargin']} />
+			</GridColumn>
 
-					<GridColumn>
-						<Box title="Příjem za posledních 6 měsíců" modifiers={['smallMargin']} />
-					</GridColumn>
-				</Grid>
-			</Screen>
-		</Wrap>
-	</div>
+			<GridColumn>
+				<Box title="Příjem za posledních 6 měsíců" modifiers={['smallMargin']} />
+			</GridColumn>
+		</Grid>
+	</Screen>
 );
 
 export default Dashboard;

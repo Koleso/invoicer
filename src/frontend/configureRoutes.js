@@ -11,6 +11,9 @@ import Invoices from 'frontend/screens/Invoices';
 import Subjects from 'frontend/screens/Subjects';
 import Settings from 'frontend/screens/Settings';
 
+import NewCustomer from 'frontend/screens/NewCustomer';
+import NewSupplier from 'frontend/screens/NewSupplier';
+
 const errorLoading = (err) => console.error('Dynamic screen loading failed', err);
 const loadRoute = (callback) => (module) => callback(null, module.default);
 
@@ -21,6 +24,9 @@ const configureRoutes = () => ([
 		<Route path="/faktury" component={Invoices} />
 		<Route path="/subjekty" component={Subjects} />
 		<Route path="/nastaveni" component={Settings} />
+
+		<Route path="/subjekty/novy-odberatel" component={NewCustomer} />
+		<Route path="/subjekty/novy-dodavatel" component={NewSupplier} />
 
 	</Route>,
 	<Route path="/login" component={Login} />,
