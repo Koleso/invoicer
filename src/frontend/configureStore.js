@@ -1,9 +1,11 @@
 import { compose, applyMiddleware, createStore } from 'redux';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-import { reducers } from './modules';
+
+import reducers from 'reducers/index';
 
 // Firebase
+/*
 import * as firebase from 'firebase';
 const firebaseConfig = {
 	apiKey: 'AIzaSyDhzrJr50qFiRCVPxGxMyjPLR5px75HeYA',
@@ -13,8 +15,7 @@ const firebaseConfig = {
 	messagingSenderId: '150210881222',
 };
 let app = firebase.initializeApp(firebaseConfig);
-window.db = firebase.database();
-
+*/
 const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middleware = [

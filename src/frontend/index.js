@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import configureRoutes from './configureRoutes';
 
+// Assets
 import 'frontend/static/favicon.png';
 import './styles/style.less';
 
