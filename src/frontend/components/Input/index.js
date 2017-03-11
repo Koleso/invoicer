@@ -8,13 +8,12 @@ const InputField = ({
 	input,
 	label,
 	id,
-	name,
 	type,
 	modifiers,
 	placeholder,
 	disabled,
-	required = false, 
-	meta: { touched, error }
+	required = false,
+	meta: { touched, error },
 }) => {
 	const bm = 'Input';
 
