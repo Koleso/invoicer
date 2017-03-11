@@ -105,6 +105,7 @@ module.exports = {
 			'containers': path.join(__dirname, 'src/frontend/containers'),
 			'screens': path.join(__dirname, 'src/frontend/screens'),
 			'helpers': path.join(__dirname, 'src/frontend/helpers'),
+			'forms': path.join(__dirname, 'src/frontend/forms'),
 			'reducers': path.join(__dirname, 'src/frontend/reducers'),
 			'stylesheets': path.join(__dirname, 'src/frontend/styles'),
 		},

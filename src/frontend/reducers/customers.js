@@ -1,6 +1,11 @@
 function customers(state = [], action) {
-	console.log(state, action);
-	return state;
+	switch (action.type) {
+		case 'ADD_CUSTOMER' :
+			return [].concat(state).concat([action.payload]);
+			break;
+		default:
+			return state;
+	}
 }
 
 export default customers;

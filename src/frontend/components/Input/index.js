@@ -1,56 +1,40 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
 import cx from 'helpers/classes';
 
 // CSS
 import './index.less';
 
-export default class Input extends React.Component {
+const InputField = ({
+	input,
+	label,
+	id,
+	name,
+	type,
+	modifiers,
+	placeholder,
+	disabled,
+	required = false, 
+	meta: { touched, error }
+}) => {
+	const bm = 'Input';
 
-	static propTypes = {
-		label: T.string,
-		input: T.object,
-		placeholder: T.string,
-		multiline: T.bool,
-		disabled: T.bool,
-		autoFocus: T.bool,
-	};
+	return (
+		<div className={cx(bm, '', modifiers)}>
+			<label className={cx(bm, 'label')} htmlFor={id}>
+				{label}
+				{required && <span className={cx(bm, 'required')}>*</span>}
+			</label>
+			<input
+				className={cx(bm, 'input', touched && error && ['error'])}
+				id={id}
+				disabled={disabled}
+				placeholder={placeholder}
+				type={type}
+				{...input}
+			/>
+			{touched && error && <div className={cx(bm, 'errorMessage')}>{error}</div>}
+		</div>
+	);
+};
 
-	static defaultProps = {
-		type: 'text',
-	};
-
-	render() {
-		const bm = 'Input';
-		const {
-			input,
-			label,
-			disabled,
-			placeholder,
-			multiline,
-			modifiers,
-			type,
-			autoFocus,
-			autoComplete,
-		} = this.props;
-
-		let InputElement = 'input';
-		if (multiline) {
-			InputElement = 'textarea';
-		}
-
-		return (
-			<div className={cx(bm, '', modifiers)}>
-				<label className={cx(bm, 'label')}>{label}</label>
-				<InputElement
-					className={cx(bm, 'input')}
-					{...input}
-					autoComplete={autoComplete}
-					disabled={disabled}
-					placeholder={placeholder}
-					type={type}
-					autoFocus={autoFocus}
-				/>
-			</div>
-		);
-	}
-}
+export default InputField;

@@ -1,8 +1,15 @@
 import { compose, applyMiddleware, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 
 import reducers from 'reducers/index';
+
+import customers from 'data/customers';
+
+window.__INITIAL_STATE__ = {
+	customers,
+};
 
 // Firebase
 /*
@@ -26,7 +33,7 @@ const configureStore = () => {
 	const store = createStore(
 		reducers,
 		typeof window !== 'undefined' && window.__INITIAL_STATE__ || {},
-		composeEnhancers(applyMiddleware(...middleware))
+		composeEnhancers(applyMiddleware(...middleware, thunkMiddleware))
 	);
 
 	return store;

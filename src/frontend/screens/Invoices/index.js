@@ -6,7 +6,7 @@ import Screen from 'components/Screen';
 import Box from 'components/Box';
 import Button from 'components/Button';
 
-let actions = [
+const actions = [
 	<Button to={'/faktury/nova-faktura'} modifiers={['primary', 'big']}>Nová faktura</Button>,
 ];
 

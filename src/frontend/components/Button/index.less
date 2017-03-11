@@ -24,6 +24,11 @@
     box-shadow: 0 0 5px 1px rgba(21,152,230,.2);
     border-color: @gray;
   }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: .4;
+  }
 }
 
 .Button--primary {
@@ -54,4 +59,15 @@
 
 .Button--formRight {
   float: right;
+}
+@media (max-width: 980px) {
+  .Button--tabletLeft {
+    float: left;
+  }
+}
+
+@media (max-width: 580px) {
+  .Button--mobileFull {
+    width: 100%;
+  }
 }

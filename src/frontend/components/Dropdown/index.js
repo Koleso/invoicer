@@ -24,6 +24,7 @@ export default class Dropdown extends React.Component {
 			options,
 			keyId,
 			keyLabel,
+			onChange,
 			disabled = false,
 			modifiers,
 		} = this.props;

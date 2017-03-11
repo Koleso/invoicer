@@ -4,7 +4,7 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Table extends React.Component {
+export default class TableRow extends React.Component {
 
 	static propTypes = {
 		children: T.node,
@@ -12,14 +12,14 @@ export default class Table extends React.Component {
 	};
 
 	render() {
-		const bm = 'Table';
+		const bm = 'TableRow';
 		const {
 			children,
 			modifiers,
 		} = this.props;
 
 		return (
-			<table className={cx(bm, '', modifiers)}>{children}</table>
+			<tr className={cx(bm, '', modifiers)}>{children}</tr>
 		);
 	}
 }

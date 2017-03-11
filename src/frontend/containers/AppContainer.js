@@ -5,15 +5,15 @@ import * as actionCreators from 'actions';
 import AppLayout from 'screens/AppLayout';
 
 function mapStateToProps(state) {
-  return {
-    customers: state.customers,
-  }
+	return {
+		customers: state.customers,
+	};
 }
 
 function mapDispachToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+	return bindActionCreators(actionCreators, dispatch);
 }
 
-const App = connect(mapStateToProps, mapDispachToProps)(AppLayout);
+const AppContainer = connect(mapStateToProps, mapDispachToProps)(AppLayout);
 
-export default App;
+export default AppContainer;

@@ -7,13 +7,12 @@ import Box from 'components/Box';
 import Button from 'components/Button';
 import WidgetSummary from 'components/WidgetSummary';
 
-let actions = [
-	<Button to={'/faktury/nova-faktura'} modifiers={['primary', 'big']} >Nová faktura</Button>,
-	// onClick={this.props.test.bind(null, 'testuju')}
+const actions = props => [
+	<Button modifiers={['primary', 'big']} onClick={() => props.handleSubmit(mockCustomer)} >Nová faktura</Button>,
 ];
 
-const Dashboard = () => (
-	<Screen title="Dashboard" actions={actions}>
+const Dashboard = (props) => (
+	<Screen title="Dashboard" actions={actions(props)}>
 		<Grid size={2}>
 			<GridColumn>
 				<Box title="Pohledávky" modifiers={['smallMargin']}>
@@ -29,6 +28,17 @@ const Dashboard = () => (
 		</Grid>
 	</Screen>
 );
+
+const mockCustomer = ({
+	name: 'Test',
+	address: 'Praha Huyaga',
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+// 	handleSubmit: (customer) => dispatch({ type: "NEW_CUSTOMER", payload: customer }),
+// })
+
+//const Dashboard = connect(null, mapDispatchToProps)(renderDashboard);
 
 export default Dashboard;
 

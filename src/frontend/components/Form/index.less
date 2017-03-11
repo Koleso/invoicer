@@ -58,6 +58,31 @@
 .Form-footer {
   width: 100%;
   float: left;
-  padding: 20px 100px 0;
+  padding: 20px 95px 0;
   .border-box;
+}
+
+@media (max-width: 980px) {
+  .Form-col {
+    width: 100%;
+    margin-top: 50px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .Form-col {
+    padding: 0 25px;
+    
+    &:before {
+      display: none;
+    }
+  }
+
+  .Form-footer {
+    padding: 20px 20px 0;
+  }
 }
