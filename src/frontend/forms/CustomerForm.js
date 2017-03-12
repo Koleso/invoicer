@@ -1,18 +1,36 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { browserHistory } from 'react-router';
 
 // Components
 import Button from 'components/Button';
 import InputField from 'components/Input';
 
-import validate from 'forms/NewCustomerFormValidate';
+import validate from 'forms/CustomerFormValidate';
 
-const NewCustomerForm = (props) => {
-	const { addCustomer, pristine, submitting, handleSubmit } = props;
+const CustomerForm = (props) => {
+	const { addCustomer, updateCustomer, submitting, handleSubmit, action, initialValues } = props;
+
+	if (action === 'edit') {
+		if (initialValues === undefined) {
+			// TODO: 404 page
+			browserHistory.push('/subjekty/');
+		}
+	}
+
+	function submit(action) {
+		if (action === 'add') {
+			return handleSubmit(addCustomer);
+		} else if (action === 'edit') {
+			return handleSubmit(updateCustomer);
+		}
+	}
 
 	return (
-		<form onSubmit={handleSubmit(addCustomer)} className="Form">
+		<form onSubmit={submit(action)} className="Form">
 			<div className="Form-col">
+				<input name="id" id="id" type="hidden" />
+
 				<div className="Form-line">
 					<div className="Form-cell">
 						<Field
@@ -139,17 +157,22 @@ const NewCustomerForm = (props) => {
 			<div className="Form-footer">
 				<Button
 					type="submit"
-					disabled={pristine || submitting}
-					modifiers={['primary', 'big', 'formRight', 'tabletLeft', 'mobileFull']}
+					disabled={submitting}
+					modifiers={['primary', 'big', 'formRight', 'tabletLeft']}
 				>
-					Vytvořit odběratele
+					{action === 'add' && 'Vytvořit odběratele'}
+					{action === 'edit' && 'Uložit změny'}
 				</Button>
+
+				{action === 'edit' && 
+					<Button to={'/subjekty'} modifiers={['big', 'formRight', 'tabletLeft']}>Zpět na přehled</Button>
+				}
 			</div>
 		</form>
 	);
 };
 
 export default reduxForm({
-	form: 'addCustomer',
+	form: 'customer',
 	validate,
-})(NewCustomerForm);
+})(CustomerForm);

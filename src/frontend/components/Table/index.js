@@ -19,7 +19,11 @@ export default class Table extends React.Component {
 		} = this.props;
 
 		return (
-			<table className={cx(bm, '', modifiers)}>{children}</table>
+			<table className={cx(bm, '', modifiers)}>
+				<tbody>
+					{children}
+				</tbody>
+			</table>
 		);
 	}
 }

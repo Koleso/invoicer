@@ -51,18 +51,89 @@
   }
 }
 
+.Button--negative {
+  background-color: @red;
+  color: @white;
+  border: none;
+
+  &:hover {
+    background-color: #C60A0A;
+    color: @white;
+  }
+
+  &:active {
+    background-color: #990000;
+  }
+
+  &:focus {
+    box-shadow: 0 0 5px 1px rgba(178,0,0,.2);
+    border-color: @red;
+  }
+}
+
 .Button--big {
   height: 36px;
   line-height: 36px;
   padding: 0 20px;
 }
 
+.Button--tableBtn {
+  margin-left: 10px;
+  vertical-align: middle;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.Button--iconBtn {
+  position: relative;
+
+  &:before {
+    content: '';
+    background: no-repeat center center;
+    .square(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .4;
+    .trans;
+  }
+
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.Button--edit {
+  &:before {
+    background-image: url('./icons/edit.svg');
+  }
+}
+
+.Button--delete {
+  &:before {
+    background-image: url('./icons/delete.svg');
+  }
+}
+
 .Button--formRight {
   float: right;
+  margin-left: 15px;
 }
+
+.Button--formLeft {
+  float: left;
+  margin-right: 15px;
+}
+
 @media (max-width: 980px) {
   .Button--tabletLeft {
     float: left;
+    margin-left: 0;
+    margin-right: 15px;
   }
 }
 

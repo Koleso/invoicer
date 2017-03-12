@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="13px" viewBox="0 0 11 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Delete</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="01-Configuration-For-Dummies" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03-New-layout-Copy" transform="translate(-729.000000, -897.000000)" fill="#293646">
+            <g id="Rule-conditions" transform="translate(529.000000, 104.000000)">
+                <path d="M200,796 C200,795.447715 200.444837,795 200.995577,795 L210.004423,795 C210.554265,795 211,795.443865 211,796 C211,796.552285 210.555163,797 210.004423,797 L200.995577,797 C200.445735,797 200,796.556135 200,796 Z M203,794 C203,793.447715 203.443717,793 203.999807,793 L207.000193,793 C207.552371,793 208,793.443865 208,794 L208,795 L203,795 L203,794 Z M201,798 L210,798 L210,805.00297 C210,805.553614 209.553689,806 209.002455,806 L201.997545,806 C201.446616,806 201,805.546964 201,805.00297 L201,798 Z" id="Delete"></path>
+            </g>
+        </g>
+    </g>
+</svg>

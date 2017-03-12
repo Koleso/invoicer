@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Edit icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="04-Profiling-Detail" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-484.000000, -230.000000)" fill="#263343">
+            <g id="Title-hover" transform="translate(199.000000, 221.000000)">
+                <g id="Mask">
+                    <path d="M289.189804,7.92402451 L289.189804,23.4320305 L291.279617,25.5213627 L293.369189,23.4320305 L293.369189,7.92402451 L289.189804,7.92402451 Z M290.151854,22.4363087 L292.407139,22.4363087 L292.407139,8.88607454 L290.151854,8.88607454 L290.151854,22.4363087 Z" id="Edit-icon" transform="translate(291.279496, 16.722694) rotate(45.000000) translate(-291.279496, -16.722694) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
