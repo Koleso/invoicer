@@ -6,9 +6,11 @@ import { routerMiddleware } from 'react-router-redux';
 import reducers from 'reducers/index';
 
 import customers from 'data/customers';
+import suppliers from 'data/suppliers';
 
 window.__INITIAL_STATE__ = {
 	customers,
+	suppliers,
 };
 
 // Firebase
@@ -27,13 +29,14 @@ const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOL
 
 const middleware = [
 	routerMiddleware(browserHistory),
+	thunkMiddleware,
 ];
 
 const configureStore = () => {
 	const store = createStore(
 		reducers,
 		typeof window !== 'undefined' && window.__INITIAL_STATE__ || {},
-		composeEnhancers(applyMiddleware(...middleware, thunkMiddleware))
+		composeEnhancers(applyMiddleware(...middleware))
 	);
 
 	return store;

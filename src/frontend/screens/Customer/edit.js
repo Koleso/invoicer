@@ -23,7 +23,7 @@ const EditCustomer = React.createClass({
 				</Grid>
 			</Screen>
 		);
-	}
+	},
 });
 
 export default EditCustomer;

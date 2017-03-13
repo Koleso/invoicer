@@ -5,11 +5,12 @@ import { browserHistory } from 'react-router';
 // Components
 import Button from 'components/Button';
 import InputField from 'components/Input';
+import Checkbox from 'components/Checkbox';
 
-import validate from 'forms/CustomerFormValidate';
+import validate from './validate';
 
-const CustomerForm = (props) => {
-	const { addCustomer, updateCustomer, submitting, handleSubmit, action, initialValues } = props;
+const SupplierForm = (props) => {
+	const { addSupplier, updateSupplier, submitting, handleSubmit, action, initialValues } = props;
 
 	if (action === 'edit') {
 		if (initialValues === undefined) {
@@ -18,16 +19,15 @@ const CustomerForm = (props) => {
 		}
 	}
 
-	function submit(action) {
+	function submit() {
 		if (action === 'add') {
-			return handleSubmit(addCustomer);
-		} else if (action === 'edit') {
-			return handleSubmit(updateCustomer);
+			return handleSubmit(addSupplier);
 		}
+		return handleSubmit(updateSupplier);
 	}
 
 	return (
-		<form onSubmit={submit(action)} className="Form">
+		<form onSubmit={submit()} className="Form">
 			<div className="Form-col">
 				<input name="id" id="id" type="hidden" />
 
@@ -68,6 +68,20 @@ const CustomerForm = (props) => {
 				<div className="Form-line">
 					<div className="Form-cell">
 						<Field
+							name="payer"
+							id="payer"
+							type="text"
+							label="Plátce DPH"
+							component={Checkbox}
+						/>
+					</div>
+				</div>
+
+				<div className="Form-line"></div>
+
+				<div className="Form-line">
+					<div className="Form-cell">
+						<Field
 							name="street"
 							id="street"
 							type="text"
@@ -100,9 +114,7 @@ const CustomerForm = (props) => {
 						/>
 					</div>
 				</div>
-			</div>
 
-			<div className="Form-col">
 				<div className="Form-line">
 					<div className="Form-cell">
 						<Field
@@ -123,6 +135,90 @@ const CustomerForm = (props) => {
 							id="title"
 							type="text"
 							label="Funkce"
+							component={InputField}
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div className="Form-col">
+				<div className="Form-line">
+					<div className="Form-cell Form-cell--33">
+						<Field
+							name="vat"
+							id="vat"
+							type="number"
+							label="Sazba"
+							component={InputField}
+						/>
+					</div>
+
+					<div className="Form-cell Form-cell--33">
+						<Field
+							name="currency"
+							id="currency"
+							type="text"
+							label="Měna"
+							component={InputField}
+						/>
+					</div>
+
+					<div className="Form-cell Form-cell--33">
+						<Field
+							name="due"
+							id="due"
+							type="number"
+							label="Splatnost"
+							component={InputField}
+						/>
+					</div>
+				</div>
+
+				<div className="Form-line">
+					<div className="Form-cell">
+						<Field
+							name="bank"
+							id="bank"
+							type="text"
+							label="Bankovní spojení"
+							required={Boolean(true)}
+							component={InputField}
+						/>
+					</div>
+				</div>
+
+				<div className="Form-line">
+					<div className="Form-cell">
+						<Field
+							name="account"
+							id="account"
+							type="text"
+							label="Číslo účtu"
+							required={Boolean(true)}
+							component={InputField}
+						/>
+					</div>
+				</div>
+
+				<div className="Form-line">
+					<div className="Form-cell">
+						<Field
+							name="iban"
+							id="iban"
+							type="text"
+							label="IBAN"
+							component={InputField}
+						/>
+					</div>
+				</div>
+
+				<div className="Form-line">
+					<div className="Form-cell">
+						<Field
+							name="swift"
+							id="swift"
+							type="text"
+							label="SWIFT"
 							component={InputField}
 						/>
 					</div>
@@ -160,11 +256,11 @@ const CustomerForm = (props) => {
 					disabled={submitting}
 					modifiers={['primary', 'big', 'formRight', 'tabletLeft']}
 				>
-					{action === 'add' && 'Vytvořit odběratele'}
+					{action === 'add' && 'Vytvořit dodavatele'}
 					{action === 'edit' && 'Uložit změny'}
 				</Button>
 
-				{action === 'edit' && 
+				{action === 'edit' &&
 					<Button to={'/subjekty'} modifiers={['big', 'formRight', 'tabletLeft']}>Zpět na přehled</Button>
 				}
 			</div>
@@ -173,6 +269,6 @@ const CustomerForm = (props) => {
 };
 
 export default reduxForm({
-	form: 'customer',
+	form: 'supplier',
 	validate,
-})(CustomerForm);
+})(SupplierForm);

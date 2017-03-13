@@ -1,41 +1,32 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
 import cx from 'helpers/classes';
 
 // CSS
 import './index.less';
 
-export default class Input extends React.Component {
+const Checkbox = ({
+	input,
+	label,
+	id,
+	name,
+	modifiers,
+}) => {
+	const bm = 'Checkbox';
 
-	static propTypes = {
-		value: T.any,
-		indeterminate: T.bool,
-		onChange: T.func,
-		children: T.node,
-	};
+	return (
+		<label className={cx(bm, '', modifiers)}>
+			<input
+				type="checkbox"
+				id={id}
+				name={name}
+				className={cx(bm, 'checkbox')}
+				{...input}
+			/>
+			<div className={cx(bm, 'label')}>
+				{label}
+			</div>
+		</label>
+	);
+};
 
-	render() {
-		const bm = 'Checkbox';
-		const {
-			value,
-			indeterminate = false,
-			onChange,
-			children,
-			modifiers,
-		} = this.props;
-
-		return (
-			<label className={cx(bm, '', modifiers)}>
-				<input
-					type="checkbox"
-					value={value}
-					onChange={onChange}
-					className={cx(bm, 'checkbox', [indeterminate])}
-				/>
-				<div className={cx(bm, 'label')}>
-					{children}
-				</div>
-			</label>
-		);
-	}
-}
-
+export default Checkbox;

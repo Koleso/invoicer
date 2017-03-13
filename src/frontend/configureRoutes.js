@@ -7,16 +7,19 @@ import Login from 'screens/Login';
 import Signup from 'screens/Signup';
 
 import Dashboard from 'screens/Dashboard';
-import Invoices from 'screens/Invoices';
 import SubjectsContainer from 'containers/SubjectsContainer';
-import CustomerContainer from 'containers/CustomerContainer';
 import Settings from 'screens/Settings';
 
+import Invoices from 'screens/Invoices';
 import NewInvoice from 'screens/NewInvoice';
+
 import AddCustomer from 'screens/Customer/add';
 import EditCustomer from 'screens/Customer/edit';
 import DeleteCustomer from 'screens/Customer/delete';
-import NewSupplier from 'screens/NewSupplier';
+
+import AddSupplier from 'screens/Supplier/add';
+import EditSupplier from 'screens/Supplier/edit';
+import DeleteSupplier from 'screens/Supplier/delete';
 
 const errorLoading = (err) => console.error('Dynamic screen loading failed', err);
 const loadRoute = (callback) => (module) => callback(null, module.default);
@@ -33,7 +36,10 @@ const configureRoutes = () => ([
 		<Route path="subjekty/novy-odberatel" component={AddCustomer} />
 		<Route path="subjekty/upravit-odberatele/:customerId" component={EditCustomer} />
 		<Route path="subjekty/smazat-odberatele/:customerId" component={DeleteCustomer} />
-		<Route path="subjekty/novy-dodavatel" component={NewSupplier} />
+
+		<Route path="subjekty/novy-dodavatel" component={AddSupplier} />
+		<Route path="subjekty/upravit-dodavatele/:supplierId" component={EditSupplier} />
+		<Route path="subjekty/smazat-dodavatele/:supplierId" component={DeleteSupplier} />
 
 		<Route path="nastaveni" component={Settings} />
 

@@ -6,18 +6,18 @@ import Screen from 'components/Screen';
 import Box from 'components/Box';
 
 // Forms
-import CustomerContainer from 'containers/CustomerContainer';
+import SupplierContainer from 'containers/SupplierContainer';
 
-const AddCustomer = () => (
+const AddSupplier = () => (
 	<Screen title="Subjekty">
 		<Grid>
 			<GridColumn>
-				<Box title="Vytvoření nového odběratele">
-					<CustomerContainer action="add" />
+				<Box title="Vytvoření nového dodavatele">
+					<SupplierContainer action="add" />
 				</Box>
 			</GridColumn>
 		</Grid>
 	</Screen>
 );
 
-export default AddCustomer;
+export default AddSupplier;

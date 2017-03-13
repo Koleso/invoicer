@@ -11,8 +11,20 @@ import TableCell from 'components/TableCell';
 import Link from 'components/Link';
 
 const actions = [
-	<Button key="add-customer" to={'/subjekty/novy-odberatel'} modifiers={['primary', 'big']}>Nový odběratel</Button>,
-	<Button key="add-suppliers" to={'/subjekty/novy-dodavatel'} modifiers={['big']}>Nový dodavatel</Button>,
+	<Button
+		key="add-customer"
+		to={'/subjekty/novy-odberatel'}
+		modifiers={['primary', 'big']}
+	>
+		Nový odběratel
+	</Button>,
+	<Button
+		key="add-suppliers"
+		to={'/subjekty/novy-dodavatel'}
+		modifiers={['big']}
+	>
+		Nový dodavatel
+	</Button>,
 ];
 
 const Subjects = ({ customers, suppliers }) => (
@@ -38,8 +50,47 @@ const Subjects = ({ customers, suppliers }) => (
 									<div className="TableCell--secondary">{customer.email}</div>
 								</TableCell>
 								<TableCell modifiers={['actions']}>
-									<Button to={`/subjekty/upravit-odberatele/${customer.id}`} modifiers={['tableBtn', 'iconBtn', 'edit']}></Button>
-									<Button to={`/subjekty/smazat-odberatele/${customer.id}`} modifiers={['tableBtn', 'iconBtn', 'delete']}></Button>
+									<Button
+										to={`/subjekty/upravit-odberatele/${customer.id}`}
+										modifiers={['tableBtn', 'iconBtn', 'edit']}
+									/>
+									<Button
+										to={`/subjekty/smazat-odberatele/${customer.id}`}
+										modifiers={['tableBtn', 'iconBtn', 'delete']}
+									/>
+								</TableCell>
+							</TableRow>
+						)}
+					</Table>
+				</Box>
+
+				<Box title="Dodavatelé">
+					<Table>
+						{suppliers.map(supplier =>
+							<TableRow key={supplier.id}>
+								<TableCell>
+									<div className="TableCell--primary">
+										<Link to={`/subjekty/${supplier.id}`} modifiers={['tableLink']}>{supplier.name}</Link>
+									</div>
+									<div className="TableCell--secondary">IČ: {supplier.ic}</div>
+								</TableCell>
+								<TableCell>
+									<div className="TableCell--primary">{supplier.city}</div>
+									<div className="TableCell--secondary">{supplier.street}, {supplier.zip}</div>
+								</TableCell>
+								<TableCell>
+									<div className="TableCell--primary">{supplier.payer ? 'Plátce DPH' : 'Neplátce DPH'}</div>
+									<div className="TableCell--secondary">{supplier.currency && `Měna ${supplier.currency}`}</div>
+								</TableCell>
+								<TableCell modifiers={['actions']}>
+									<Button
+										to={`/subjekty/upravit-dodavatele/${supplier.id}`}
+										modifiers={['tableBtn', 'iconBtn', 'edit']}
+									/>
+									<Button
+										to={`/subjekty/smazat-dodavatele/${supplier.id}`}
+										modifiers={['tableBtn', 'iconBtn', 'delete']}
+									/>
 								</TableCell>
 							</TableRow>
 						)}

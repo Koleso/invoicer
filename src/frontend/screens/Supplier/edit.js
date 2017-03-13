@@ -6,18 +6,18 @@ import Screen from 'components/Screen';
 import Box from 'components/Box';
 
 // Forms
-import CustomerContainer from 'containers/CustomerContainer';
+import SupplierContainer from 'containers/SupplierContainer';
 
-const DeleteCustomer = React.createClass({
+const EditSupplier = React.createClass({
 	render() {
-		const { customerId } = this.props.params;
+		const { supplierId } = this.props.params;
 
 		return (
 			<Screen title="Subjekty">
 				<Grid>
 					<GridColumn>
-						<Box title="Smazání odběratele">
-							<CustomerContainer action="delete" customerId={customerId} />
+						<Box title="Upravit dodavatele">
+							<SupplierContainer action="edit" supplierId={supplierId} />
 						</Box>
 					</GridColumn>
 				</Grid>
@@ -26,4 +26,4 @@ const DeleteCustomer = React.createClass({
 	},
 });
 
-export default DeleteCustomer;
+export default EditSupplier;

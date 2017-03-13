@@ -7,6 +7,7 @@ import AppLayout from 'screens/AppLayout';
 function mapStateToProps(state) {
 	return {
 		customers: state.customers,
+		suppliers: state.suppliers,
 	};
 }
 

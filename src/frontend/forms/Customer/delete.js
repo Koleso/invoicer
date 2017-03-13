@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import Button from 'components/Button';
 
 const CustomerDelete = (props) => {
-	const { deleteCustomer, submitting, handleSubmit, action, initialValues } = props;
+	const { deleteCustomer, submitting, handleSubmit, initialValues } = props;
 
 	if (initialValues === undefined) {
 		// TODO: 404 page

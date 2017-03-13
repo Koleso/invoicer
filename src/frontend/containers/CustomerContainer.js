@@ -1,8 +1,8 @@
 import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 
-import CustomerForm from 'forms/CustomerForm';
-import CustomerDelete from 'forms/CustomerDelete';
+import CustomerForm from 'forms/Customer/form';
+import CustomerDelete from 'forms/Customer/delete';
 import { addCustomer, updateCustomer, deleteCustomer } from 'actions/index';
 
 class Customer extends React.Component {
@@ -25,7 +25,7 @@ class Customer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-	const item = state.customers.find(function (d) {
+	const item = state.customers.find((d) => {
 		return d.id === parseInt(props.customerId, 10);
 	});
 
