@@ -7,10 +7,12 @@ import reducers from 'reducers/index';
 
 import customers from 'data/customers';
 import suppliers from 'data/suppliers';
+import invoices from 'data/invoices';
 
 window.__INITIAL_STATE__ = {
 	customers,
 	suppliers,
+	invoices,
 };
 
 // Firebase

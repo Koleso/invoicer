@@ -14,8 +14,19 @@
 		color: @black;
 	}
 
-	&--actions {
-		width: 50px;
+	&--price {
+		font-weight: 700;
+		font-size: 18px;
+		color: @black;
 		white-space: nowrap;
+	}
+
+	&--actions {
+		width: 1px;
+		white-space: nowrap;
+	}
+
+	&--overdue > * {
+		color: @red !important;
 	}
 }

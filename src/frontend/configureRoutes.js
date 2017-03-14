@@ -10,7 +10,7 @@ import Dashboard from 'screens/Dashboard';
 import SubjectsContainer from 'containers/SubjectsContainer';
 import Settings from 'screens/Settings';
 
-import Invoices from 'screens/Invoices';
+import InvoicesContainer from 'containers/InvoicesContainer';
 import NewInvoice from 'screens/NewInvoice';
 
 import AddCustomer from 'screens/Customer/add';
@@ -29,7 +29,7 @@ const configureRoutes = () => ([
 	<Route path="/" component={AppContainer}>
 		<IndexRoute component={Dashboard} />
 
-		<Route path="faktury" component={Invoices} />
+		<Route path="faktury" component={InvoicesContainer} />
 		<Route path="faktury/nova-faktura" component={NewInvoice} />
 
 		<Route path="subjekty" component={SubjectsContainer} />
