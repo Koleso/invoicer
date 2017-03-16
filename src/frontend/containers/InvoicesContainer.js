@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
+
 import Invoices from 'screens/Invoices';
 
 class InvoicesContainer extends React.Component {
@@ -18,5 +19,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  null
+  null,
 )(InvoicesContainer);

@@ -11,8 +11,6 @@ export default class Dropdown extends React.Component {
 		options: T.array.isRequired,
 		input: T.object,
 		multiple: T.bool,
-		keyId: T.any,
-		keyLabel: T.any,
 		disabled: T.bool,
 	};
 
@@ -21,27 +19,37 @@ export default class Dropdown extends React.Component {
 		const {
 			label,
 			multiple,
+			defaultValue,
 			options,
-			keyId,
-			keyLabel,
 			onChange,
 			disabled = false,
 			modifiers,
 		} = this.props;
 
+		let labelElement = '';
+		if (label) {
+			labelElement = (<label className={cx(bm, 'label')}>{label}</label>);
+		}
+
+		let defaultValueElement = '';
+		if (defaultValue) {
+			defaultValueElement = (<option>{defaultValue}</option>);
+		}
+
 		return (
 			<div className={cx(bm, '', modifiers)}>
-				<label className={cx(bm, 'label')}>{label}</label>
+				{labelElement}
 				<select
 					onChange={e => onChange(e.target.value)}
 					multiple={multiple}
 					className={cx(bm, 'trigger')}
 					disabled={disabled}
 				>
+					{defaultValueElement}
 					{
 						options.map((item, index) =>
-							<option key={index} value={item[keyId]}>
-								{item[keyLabel]}
+							<option key={index} value={item['key']}>
+								{item['label']}
 							</option>
 						)
 					}

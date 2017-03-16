@@ -11,7 +11,7 @@ import SubjectsContainer from 'containers/SubjectsContainer';
 import Settings from 'screens/Settings';
 
 import InvoicesContainer from 'containers/InvoicesContainer';
-import NewInvoice from 'screens/NewInvoice';
+import NewInvoice from 'screens/Invoices/add';
 
 import AddCustomer from 'screens/Customer/add';
 import EditCustomer from 'screens/Customer/edit';

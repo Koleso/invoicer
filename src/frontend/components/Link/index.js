@@ -19,7 +19,7 @@ export default class Link extends React.Component {
 			to,
 			children,
 			modifiers,
-			...otherProps,
+			...props,
 			} = this.props;
 
 		return (
@@ -27,7 +27,7 @@ export default class Link extends React.Component {
 				className={cx(bm, '', modifiers)}
 				to={to}
 				activeClassName="isActive"
-				{...otherProps}
+				{...props}
 			>
 				{children}
 			</ReactLink>

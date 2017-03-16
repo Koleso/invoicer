@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import SupplierForm from 'forms/Supplier/form';
 import SupplierDelete from 'forms/Supplier/delete';
-import { addSupplier, updateSupplier, deleteSupplier } from 'actions/index';
+import { addSupplier, updateSupplier, deleteSupplier } from 'actions/suppliers';
 
 class Supplier extends React.Component {
 	static propTypes = {

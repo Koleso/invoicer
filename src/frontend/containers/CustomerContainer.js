@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import CustomerForm from 'forms/Customer/form';
 import CustomerDelete from 'forms/Customer/delete';
-import { addCustomer, updateCustomer, deleteCustomer } from 'actions/index';
+import { addCustomer, updateCustomer, deleteCustomer } from 'actions/customers';
 
 class Customer extends React.Component {
 	static propTypes = {

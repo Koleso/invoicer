@@ -5,7 +5,8 @@
   display: inline-block;
   position: relative;
   text-decoration: none;
-  text-shadow: 0 0 2px 2px @white;
+  text-shadow: 0 0 2px @white;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -31,5 +32,14 @@
     &:before {
       background-color: @navy;
     }
+  }
+
+  &--small {
+    font-size: 12px;
+  }
+
+  &--headerRight {
+    float: right;
+    margin-top: 2px;
   }
 }
