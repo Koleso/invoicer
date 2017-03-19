@@ -4,23 +4,20 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class TableCell extends React.Component {
+const TableCell = ({
+	children,
+	modifiers,
+}) => {
+	const bm = 'TableCell';
 
-	static propTypes = {
-		children: T.node,
-		header: T.bool,
-		modifiers: T.array,
-	};
+	return (
+		<td className={cx(bm, '', modifiers)}>{children}</td>
+	);
+};
 
-	render() {
-		const bm = 'TableCell';
-		const {
-			children,
-			modifiers,
-		} = this.props;
+TableCell.propTypes = {
+	children: T.node,
+	modifiers: T.array,
+};
 
-		return (
-			<td className={cx(bm, '', modifiers)}>{children}</td>
-		);
-	}
-}
+export default TableCell;

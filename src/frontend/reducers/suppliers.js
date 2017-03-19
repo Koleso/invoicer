@@ -1,4 +1,6 @@
-function suppliers(state = [], action) {
+import initialState from 'data/suppliers';
+
+function suppliers(state = initialState, action) {
 	switch (action.type) {
 		case 'ADD_SUPPLIER' : {
 			return [].concat(state).concat([action.payload]);

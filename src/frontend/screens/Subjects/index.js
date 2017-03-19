@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import Grid, { GridColumn } from 'components/Grid';
+import { Grid, GridColumn } from 'components/Grid';
 import Screen from 'components/Screen';
 import Button from 'components/Button';
 import Box from 'components/Box';

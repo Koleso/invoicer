@@ -4,26 +4,24 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Wrap extends React.Component {
+const Wrap = ({
+	children,
+	modifiers,
+}) => {
+	const bm = 'Wrap';
 
-	static propTypes = {
-		children: T.node,
-		modifiers: T.array,
-	};
+	return (
+		<div
+			className={cx(bm, '', modifiers)}
+		>
+			{children}
+		</div>
+	);
+};
 
-	render() {
-		const bm = 'Wrap';
-		const {
-			children,
-			modifiers,
-		} = this.props;
+Wrap.propTypes = {
+	children: T.node,
+	modifiers: T.array,
+};
 
-		return (
-			<div
-				className={cx(bm, '', modifiers)}
-			>
-				{children}
-			</div>
-		);
-	}
-}
+export default Wrap;

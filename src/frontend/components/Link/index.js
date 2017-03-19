@@ -5,32 +5,30 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Link extends React.Component {
+const Link = ({
+	to,
+	children,
+	modifiers,
+	...props,
+}) => {
+	const bm = 'Link';
 
-	static propTypes = {
-		to: T.any,
-		children: T.node,
-		modifiers: T.array,
-	};
+	return (
+		<ReactLink
+			className={cx(bm, '', modifiers)}
+			to={to}
+			activeClassName="isActive"
+			{...props}
+		>
+			{children}
+		</ReactLink>
+	);
+};
 
-	render() {
-		const bm = 'Link';
-		const {
-			to,
-			children,
-			modifiers,
-			...props,
-			} = this.props;
+Link.propTypes = {
+	to: T.any,
+	children: T.node,
+	modifiers: T.array,
+};
 
-		return (
-			<ReactLink
-				className={cx(bm, '', modifiers)}
-				to={to}
-				activeClassName="isActive"
-				{...props}
-			>
-				{children}
-			</ReactLink>
-		);
-	}
-}
+export default Link;

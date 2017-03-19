@@ -4,51 +4,46 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Grid extends React.Component {
+const Grid = ({
+	children,
+	size,
+}) => {
+	const bm = 'Grid';
 
-	static propTypes = {
-		children: T.node,
-	};
-
-	render() {
-		const bm = 'Grid';
-		const {
-			children,
-			size,
-		} = this.props;
-
-		let gridSize = '';
-		if (size === 2) {
-			gridSize = 'twoColumn';
-		}
-		if (size === 3) {
-			gridSize = 'threeColumn';
-		}
-
-		return (
-			<div className={cx(bm, '', [gridSize])}>
-				{children}
-			</div>
-		);
+	let gridSize = '';
+	if (size === 2) {
+		gridSize = 'twoColumn';
 	}
-}
-
-export class GridColumn extends React.Component {
-
-	static propTypes = {
-		children: T.node,
-	};
-
-	render() {
-		const bm = 'GridColumn';
-		const {
-			children,
-		} = this.props;
-
-		return (
-			<div className={cx(bm, '')}>
-				{children}
-			</div>
-		);
+	if (size === 3) {
+		gridSize = 'threeColumn';
 	}
-}
+
+	return (
+		<div className={cx(bm, '', [gridSize])}>
+			{children}
+		</div>
+	);
+};
+
+Grid.propTypes = {
+	children: T.node.isRequired,
+};
+
+// Grid column
+const GridColumn = ({
+	children,
+}) => {
+	const bm = 'GridColumn';
+
+	return (
+		<div className={cx(bm, '')}>
+			{children}
+		</div>
+	);
+};
+
+Grid.GridColumn = {
+	children: T.node.isRequired,
+};
+
+export { Grid, GridColumn };

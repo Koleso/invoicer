@@ -5,24 +5,17 @@ import CustomerForm from 'forms/Customer/form';
 import CustomerDelete from 'forms/Customer/delete';
 import { addCustomer, updateCustomer, deleteCustomer } from 'actions/customers';
 
-class Customer extends React.Component {
-	static propTypes = {
-		action: T.string.isRequired,
-	};
-
-	// TODO: Iakov approves?
-	render() {
-		if (this.props.action === 'delete') {
-			return (
-				<CustomerDelete {...this.props} />
-			);
-		}
-
+const Customer = (props) => {
+	if (props.action === 'delete') {
 		return (
-			<CustomerForm {...this.props} />
+			<CustomerDelete {...props} />
 		);
 	}
-}
+
+	return (
+		<CustomerForm {...props} />
+	);
+};
 
 const mapStateToProps = (state, props) => {
 	const item = state.customers.find((d) => {
@@ -39,6 +32,10 @@ const mapDispatchToProps = (dispatch) => ({
 	updateCustomer: () => dispatch(updateCustomer()),
 	deleteCustomer: () => dispatch(deleteCustomer()),
 });
+
+Customer.propTypes = {
+	action: T.string.isRequired,
+};
 
 export default connect(
 	mapStateToProps,

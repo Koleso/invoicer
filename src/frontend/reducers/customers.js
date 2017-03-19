@@ -1,4 +1,6 @@
-function customers(state = [], action) {
+import initialState from 'data/customers';
+
+function customers(state = initialState, action) {
 	switch (action.type) {
 		case 'ADD_CUSTOMER' : {
 			return [].concat(state).concat([action.payload]);

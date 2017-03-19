@@ -5,24 +5,17 @@ import SupplierForm from 'forms/Supplier/form';
 import SupplierDelete from 'forms/Supplier/delete';
 import { addSupplier, updateSupplier, deleteSupplier } from 'actions/suppliers';
 
-class Supplier extends React.Component {
-	static propTypes = {
-		action: T.string.isRequired,
-	};
-
-	// TODO: Iakov approves?
-	render() {
-		if (this.props.action === 'delete') {
-			return (
-				<SupplierDelete {...this.props} />
-			);
-		}
-
+const Supplier = (props) => {
+	if (props.action === 'delete') {
 		return (
-			<SupplierForm {...this.props} />
+			<SupplierDelete {...props} />
 		);
 	}
-}
+
+	return (
+		<SupplierForm {...props} />
+	);
+};
 
 const mapStateToProps = (state, props) => {
 	const item = state.suppliers.find((d) => {
@@ -39,6 +32,10 @@ const mapDispatchToProps = (dispatch) => ({
 	updateSupplier: () => dispatch(updateSupplier()),
 	deleteSupplier: () => dispatch(deleteSupplier()),
 });
+
+Supplier.propTypes = {
+	action: T.string.isRequired,
+};
 
 export default connect(
 	mapStateToProps,

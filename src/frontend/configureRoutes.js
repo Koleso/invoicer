@@ -44,8 +44,8 @@ const configureRoutes = () => ([
 		<Route path="nastaveni" component={Settings} />
 
 	</Route>,
-	<Route path="/login" component={Login} />,
-	<Route path="/registrace" component={Signup} />,
+	<Route path="login" component={Login} />,
+	<Route path="registrace" component={Signup} />,
 ]);
 
 export default configureRoutes;

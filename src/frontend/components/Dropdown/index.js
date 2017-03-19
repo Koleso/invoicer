@@ -11,7 +11,6 @@ const Dropdown = ({
 	modifiers,
 	options,
 	defaultValue,
-	disabled,
 	required = false,
 	meta: { touched, error },
 }) => {
@@ -39,8 +38,8 @@ const Dropdown = ({
 				{defaultValueElement}
 				{
 					options.map((item, index) =>
-						<option key={index} value={item['key']}>
-							{item['label']}
+						<option key={index} value={item.key}>
+							{item.label}
 						</option>
 					)
 				}

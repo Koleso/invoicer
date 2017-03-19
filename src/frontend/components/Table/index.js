@@ -4,26 +4,24 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Table extends React.Component {
+const Table = ({
+	children,
+	modifiers,
+}) => {
+	const bm = 'Table';
 
-	static propTypes = {
-		children: T.node,
-		modifiers: T.array,
-	};
+	return (
+		<table className={cx(bm, '', modifiers)}>
+			<tbody>
+				{children}
+			</tbody>
+		</table>
+	);
+};
 
-	render() {
-		const bm = 'Table';
-		const {
-			children,
-			modifiers,
-		} = this.props;
+Table.propTypes = {
+	children: T.node,
+	modifiers: T.array,
+};
 
-		return (
-			<table className={cx(bm, '', modifiers)}>
-				<tbody>
-					{children}
-				</tbody>
-			</table>
-		);
-	}
-}
+export default Table;

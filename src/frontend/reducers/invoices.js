@@ -1,4 +1,6 @@
-function invoices(state = [], action) {
+import initialState from 'data/invoices';
+
+function invoices(state = initialState, action) {
 	switch (action.type) {
 		case 'ADD_INVOICE' : {
 			return [].concat(state).concat([action.payload]);

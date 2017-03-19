@@ -5,13 +5,12 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Logo extends React.Component {
+const Logo = () => {
+	const bm = 'Logo';
 
-	render() {
-		const bm = 'Logo';
+	return (
+		<IndexLink to="/" className={cx(bm, '')} />
+	);
+};
 
-		return (
-			<IndexLink to="/" className={cx(bm, '')} />
-		);
-	}
-}
+export default Logo;

@@ -1,19 +1,11 @@
+/*eslint no-underscore-dangle: "error"*/
+
 import { compose, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 
 import reducers from 'reducers/index';
-
-import customers from 'data/customers';
-import suppliers from 'data/suppliers';
-import invoices from 'data/invoices';
-
-window.__INITIAL_STATE__ = {
-	customers,
-	suppliers,
-	invoices,
-};
 
 // Firebase
 /*

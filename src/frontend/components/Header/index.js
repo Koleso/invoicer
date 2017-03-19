@@ -9,27 +9,23 @@ import Navigation from 'components/Navigation';
 // CSS
 import './index.less';
 
-export default class Header extends React.Component {
+const Header = ({
+	modifiers,
+}) => {
+	const bm = 'Header';
 
-	static propTypes = {
-		modifiers: T.array,
-	};
+	return (
+		<div className={cx(bm, '', modifiers)}>
+			<Wrap>
+				<Logo />
+				<Navigation />
+			</Wrap>
+		</div>
+	);
+};
 
-	render() {
-		const bm = 'Header';
-		const {
-			modifiers,
-		} = this.props;
+Header.propTypes = {
+	modifiers: T.array,
+};
 
-		return (
-			<div
-				className={cx(bm, '', modifiers)}
-			>
-				<Wrap>
-					<Logo />
-					<Navigation />
-				</Wrap>
-			</div>
-		);
-	}
-}
+export default Header;

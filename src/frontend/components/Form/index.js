@@ -4,22 +4,20 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Form extends React.Component {
+const Form = ({
+	children,
+}) => {
+	const bm = 'Form';
 
-	static propTypes = {
-		children: T.node,
-	};
+	return (
+		<div className={cx(bm, '')}>
+			{children}
+		</div>
+	);
+};
 
-	render() {
-		const bm = 'Form';
-		const {
-			children,
-		} = this.props;
+Form.propTypes = {
+	children: T.node,
+};
 
-		return (
-			<div className={cx(bm, '')}>
-				{children}
-			</div>
-		);
-	}
-}
+export default Form;

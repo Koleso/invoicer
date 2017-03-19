@@ -4,37 +4,35 @@ import cx from 'helpers/classes';
 // CSS
 import './index.less';
 
-export default class Notification extends React.Component {
+const Notification = ({
+	children,
+	type,
+	modifiers,
+}) => {
+	const bm = 'Notification';
 
-	static propTypes = {
-		children: T.node.isRequired,
-		type: T.string,
-		modifiers: T.array,
-	};
-
-	render() {
-		const bm = 'Notification';
-		const {
-			children,
-			type,
-			modifiers,
-		} = this.props;
-
-		let typeIcon = 'success';
-		if (type === 'error') {
-			typeIcon = type;
-		}
-
-		return (
-			<div className={cx(bm, '')}>
-				<div className={cx(bm, 'item', modifiers)}>
-					<div className={cx(bm, 'icon', [typeIcon])}></div>
-					<div className={cx(bm, 'content')}>
-						{children}
-					</div>
-					<div className={cx(bm, 'close')}></div>
-				</div>
-			</div>
-		);
+	let typeIcon = 'success';
+	if (type === 'error') {
+		typeIcon = type;
 	}
-}
+
+	return (
+		<div className={cx(bm, '')}>
+			<div className={cx(bm, 'item', modifiers)}>
+				<div className={cx(bm, 'icon', [typeIcon])}></div>
+				<div className={cx(bm, 'content')}>
+					{children}
+				</div>
+				<div className={cx(bm, 'close')}></div>
+			</div>
+		</div>
+	);
+};
+
+Notification.propTypes = {
+	children: T.node.isRequired,
+	type: T.string,
+	modifiers: T.array,
+};
+
+export default Notification;

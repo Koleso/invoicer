@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import * as customerCreators from 'actions/customers';
 import * as supplierCreators from 'actions/suppliers';
-import * as invoiceCreators from 'actions/invoices';
+import * as invoicesCreators from 'actions/invoices';
 
 import AppLayout from 'screens/AppLayout';
 
@@ -19,11 +19,13 @@ function mapDispachToProps(dispatch) {
 		actions: {
 			customerActions: bindActionCreators(customerCreators, dispatch),
 			supplierActions: bindActionCreators(supplierCreators, dispatch),
-			invoiceAtions: bindActionCreators(invoiceCreators, dispatch),
+			invoicesActions: bindActionCreators(invoicesCreators, dispatch),
+			//invoiceActions: bindActionCreators(invoiceCreators, dispatch),
 		}
 	};
 }
 
-const AppContainer = connect(mapStateToProps, mapDispachToProps)(AppLayout);
-
-export default AppContainer;
+export default connect(
+	mapStateToProps,
+	mapDispachToProps,
+)(AppLayout);

@@ -18,12 +18,12 @@ const CustomerForm = (props) => {
 		}
 	}
 
-	function submit() {
+	const submit = () => {
 		if (action === 'add') {
 			return handleSubmit(addCustomer);
 		}
 		return handleSubmit(updateCustomer);
-	}
+	};
 
 	return (
 		<form onSubmit={submit()} className="Form">
