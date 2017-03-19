@@ -6,7 +6,7 @@ import AppContainer from 'containers/AppContainer';
 import Login from 'screens/Login';
 import Signup from 'screens/Signup';
 
-import Dashboard from 'screens/Dashboard';
+import DashboardContainer from 'containers/DashboardContainer';
 import SubjectsContainer from 'containers/SubjectsContainer';
 import Settings from 'screens/Settings';
 
@@ -21,13 +21,10 @@ import AddSupplier from 'screens/Supplier/add';
 import EditSupplier from 'screens/Supplier/edit';
 import DeleteSupplier from 'screens/Supplier/delete';
 
-const errorLoading = (err) => console.error('Dynamic screen loading failed', err);
-const loadRoute = (callback) => (module) => callback(null, module.default);
-
 // TODO: Iakov to the rescue, fokin activeClassName not working
 const configureRoutes = () => ([
 	<Route path="/" component={AppContainer}>
-		<IndexRoute component={Dashboard} />
+		<IndexRoute component={DashboardContainer} />
 
 		<Route path="faktury" component={InvoicesContainer} />
 		<Route path="faktury/nova-faktura" component={NewInvoice} />

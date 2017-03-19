@@ -21,7 +21,7 @@ function mapDispachToProps(dispatch) {
 			supplierActions: bindActionCreators(supplierCreators, dispatch),
 			invoicesActions: bindActionCreators(invoicesCreators, dispatch),
 			//invoiceActions: bindActionCreators(invoiceCreators, dispatch),
-		}
+		},
 	};
 }
 
