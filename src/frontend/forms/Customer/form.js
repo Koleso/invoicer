@@ -3,14 +3,20 @@ import { Field, reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
 // Components
+import Form from 'components/Form';
 import Button from 'components/Button';
 import InputField from 'components/Input';
 
 import validate from './validate';
 
-const CustomerForm = (props) => {
-	const { addCustomer, updateCustomer, submitting, handleSubmit, action, initialValues } = props;
-
+const CustomerForm = ({
+	addCustomer,
+	updateCustomer,
+	submitting,
+	handleSubmit,
+	action,
+	initialValues,
+}) => {
 	if (action === 'edit') {
 		if (initialValues === undefined) {
 			// TODO: 404 page
@@ -26,7 +32,7 @@ const CustomerForm = (props) => {
 	};
 
 	return (
-		<form onSubmit={submit()} className="Form">
+		<Form onSubmit={submit()}>
 			<div className="Form-col">
 				<input name="id" id="id" type="hidden" />
 
@@ -167,7 +173,7 @@ const CustomerForm = (props) => {
 					<Button to={'/subjekty'} modifiers={['big', 'formRight', 'tabletLeft']}>Zpět na přehled</Button>
 				}
 			</div>
-		</form>
+		</Form>
 	);
 };
 

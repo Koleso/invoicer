@@ -8,22 +8,20 @@ import Box from 'components/Box';
 // Forms
 import SupplierContainer from 'containers/SupplierContainer';
 
-const EditSupplier = React.createClass({
-	render() {
-		const { supplierId } = this.props.params;
+const EditSupplier = (props) => {
+	const supplierId = props.params.supplierId;
 
-		return (
-			<Screen title="Subjekty">
-				<Grid>
-					<GridColumn>
-						<Box title="Upravit dodavatele">
-							<SupplierContainer action="edit" supplierId={supplierId} />
-						</Box>
-					</GridColumn>
-				</Grid>
-			</Screen>
-		);
-	},
-});
+	return (
+		<Screen title="Subjekty">
+			<Grid>
+				<GridColumn>
+					<Box title="Upravit dodavatele">
+						<SupplierContainer action="edit" supplierId={supplierId} />
+					</Box>
+				</GridColumn>
+			</Grid>
+		</Screen>
+	);
+};
 
 export default EditSupplier;

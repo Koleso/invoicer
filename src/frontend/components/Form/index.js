@@ -6,13 +6,14 @@ import './index.less';
 
 const Form = ({
 	children,
+	...props,
 }) => {
 	const bm = 'Form';
 
 	return (
-		<div className={cx(bm, '')}>
+		<form className={cx(bm, '')} {...props}>
 			{children}
-		</div>
+		</form>
 	);
 };
 

@@ -3,18 +3,22 @@ import { reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
 // Components
+import Form from 'components/Form';
 import Button from 'components/Button';
 
-const CustomerDelete = (props) => {
-	const { deleteCustomer, submitting, handleSubmit, initialValues } = props;
-
+const CustomerDelete = ({
+	deleteCustomer,
+	submitting,
+	handleSubmit,
+	initialValues,
+}) => {
 	if (initialValues === undefined) {
 		// TODO: 404 page
 		browserHistory.push('/subjekty/');
 	}
 
 	return (
-		<form onSubmit={handleSubmit(deleteCustomer)} className="Form">
+		<Form onSubmit={handleSubmit(deleteCustomer)}>
 			<div className="Form-content">
 				<input name="id" id="id" type="hidden" />
 
@@ -29,7 +33,7 @@ const CustomerDelete = (props) => {
 				</Button>
 				<Button to={'/subjekty'} modifiers={['big', 'formLeft']}>Zpět na přehled</Button>
 			</div>
-		</form>
+		</Form>
 	);
 };
 
