@@ -12,7 +12,7 @@ import validate from './validate';
 
 const InvoiceForm = (props) => {
 	const { addInvoice, submitting, handleSubmit, action, initialValues, suppliers, customers } = props;
-	const id = new Date().valueOf();
+	let supplierId;
 
 	function submit() {
 		if (action === 'add') {
@@ -20,10 +20,21 @@ const InvoiceForm = (props) => {
 		}
 	}
 
+	function changed() {
+		console.log('SelectingFormValuesForm');
+	}
+
+	function supplierChanged(newId) {
+		supplierId = newId;
+	}
+
 	return (
-		<form onSubmit={submit()}>
-			<Invoice id={id} suppliers={suppliers} customers={customers}>
-				<input name="id" id="id" type="hidden" value={id} />
+		<form onSubmit={submit()} onChange={changed()}>
+			<Field name="id" type="hidden" component={InputField} />
+			<Field name="supplierId" type="hidden" component={InputField} />
+			<Field name="customerId" type="hidden" component={InputField} />
+
+			<Invoice id={initialValues.id} suppliers={suppliers} customers={customers} supplierId={supplierId}>
 				<Field
 					name="name"
 					id="name"

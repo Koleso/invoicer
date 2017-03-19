@@ -1,5 +1,8 @@
 import React, { PropTypes as T } from 'react';
+import { Field, reduxForm } from 'redux-form';
 import cx from 'helpers/classes';
+import { connect } from 'react-redux';
+import { newInvoice, updateSupplier } from 'actions/invoices';
 
 // Components
 import Link from 'components/Link';
@@ -8,18 +11,42 @@ import Dropdown from 'components/Dropdown';
 // CSS
 import './index.less';
 
-export default class Invoice extends React.Component {
+class Invoice extends React.Component {
 
 	static propTypes = {
 		children: T.node.isRequired,
-		id: T.string.isRequired,
+		id: T.number.isRequired,
 		suppliers: T.array.isRequired,
 		customers: T.array.isRequired,
 	};
 
 	render() {
-		const { children, id, suppliers, customers } = this.props;
+		const {
+			children,
+			id,
+			suppliers,
+			customers,
+			supplierId,
+		} = this.props;
 		const bm = 'Invoice';
+
+		const customersArray = [];
+		customers.map(customer =>
+			customersArray.push({
+				key: customer.id,
+				label: customer.name + ' (IČ: ' + customer.ic + ')',
+			})
+		)
+
+		const suppliersArray = [];
+		suppliers.map(supplier =>
+			suppliersArray.push({
+				key: supplier.id,
+				label: supplier.name + ' (IČ: ' + supplier.ic + ')',
+			})
+		)
+
+		console.log('supplierId', supplierId);
 
 		return (
 			<div className={cx(bm, '')}>
@@ -31,7 +58,7 @@ export default class Invoice extends React.Component {
 					<div className={cx(bm, 'col')}>
 						<h3>
 							Odběratel
-							<Link onClick="" modifiers={['small', 'headerRight']}>Změnit</Link>
+							<Link onClick={() => {return}} modifiers={['small', 'headerRight']}>Změnit</Link>
 						</h3>
 						<ul className={cx(bm, 'list')}>
 							<li><strong>David Kolinek</strong></li>
@@ -51,25 +78,18 @@ export default class Invoice extends React.Component {
 						<h3>
 							Dodavatel
 						</h3>
-						<Dropdown
-							defaultValue="Vyberte"
-							modifiers={['inlineBlock']}
-							options={[
-								{
-									key: 'user_1',
-									label: 'user 1',
-								}, {
-									key: 'user_2',
-									label: 'user 2',
-								}, {
-									key: 'user_3',
-									label: 'user 3',
-								}, {
-									key: 'user_4',
-									label: 'user 4',
-								}
-							]}
-						/>
+						{ true && 
+							<Field
+								defaultValue="Vyberte"
+								name="supplierId"
+								modifiers={['inlineBlock']}
+								options={suppliersArray}
+								component={Dropdown}
+								onChange={event => {
+									supplierChanged(event.target.value);
+								}}
+							/>
+						}
 					</div>
 					<div className={cx(bm, 'col')}>
 						<h3>Informace pro platbu</h3>
@@ -121,3 +141,21 @@ export default class Invoice extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state, props) => {
+	return {
+		supplierId: state.form.invoice.supplierId,
+		customerId: state.form.invoice.customerId,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => ({
+	addInvoice: () => dispatch(addInvoice()),
+	updateSupplier: (supplierId) => dispatch(updateSupplier(supplierId)),
+	supplierChanged: (newId) => dispatch(supplierChanged(newId)),
+});
+
+export default connect(
+	mapStateToProps,
+	null
+)(Invoice);
