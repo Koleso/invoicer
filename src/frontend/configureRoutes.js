@@ -8,7 +8,6 @@ import Signup from 'screens/Signup';
 
 import DashboardContainer from 'containers/DashboardContainer';
 import SubjectsContainer from 'containers/SubjectsContainer';
-import Settings from 'screens/Settings';
 
 import InvoicesContainer from 'containers/InvoicesContainer';
 import NewInvoice from 'screens/Invoices/add';
@@ -37,8 +36,6 @@ const configureRoutes = () => ([
 		<Route path="subjekty/novy-dodavatel" component={AddSupplier} />
 		<Route path="subjekty/upravit-dodavatele/:supplierId" component={EditSupplier} />
 		<Route path="subjekty/smazat-dodavatele/:supplierId" component={DeleteSupplier} />
-
-		<Route path="nastaveni" component={Settings} />
 
 	</Route>,
 	<Route path="login" component={Login} />,

@@ -19,9 +19,6 @@ const Navigation = () => {
 			<Link to="/subjekty" className={cx(bm, 'item', ['subjects'])} activeClassName="isActive">
 				Subjekty
 			</Link>
-			<Link to="/nastaveni" className={cx(bm, 'item', ['settings'])} activeClassName="isActive">
-				Nastavení
-			</Link>
 		</div>
 	);
 };
