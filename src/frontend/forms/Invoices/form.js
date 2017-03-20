@@ -10,9 +10,26 @@ import Dropdown from 'components/Dropdown';
 
 import validate from './validate';
 
-const InvoiceForm = (props) => {
-	const { addInvoice, submitting, handleSubmit, action, initialValues, suppliers, customers } = props;
-	let supplierId;
+const InvoiceForm = ({ 
+	addInvoice,
+	submitting,
+	handleSubmit,
+	action,
+	initialValues,
+	suppliers,
+	customers,
+	invoice,
+	...otherProps,
+}) => {
+	// Iakov is gonna be so mad ahen he sees this
+	let supplierId, customerId, id = undefined;
+	if (!invoice) {
+		id = new Date().valueOf();
+	}
+	if (invoice && invoice.values) {
+		supplierId = parseInt(invoice.values.supplierId, 10);
+		customerId = parseInt(invoice.values.customerId, 10);
+	}
 
 	function submit() {
 		if (action === 'add') {
@@ -20,21 +37,13 @@ const InvoiceForm = (props) => {
 		}
 	}
 
-	function changed() {
-		console.log('SelectingFormValuesForm');
-	}
-
-	function supplierChanged(newId) {
-		supplierId = newId;
-	}
-
 	return (
-		<form onSubmit={submit()} onChange={changed()}>
+		<form onSubmit={submit()}>
 			<Field name="id" type="hidden" component={InputField} />
 			<Field name="supplierId" type="hidden" component={InputField} />
 			<Field name="customerId" type="hidden" component={InputField} />
 
-			<Invoice id={initialValues.id} suppliers={suppliers} customers={customers} supplierId={supplierId}>
+			<Invoice id={id} suppliers={suppliers} customers={customers} supplierId={supplierId} customerId={customerId}>
 				<Field
 					name="name"
 					id="name"

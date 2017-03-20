@@ -38,8 +38,8 @@ const Invoices = ({
 							<TableRow key={invoice.id}>
 								<TableCell>
 									<div className="TableCell--primary">
-										<Link to={`/faktury/${invoice.id}`} modifiers={['tableLink']}>
-											{subjectNameById(subjects, invoice.customer).name}
+										<Link to={`/faktura/${invoice.id}`} modifiers={['tableLink']}>
+											{subjectNameById(subjects, invoice.customer)}
 										</Link>
 									</div>
 									<div className="TableCell--secondary">č. {invoice.id}</div>
@@ -65,11 +65,11 @@ const Invoices = ({
 								</TableCell>
 								<TableCell modifiers={['actions']}>
 									<Button
-										to={`/faktury/upravit-fakturu/${invoice.id}`}
+										to={`/faktura/upravit-fakturu/${invoice.id}`}
 										modifiers={['tableBtn', 'iconBtn', 'edit']}
 									/>
 									<Button
-										to={`/faktury/smazat-fakturu/${invoice.id}`}
+										to={`/faktura/smazat-fakturu/${invoice.id}`}
 										modifiers={['tableBtn', 'iconBtn', 'delete']}
 									/>
 								</TableCell>
@@ -83,8 +83,8 @@ const Invoices = ({
 							<TableRow key={invoice.id}>
 								<TableCell>
 									<div className="TableCell--primary">
-										<Link to={`/faktury/${invoice.id}`} modifiers={['tableLink']}>
-											{subjectNameById(subjects, invoice.customer).name}
+										<Link to={`/faktura/${invoice.id}`} modifiers={['tableLink']}>
+											{subjectNameById(subjects, invoice.customer)}
 										</Link>
 									</div>
 									<div className="TableCell--secondary">č. {invoice.id}</div>
@@ -102,7 +102,7 @@ const Invoices = ({
 								</TableCell>
 								<TableCell modifiers={['actions']}>
 									<Button
-										to={`/faktury/${invoice.id}`}
+										to={`/faktura/${invoice.id}`}
 										modifiers={['tableBtn', 'iconBtn', 'print']}
 									/>
 								</TableCell>

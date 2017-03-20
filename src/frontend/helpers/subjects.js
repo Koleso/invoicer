@@ -1,5 +1,9 @@
-const subjectNameById = (subjects, id) => {
+const subjectById = (subjects, id) => {
 	return subjects[subjects.findIndex((obj => obj.id === id))];
 };
 
-export { subjectNameById };
+const subjectNameById = (subjects, id) => {
+	return subjectById(subjects, id).name;
+};
+
+export { subjectById, subjectNameById };

@@ -11,6 +11,7 @@ import SubjectsContainer from 'containers/SubjectsContainer';
 
 import InvoicesContainer from 'containers/InvoicesContainer';
 import NewInvoice from 'screens/Invoices/add';
+import Invoice from 'screens/Invoice';
 
 import AddCustomer from 'screens/Customer/add';
 import EditCustomer from 'screens/Customer/edit';
@@ -27,6 +28,7 @@ const configureRoutes = () => ([
 
 		<Route path="faktury" component={InvoicesContainer} />
 		<Route path="faktury/nova-faktura" component={NewInvoice} />
+		<Route path="faktura/:invoiceId" component={Invoice} />
 
 		<Route path="subjekty" component={SubjectsContainer} />
 		<Route path="subjekty/novy-odberatel" component={AddCustomer} />

@@ -1,8 +1,9 @@
 import React, { PropTypes as T } from 'react';
-import { Field, reduxForm } from 'redux-form';
 import cx from 'helpers/classes';
-import { connect } from 'react-redux';
-import { newInvoice, updateSupplier } from 'actions/invoices';
+
+import dateFormat from 'dateformat';
+import { overdue, dueDate } from 'helpers/overdue';
+import { subjectById } from 'helpers/subjects';
 
 // Components
 import Link from 'components/Link';
@@ -12,29 +13,18 @@ import Dropdown from 'components/Dropdown';
 import './index.less';
 
 const Invoice = ({
-	children,
 	id,
+	invoice,
 	suppliers,
 	customers,
-	supplierId,
+	children,
+	view,
 }) => {
+	console.log(invoice);
 	const bm = 'Invoice';
 
-	const customersArray = [];
-	customers.map(customer =>
-		customersArray.push({
-			key: customer.id,
-			label: customer.name + ' (IČ: ' + customer.ic + ')',
-		})
-	)
-
-	const suppliersArray = [];
-	suppliers.map(supplier =>
-		suppliersArray.push({
-			key: supplier.id,
-			label: supplier.name + ' (IČ: ' + supplier.ic + ')',
-		})
-	)
+	const supplier = subjectById(suppliers, invoice.supplier);
+	const customer = subjectById(customers, invoice.customer);
 
 	return (
 		<div className={cx(bm, '')}>
@@ -46,18 +36,23 @@ const Invoice = ({
 				<div className={cx(bm, 'col')}>
 					<h3>
 						Odběratel
-						<Link onClick={() => {return}} modifiers={['small', 'headerRight']}>Změnit</Link>
+						{view.detail && <Link onClick={() => {return}} modifiers={['small', 'headerRight']}>Změnit</Link>}
 					</h3>
 					<ul className={cx(bm, 'list')}>
-						<li><strong>David Kolinek</strong></li>
-						<li>Podhorska 85</li>
-						<li>Jablonec nad Nisou, 466 01</li>
-						<li>IC: 40218198</li>
-						<li>DIC: CZ40218198</li>
+						<li><strong>{customer.name}</strong></li>
+						<li>{customer.street}</li>
+						<li>{customer.city}, {customer.zip}</li>
+						{customer.ic && <li>IČ: {customer.ic}</li>}
+						{customer.dic && <li>DIČ: {customer.dic}</li>}
 					</ul>
 				</div>
 				<div className={cx(bm, 'col')}>
 					<h3>Korespondenční adresa</h3>
+					<ul className={cx(bm, 'list')}>
+						<li><strong>{customer.name}</strong></li>
+						<li>{customer.street}</li>
+						<li>{customer.city}, {customer.zip}</li>
+					</ul>
 				</div>
 			</div>
 
@@ -65,19 +60,15 @@ const Invoice = ({
 				<div className={cx(bm, 'col')}>
 					<h3>
 						Dodavatel
+						{view.detail && <Link onClick={() => {return}} modifiers={['small', 'headerRight']}>Změnit</Link>}
 					</h3>
-					{ true && 
-						<Field
-							defaultValue="Vyberte"
-							name="supplierId"
-							modifiers={['inlineBlock']}
-							options={suppliersArray}
-							component={Dropdown}
-							onChange={event => {
-								supplierChanged(event.target.value);
-							}}
-						/>
-					}
+					<ul className={cx(bm, 'list')}>
+						<li><strong>{supplier.name}</strong></li>
+						<li>{supplier.street}</li>
+						<li>{supplier.city}, {supplier.zip}</li>
+						{supplier.ic && <li>IČ: {supplier.ic}</li>}
+						{supplier.dic && <li>DIČ: {supplier.dic}</li>}
+					</ul>
 				</div>
 				<div className={cx(bm, 'col')}>
 					<h3>Informace pro platbu</h3>
@@ -85,34 +76,38 @@ const Invoice = ({
 						<tbody>
 							<tr>
 								<td>Variabilní symbol:</td>
-								<td>20160601</td>
+								<td>{invoice.id}</td>
 							</tr>
 							<tr>
 								<td>Datum vystavení:</td>
-								<td>07.06.2016</td>
+								<td>{dateFormat(invoice.date, 'dd. mm. yyyy')}</td>
 							</tr>
 							<tr>
 								<td><strong>Datum splatnosti:</strong></td>
-								<td><strong>21.06.2016</strong></td>
+								<td><strong>{dateFormat(dueDate(invoice.date, invoice.due), 'dd. mm. yyyy')}</strong></td>
 							</tr>
 						</tbody>
 						<tbody className="smallerText">
 							<tr className="spaceTop">
 								<td>Bankovní spojení:</td>
-								<td>Raiffeisenbank a.s.</td>
+								<td>{supplier.bank}</td>
 							</tr>
 							<tr>
 								<td><strong>Číslo účtu:</strong></td>
-								<td><strong>8721877001/5500</strong></td>
+								<td><strong>{supplier.account}</strong></td>
 							</tr>
-							<tr>
-								<td>IBAN:</td>
-								<td>CZ2455000000008721877001</td>
-							</tr>
-							<tr>
-								<td>SWIFT:</td>
-								<td>AGBACZPP</td>
-							</tr>
+							{supplier.iban &&
+								<tr>
+									<td>IBAN:</td>
+									<td>{supplier.iban}</td>
+								</tr>
+							}
+							{supplier.swift &&
+								<tr>
+									<td>SWIFT:</td>
+									<td>{supplier.swift}</td>
+								</tr>
+							}
 						</tbody>
 					</table>
 				</div>
@@ -123,33 +118,22 @@ const Invoice = ({
 			</div>
 
 			<div className={cx(bm, 'info')}>
-				Vystavil Jester
+				Vystavil {supplier.contact_person}
 			</div>
 		</div>
 	);
 };
 
-const mapStateToProps = (state, props) => {
-	return {
-		supplierId: state.form.invoice.supplierId,
-		customerId: state.form.invoice.customerId,
-	};
-};
 
-const mapDispatchToProps = (dispatch) => ({
-	addInvoice: () => dispatch(addInvoice()),
-	updateSupplier: (supplierId) => dispatch(updateSupplier(supplierId)),
-	supplierChanged: (newId) => dispatch(supplierChanged(newId)),
-});
-
+/*
 Invoice.propTypes = {
 	children: T.node.isRequired,
-	id: T.number.isRequired,
+	id: T.number,
 	suppliers: T.array.isRequired,
 	customers: T.array.isRequired,
+	supplierId: T.number,
+	customerid: T.number,
 };
+*/
 
-export default connect(
-	mapStateToProps,
-	null
-)(Invoice);
+export default Invoice;

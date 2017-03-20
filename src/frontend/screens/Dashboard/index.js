@@ -45,7 +45,7 @@ const Dashboard = ({
 								<TableCell modifiers={['overdue']}>
 									<div className="TableCell--primary">
 										<Link to={`/faktury/${invoice.id}`} modifiers={['tableLink']}>
-											{subjectNameById(subjects, invoice.customer).name}
+											{subjectNameById(subjects, invoice.customer)}
 										</Link>
 									</div>
 									<div className="TableCell--secondary">

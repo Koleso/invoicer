@@ -8,20 +8,16 @@ import Box from 'components/Box';
 // Forms
 import CustomerContainer from 'containers/CustomerContainer';
 
-const EditCustomer = (props) => {
-	const customerId = props.params.customerId;
-
-	return (
-		<Screen title="Subjekty">
-			<Grid>
-				<GridColumn>
-					<Box title="Upravit odběratele">
-						<CustomerContainer action="edit" customerId={customerId} />
-					</Box>
-				</GridColumn>
-			</Grid>
-		</Screen>
-	);
-};
+const EditCustomer = (props) => (
+	<Screen title="Subjekty">
+		<Grid>
+			<GridColumn>
+				<Box title="Upravit odběratele">
+					<CustomerContainer action="edit" customerId={props.params.customerId} />
+				</Box>
+			</GridColumn>
+		</Grid>
+	</Screen>
+);
 
 export default EditCustomer;

@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 
 	let paidTotal = 0;
 	invoicesPaid.map(invoice => (paidTotal += invoice.price));
+
 	let unpaidTotal = 0;
 	invoicesUnpaid.map(invoice => (unpaidTotal += invoice.price));
 
