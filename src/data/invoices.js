@@ -9,21 +9,21 @@ const invoices = [{
 	description: 'Microsita pro Gorillu',
 	paid: false,
 	items: [{
-		item: 'Polozka faktury',
-		quntity: 1,
+		text: 'Polozka faktury',
+		quantity: 1,
 		price: 10000,
 	},{
-		item: 'Dalsi polozka faktury',
-		quntity: 1,
+		text: 'Dalsi polozka faktury',
+		quantity: 1,
 		price: 500,
 	},{
-		item: 'A jeste jedna faktury',
-		quntity: 1,
+		text: 'A jeste jedna faktury',
+		quantity: 1,
 		price: 2000,
 	}],
 }, {
 	id: 2,
-	supplier: 1,
+	supplier: 2,
 	customer: 2,
 	date: '2017-01-14',
 	due: 14,
@@ -31,7 +31,19 @@ const invoices = [{
 	currency: 'Kč',
 	description: 'Webhosting + prodlouzeni domeny',
 	paid: false,
-	items: {},
+	items: [{
+		text: 'Polozka faktury',
+		quantity: 1,
+		price: 10000,
+	},{
+		text: 'Dalsi polozka faktury',
+		quantity: 1,
+		price: 500,
+	},{
+		text: 'A jeste jedna faktury',
+		quantity: 1,
+		price: 2000,
+	}],
 }, {
 	id: 3,
 	supplier: 2,

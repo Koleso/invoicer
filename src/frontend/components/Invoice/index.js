@@ -1,6 +1,7 @@
 import React, { PropTypes as T } from 'react';
 import cx from 'helpers/classes';
 
+import NumberFormat from 'react-number-format';
 import dateFormat from 'dateformat';
 import { overdue, dueDate } from 'helpers/overdue';
 import { subjectById } from 'helpers/subjects';
@@ -20,7 +21,6 @@ const Invoice = ({
 	children,
 	view,
 }) => {
-	console.log(invoice);
 	const bm = 'Invoice';
 
 	const supplier = subjectById(suppliers, invoice.supplier);
@@ -28,10 +28,8 @@ const Invoice = ({
 
 	return (
 		<div className={cx(bm, '')}>
-			<div className={cx(bm, 'header')}>
-				Faktura č. {id}
-			</div>
-			
+			<div className={cx(bm, 'header')}>Faktura č. {id}</div>
+
 			<div className={cx(bm, 'section')}>
 				<div className={cx(bm, 'col')}>
 					<h3>
@@ -114,11 +112,72 @@ const Invoice = ({
 			</div>
 
 			<div className={cx(bm, 'items')}>
-				{children}
+				<table className={cx(bm, 'invoiceItems')}>
+					<tbody>
+						<tr>
+							<th>Položka</th>
+							<th className="right">Mn.</th>
+							{supplier.payer &&  <th className="right">DPH</th> }
+							<th className="right">Cena</th>
+						</tr>
+						{invoice.items.map((item, index )=>
+							<tr key={index}>
+								<td>
+									{item.text}
+								</td>
+								<td className="right">
+									{item.quantity}
+								</td>
+								{supplier.payer &&
+									<td className="right">
+										{supplier.vat*100}%
+									</td>
+								}
+								<td className="right">
+									<NumberFormat value={item.price} displayType={'text'} thousandSeparator={' '} />
+									&nbsp;{supplier.currency}
+								</td>
+							</tr>
+						)}
+					</tbody>
+				</table>
 			</div>
 
-			<div className={cx(bm, 'info')}>
-				Vystavil {supplier.contact_person}
+			<table className={cx(bm, 'price')}>
+				<tbody>
+					<tr>
+						<td>Cena celkem{supplier.payer && ' bez DPH'}:</td>
+						<td className="price">
+							<NumberFormat value={invoice.price} displayType={'text'} thousandSeparator={' '} />
+							&nbsp;{supplier.currency}
+						</td>
+					</tr>
+					{supplier.payer &&
+						<tr>
+							<td>DPH:</td>
+							<td className="price">{Math.round(supplier.vat*invoice.price)}&nbsp;{supplier.currency}</td>
+						</tr>
+					}
+					{supplier.payer &&
+						<tr>
+							<td>Cena celkem s DPH:</td>
+							<td className="price">
+								<NumberFormat value={Math.round(invoice.price*(supplier.vat+1))} displayType={'text'} thousandSeparator={' '} />
+								&nbsp;{supplier.currency}
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+			<div className={cx(bm, 'signature')}>
+				<div className={cx(bm, 'signed')}>
+					Vystavil {supplier.contact_person}
+				</div>
+			</div>
+
+			<div className={cx(bm, 'footer')}>
+				{supplier.email}
 			</div>
 		</div>
 	);
