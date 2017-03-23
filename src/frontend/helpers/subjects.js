@@ -6,4 +6,17 @@ const subjectNameById = (subjects, id) => {
 	return subjectById(subjects, id).name;
 };
 
-export { subjectById, subjectNameById };
+const subjectsForDropdown = (subjects) => {
+	let array = [];
+
+	subjects.map(subject =>
+		array.push({
+			key: subject.id,
+			label: subject.name + ' (IČ: ' + subject.ic + ')',
+		})
+	);
+
+	return array;
+};
+
+export { subjectById, subjectNameById, subjectsForDropdown };

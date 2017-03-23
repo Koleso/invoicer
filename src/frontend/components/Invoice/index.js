@@ -6,36 +6,24 @@ import dateFormat from 'dateformat';
 import { overdue, dueDate } from 'helpers/overdue';
 import { subjectById } from 'helpers/subjects';
 
-// Components
-import Link from 'components/Link';
-import Dropdown from 'components/Dropdown';
-
-// CSS
-import './index.less';
+import InvoiceLayout from 'components/InvoiceLayout';
 
 const Invoice = ({
-	id,
 	invoice,
 	suppliers,
 	customers,
-	children,
-	view,
 }) => {
 	const bm = 'Invoice';
-
 	const supplier = subjectById(suppliers, invoice.supplier);
 	const customer = subjectById(customers, invoice.customer);
 
 	return (
-		<div className={cx(bm, '')}>
-			<div className={cx(bm, 'header')}>Faktura č. {id}</div>
+		<InvoiceLayout>
+			<div className={cx(bm, 'header')}>Faktura č. {invoice.id}</div>
 
 			<div className={cx(bm, 'section')}>
 				<div className={cx(bm, 'col')}>
-					<h3>
-						Odběratel
-						{view.detail && <Link onClick={() => {return}} modifiers={['small', 'headerRight']}>Změnit</Link>}
-					</h3>
+					<h3>Odběratel</h3>
 					<ul className={cx(bm, 'list')}>
 						<li><strong>{customer.name}</strong></li>
 						<li>{customer.street}</li>
@@ -56,10 +44,7 @@ const Invoice = ({
 
 			<div className={cx(bm, 'section')}>
 				<div className={cx(bm, 'col')}>
-					<h3>
-						Dodavatel
-						{view.detail && <Link onClick={() => {return}} modifiers={['small', 'headerRight']}>Změnit</Link>}
-					</h3>
+					<h3>Dodavatel</h3>
 					<ul className={cx(bm, 'list')}>
 						<li><strong>{supplier.name}</strong></li>
 						<li>{supplier.street}</li>
@@ -179,20 +164,14 @@ const Invoice = ({
 			<div className={cx(bm, 'footer')}>
 				{supplier.email}
 			</div>
-		</div>
+		</InvoiceLayout>
 	);
 };
 
-
-/*
 Invoice.propTypes = {
-	children: T.node.isRequired,
-	id: T.number,
+	invoice: T.object.isRequired,
 	suppliers: T.array.isRequired,
 	customers: T.array.isRequired,
-	supplierId: T.number,
-	customerid: T.number,
 };
-*/
 
 export default Invoice;

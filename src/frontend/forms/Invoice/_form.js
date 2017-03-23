@@ -11,39 +11,26 @@ import Dropdown from 'components/Dropdown';
 import validate from './validate';
 
 const InvoiceForm = ({ 
-	addInvoice,
-	submitting,
-	handleSubmit,
-	action,
-	initialValues,
-	suppliers,
-	customers,
 	invoice,
+	customers,
+	suppliers,
+	id,
+	view,
 	...otherProps,
 }) => {
-	// Iakov is gonna be so mad when he sees this
-	let supplierId, customerId, id = undefined;
-	if (!invoice) {
-		id = new Date().valueOf();
-	}
-	if (invoice && invoice.values) {
-		supplierId = parseInt(invoice.values.supplierId, 10);
-		customerId = parseInt(invoice.values.customerId, 10);
-	}
 
 	function submit() {
-		if (action === 'add') {
-			return handleSubmit(addInvoice);
-		}
+		console.log('submit');
+		//return handleSubmit(addInvoice);
 	}
 
 	return (
 		<form onSubmit={submit()}>
-			<Field name="id" type="hidden" component={InputField} />
+			<Field name="id" type="hidden" value={id} component={InputField} />
 			<Field name="supplierId" type="hidden" component={InputField} />
 			<Field name="customerId" type="hidden" component={InputField} />
 
-			<Invoice id={id} suppliers={suppliers} customers={customers} supplierId={supplierId} customerId={customerId}>
+			<Invoice id={id} invoice={invoice} suppliers={suppliers} customers={customers} view={view}>
 				<Field
 					name="name"
 					id="name"
@@ -57,10 +44,9 @@ const InvoiceForm = ({
 			<div className="Invoice-footer">
 				<Button
 					type="submit"
-					disabled={submitting}
 					modifiers={['primary', 'big', 'formRight', 'tabletLeft']}
 				>
-					{action === 'add' && 'Vystavit fakturu'}
+					Vystavit fakturu
 				</Button>
 			</div>
 		</form>
@@ -70,4 +56,7 @@ const InvoiceForm = ({
 export default reduxForm({
 	form: 'invoice',
 	validate,
+	initialValues: {
+		id: 1,
+	},
 })(InvoiceForm);

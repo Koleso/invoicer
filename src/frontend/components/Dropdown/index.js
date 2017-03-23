@@ -23,7 +23,7 @@ const Dropdown = ({
 
 	let defaultValueElement = '';
 	if (defaultValue) {
-		defaultValueElement = (<option>{defaultValue}</option>);
+		defaultValueElement = (<option value="">{defaultValue}</option>);
 	}
 
 	return (
@@ -31,7 +31,7 @@ const Dropdown = ({
 			{labelElement}
 			{required && <span className={cx(bm, 'required')}>*</span>}
 			<select
-				className={cx(bm, 'trigger')}
+				className={cx(bm, 'trigger', touched && error && ['error'])}
 				id={id}
 				{...input}
 			>

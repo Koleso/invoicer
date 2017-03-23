@@ -1,27 +1,27 @@
 import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
+import { getFormValues, change } from 'redux-form';
 
-import Invoice from 'components/Invoice';
+import InvoiceForm from 'forms/Invoice/form';
 
 const mapStateToProps = (state, props) => {
-	const invoice = state.invoices.find((d) => {
-		return d.id === parseInt(props.id, 10);
-	});
-
 	return {
-		invoice: invoice,
+		invoice: getFormValues('invoice')(state),
 		customers: state.customers,
 		suppliers: state.suppliers,
-		id: props.id,
+		id: new Date().valueOf(),
 		view: props.action,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	addInvoice: () => dispatch(addInvoice()),
+	addInvoice: () => 
+		dispatch(addInvoice()),
+	changeFieldValue: (field, value) => 
+		dispatch(change('invoice', field, value)),
 });
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Invoice);
+)(InvoiceForm);

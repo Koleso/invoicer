@@ -1,0 +1,29 @@
+@import '../../styles/utils.less';
+
+.Spinner {
+  position: relative;
+  text-align: center;
+  .c;
+
+  &--fullpage {
+    min-height: 200px;
+  }
+
+  &-spinner {
+    content: '';
+    background: url(./img/blue.svg) center center no-repeat;
+    .square(40px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -14px;
+    margin-left: -14px;
+    animation-name: spin;
+    animation-duration: 750ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    will-change: transform;
+  }
+}
+
+.keyframes (spin, {transform: rotate(0deg)}, {transform: rotate(360deg)});

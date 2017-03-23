@@ -10,7 +10,7 @@ import DashboardContainer from 'containers/DashboardContainer';
 import SubjectsContainer from 'containers/SubjectsContainer';
 
 import InvoicesContainer from 'containers/InvoicesContainer';
-import NewInvoice from 'screens/Invoices/add';
+import NewInvoice from 'screens/Invoice/new';
 import Invoice from 'screens/Invoice';
 
 import AddCustomer from 'screens/Customer/add';
