@@ -70,6 +70,8 @@ const Invoice = ({
 								<td><strong>{dateFormat(dueDate(invoice.date, invoice.due), 'dd. mm. yyyy')}</strong></td>
 							</tr>
 						</tbody>
+					</table>
+					<table className={cx(bm, 'table')}>
 						<tbody className="smallerText">
 							<tr className="spaceTop">
 								<td>Bankovní spojení:</td>

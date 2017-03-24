@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getFormValues, change } from 'redux-form';
 
 import InvoiceForm from 'forms/Invoice/form';
+import { addInvoice } from 'actions/invoices';
 
 const mapStateToProps = (state, props) => {
 	return {

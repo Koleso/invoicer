@@ -12,10 +12,12 @@ const InputField = ({
 	modifiers,
 	placeholder,
 	disabled,
+	defaultValue,
 	required = false,
 	meta: { touched, error },
 }) => {
 	const bm = 'Input';
+	console.log(defaultValue);
 
 	return (
 		<div className={cx(bm, '', modifiers)}>
@@ -24,6 +26,7 @@ const InputField = ({
 				{required && <span className={cx(bm, 'required')}>*</span>}
 			</label>
 			<input
+				value={defaultValue}
 				className={cx(bm, 'input', touched && error && ['error'])}
 				id={id}
 				disabled={disabled}

@@ -1,24 +1,22 @@
 import { reset } from 'redux-form';
 import { browserHistory } from 'react-router';
 
-export function updateSupplier() {
+export function addInvoice() {
 	return (dispatch, getState) => {
-		const supplierObject = {
-			supplierId: getState().form.invoice.values.id,
+		const form = getState().form.invoice.values;
+		const invoice = {
+			id: form.id,
+			customer: parseInt(form.customerId, 10),
+			supplier: parseInt(form.supplierId, 10),
+			currency: form.currency,
+			date: form.date,
+			due: form.due,
+			paid: false,
 		};
 
 		dispatch({
-			type: 'UPDATE_SUPPLIER',
-			payload: supplierObject,
-		});
-	};
-}
-
-export function addInvoice() {
-	return (dispatch, getState) => {
-		dispatch({
 			type: 'ADD_INVOICE',
-			payload: null,
+			payload: invoice,
 		});
 	};
 }

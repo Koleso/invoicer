@@ -92,11 +92,11 @@
     color: @black;
 
     &:first-child {
-      padding-left: 0;
+      padding-left: 0 !important;
     }
 
     &:last-child {
-      padding-right: 0;
+      padding-right: 0 !important;
     }
 
     &.right {
@@ -105,8 +105,14 @@
   }
 
   th {
-
     color: @navy;
+  }
+
+  &--form {
+    td, th {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 }
 
@@ -114,18 +120,23 @@
   width: 65%;
 }
 
-.Invoice-itemQuantity {
-  width: 10%;
+.Invoice-itemQuantity > .Input {
+  width: 50px;
 }
 
 .Invoice-itemVat {
-  width: 5%;
+  white-space: nowrap;
+
+   > .Input {
+    width: 50px;
+    display: inline-block;
+    margin-right: 6px;
+   }
 }
 
-.Invoice-itemPrice {
-  width: 25%;
+.Invoice-itemPrice > .Input {
+  width: 120px;
 }
-
 
 .Invoice-itemQuantity,
 .Invoice-itemPrice,
@@ -175,12 +186,35 @@
   color: @navy;
 }
 
+.Invoice-additionalInfo {
+  width: 100%;
+  float: left;
+  margin-top: 30px;
+
+  td {
+    padding: 0 10px;
+
+    &:first-child {
+      width: 100%;
+      padding-left: 0 !important;
+    }
+
+    &:last-child {
+      padding-right: 0 !important;
+    }
+  }
+}
+
 .Invoice-footer {
   position: relative;
   padding: 20px 0;
   border-top: 1px solid @border;
   color: @navy;
   .c;
+
+  &.noBorder {
+    border-top: none;
+  }
 }
 
 @media (max-width: 980px) {

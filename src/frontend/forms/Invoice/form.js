@@ -1,10 +1,9 @@
 import React from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
+
 import cx from 'helpers/classes';
 import { subjectsForDropdown } from 'helpers/subjects';
-
-import NumberFormat from 'react-number-format';
 import dateFormat from 'dateformat';
 import { dueDate } from 'helpers/overdue';
 import { subjectById } from 'helpers/subjects';
@@ -20,10 +19,11 @@ import Dropdown from 'components/Dropdown';
 import validate from './validate';
 
 const InvoiceForm = ({ 
-	id,
 	invoice,
 	customers,
 	suppliers,
+	submitting,
+	handleSubmit,
 	addInvoice,
 	changeFieldValue,
 	...otherProps,
@@ -47,27 +47,28 @@ const InvoiceForm = ({
 	const suppliersArray = subjectsForDropdown(suppliers);
 	console.log(invoice);
 
-	function submit() {
-		console.log('submit');
-		//return handleSubmit(addInvoice);
+	const submit = () => {
+		return handleSubmit(addInvoice);
 	}
 
 	const bm = 'Invoice';
 	return (
 		<InvoiceLayout>
 			<form onSubmit={submit()}>
-				<Field name="id" type="hidden" value={invoice.id} component={InputField} />
+				<Field name="id" type="hidden" component={InputField} />
 
-				<div className={cx(bm, 'header')}>Faktura č. {id}</div>
+				<div className={cx(bm, 'header')}>Faktura č. {invoice.id}</div>
 				<div className={cx(bm, 'section')}>
 					<div className={cx(bm, 'col')}>
-						<h3>
-							Odběratel
-							{invoice.customerId && 
-								<Link onClick={() => changeFieldValue('customerId', '')} modifiers={['small', 'headerRight']}>Změnit</Link>
-							}
-						</h3>
-						{invoice.customerId ?
+						<h3>Odběratel</h3>
+						<Field
+							defaultValue="Vyberte"
+							name="customerId"
+							modifiers={['inlineBlock']}
+							options={customersArray}
+							component={Dropdown}
+						/>
+						{invoice.customerId &&
 							<ul className={cx(bm, 'list')}>
 								<li><strong>{customer.name}</strong></li>
 								<li>{customer.street}</li>
@@ -75,14 +76,6 @@ const InvoiceForm = ({
 								{customer.ic && <li>IČ: {customer.ic}</li>}
 								{customer.dic && <li>DIČ: {customer.dic}</li>}
 							</ul>
-							:
-							<Field
-								defaultValue="Vyberte"
-								name="customerId"
-								modifiers={['inlineBlock']}
-								options={customersArray}
-								component={Dropdown}
-							/>
 						}
 					</div>
 					<div className={cx(bm, 'col')}>
@@ -99,95 +92,153 @@ const InvoiceForm = ({
 
 				<div className={cx(bm, 'section')}>
 					<div className={cx(bm, 'col')}>
-						<h3>
-							Dodavatel
-							{invoice.supplierId && 
-								<Link onClick={() => changeFieldValue('supplierId', '')} modifiers={['small', 'headerRight']}>Změnit</Link>
-							}
-						</h3>
-						{invoice.supplierId ?
-							<ul className={cx(bm, 'list')}>
-								<li><strong>{supplier.name}</strong></li>
-								<li>{supplier.street}</li>
-								<li>{supplier.city}, {supplier.zip}</li>
-								{supplier.ic && <li>IČ: {supplier.ic}</li>}
-								{supplier.dic && <li>DIČ: {supplier.dic}</li>}
-							</ul>
-							:
-							<Field
-								defaultValue="Vyberte"
-								name="supplierId"
-								modifiers={['inlineBlock']}
-								options={suppliersArray}
-								component={Dropdown}
-							/>
+						<h3>Dodavatel</h3>
+						<Field
+							defaultValue="Vyberte"
+							name="supplierId"
+							modifiers={['inlineBlock']}
+							options={suppliersArray}
+							component={Dropdown}
+							onBlur={() => {
+								changeFieldValue('due', supplier.due);
+								changeFieldValue('currency', supplier.currency);
+							}}
+						/>
+						{invoice.supplierId &&
+							<div>
+								<ul className={cx(bm, 'list')}>
+									<li><strong>{supplier.name}</strong></li>
+									<li>{supplier.street}</li>
+									<li>{supplier.city}, {supplier.zip}</li>
+									{supplier.ic && <li>IČ: {supplier.ic}</li>}
+									{supplier.dic && <li>DIČ: {supplier.dic}</li>}
+								</ul>
+							</div>
 						}
 					</div>
 					<div className={cx(bm, 'col')}>
 						<h3>Informace pro platbu</h3>
 						{invoice.supplierId &&
-							<table className={cx(bm, 'table')}>
-								<tbody>
-									<tr>
-										<td>Variabilní symbol:</td>
-										<td>{invoice.id}</td>
-									</tr>
-									<tr>
-										<td>Datum vystavení:</td>
-										<td>{dateFormat(new Date(), 'dd. mm. yyyy')}</td>
-									</tr>
-									<tr>
-										<td><strong>Datum splatnosti:</strong></td>
-										<td><strong>{dateFormat(dueDate(new Date(), supplier.due), 'dd. mm. yyyy')}</strong></td>
-									</tr>
-								</tbody>
-								<tbody className="smallerText">
-									<tr className="spaceTop">
-										<td>Bankovní spojení:</td>
-										<td>{supplier.bank}</td>
-									</tr>
-									<tr>
-										<td><strong>Číslo účtu:</strong></td>
-										<td><strong>{supplier.account}</strong></td>
-									</tr>
-									{supplier.iban &&
+							<div>
+								<table className={cx(bm, 'table')}>
+									<tbody>
 										<tr>
-											<td>IBAN:</td>
-											<td>{supplier.iban}</td>
+											<td>Variabilní symbol:</td>
+											<td>{invoice.id}</td>
 										</tr>
-									}
-									{supplier.swift &&
 										<tr>
-											<td>SWIFT:</td>
-											<td>{supplier.swift}</td>
+											<td>Datum vystavení:</td>
+											<td>{dateFormat(new Date(), 'dd. mm. yyyy')}</td>
 										</tr>
-									}
-								</tbody>
-							</table>
+									</tbody>
+								</table>
+								<table className={cx(bm, 'table')}>
+									<tbody className="smallerText">
+										<tr className="spaceTop">
+											<td>Bankovní spojení:</td>
+											<td>{supplier.bank}</td>
+										</tr>
+										<tr>
+											<td><strong>Číslo účtu:</strong></td>
+											<td><strong>{supplier.account}</strong></td>
+										</tr>
+										{supplier.iban &&
+											<tr>
+												<td>IBAN:</td>
+												<td>{supplier.iban}</td>
+											</tr>
+										}
+										{supplier.swift &&
+											<tr>
+												<td>SWIFT:</td>
+												<td>{supplier.swift}</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
 						}
 					</div>
+
+					{invoice.supplierId &&
+						<table className={cx(bm, 'additionalInfo')}>
+							<tbody>
+								<tr>
+									<td>
+										<Field
+											id="description"
+											name="description"
+											type="text"
+											label="Popis faktury"
+											required={Boolean(true)}
+											component={InputField}
+										/>
+									</td>
+									<td>
+										<Field
+											id="due"
+											name="due"
+											type="number"
+											modifiers={['due']}
+											label="Splatnost"
+											required={Boolean(true)}
+											component={InputField}
+										/>
+									</td>
+									<td>
+										<Field
+											id="currency"
+											name="currency"
+											type="text"
+											modifiers={['currency']}
+											label="Měna"
+											required={Boolean(true)}
+											component={InputField}
+										/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					}
 				</div>
 
 				<div className={cx(bm, 'items')}>
-				{invoice.supplierId &&
-					<table className={cx(bm, 'invoiceItems')}>
-						<thead>
-							<tr>
-								<th>Položka</th>
-								<th className="right">Mn.</th>
-								{supplier.payer &&  <th className="right">DPH</th> }
-								<th className="right">Cena</th>
-								<th></th>
-							</tr>
-						</thead>
-						<FieldArray name="item" component={invoiceItems} />
-					</table>
-				}
-			</div>
+					{invoice.supplierId &&
+						<table className={cx(bm, 'invoiceItems', ['form'])}>
+							<thead>
+								<tr>
+									<th>Položka</th>
+									<th className="right">Mn.</th>
+									{supplier.payer && <th className="right">DPH</th>}
+									<th className="right">Cena</th>
+									<th></th>
+								</tr>
+							</thead>
+							<FieldArray
+								name="items"
+								payer={supplier.payer}
+								vat={supplier.vat}
+								currency={supplier.currency}
+								component={invoiceItems}
+								invoice={invoice}
+								changeFieldValue={changeFieldValue}
+							/>
+						</table>
+					}
+				</div>
 
-				<div className="Invoice-footer">
+				<Field
+					name="price"
+					type="text"
+					component={InputField}
+					modifiers={['fakeInput']}
+					disabled={Boolean(true)}
+				/>
+
+				<div className="Invoice-footer noBorder">
 					<Button
 						type="submit"
+						disabled={submitting}
 						modifiers={['primary', 'big', 'formRight', 'tabletLeft']}
 					>
 						Vystavit fakturu
@@ -198,57 +249,98 @@ const InvoiceForm = ({
 	);
 };
 
-const invoiceItems = ({ fields }) => {
-	console.log(fields);
+const invoiceItems = ({ fields, payer, vat, currency, invoice, changeFieldValue }) => {
+	const bm = 'Invoice';
+
 	return (
 		<tbody>
 			{fields.map((item, index) =>
-					<tr key={index}>
-						<td className={cx(bm, 'itemText')}>
+				<tr key={index}>
+					<td className={cx(bm, 'itemText')}>
+						<Field
+							name={`${item}.text`}
+							type="text"
+							placeholder="Položka faktury"
+							component={InputField}
+						/>
+					</td>
+					<td className={cx(bm, 'itemQuantity')}>
+						<Field
+							name={`${item}.quantity`}
+							type="number"
+							component={InputField}
+							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue)}
+						/>
+					</td>
+					{payer && 
+						<td className={cx(bm, 'itemVat')}>
 							<Field
-								name={`${item}.text`}
-								type="text"
-								placeholder="Položka faktury"
-								component={InputField}
-							/>
-						</td>
-						<td className={cx(bm, 'itemQuantity')}>
-							<Field
-								name={`${item}.quantity`}
+								name={`${item}.vat`}
 								type="number"
-								value="1"
 								component={InputField}
+								onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue)}
 							/>
+							<span>%</span>
 						</td>
-						{supplier.payer &&
-							<td className={cx(bm, 'itemVat')}>
-								{supplier.vat*100}%
-							</td>
-						}
-						<td className={cx(bm, 'itemPrice')}>
-							<Field
-								name={`${item}.price`}
-								type="number"
-								placeholder="Cena za kus"
-								component={InputField}
-							/>
-						</td>
-						<td className={cx(bm, 'itemDelete')}>
-							<Button
-								onClick={() => fields.remove(index)}
-								modifiers={['tableBtn', 'iconBtn', 'delete']}
-							/>
-						</td>
-					</tr>
-				)}
-			</tbody>
+					}
+					<td className={cx(bm, 'itemPrice')}>
+						<Field
+							name={`${item}.price`}
+							type="number"
+							placeholder="Cena za kus"
+							component={InputField}
+							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue)}
+						/>
+					</td>
+					<td className={cx(bm, 'itemDelete')}>
+						<Button
+							onClick={() => fields.remove(index)}
+							modifiers={['tableBtn', 'iconBtn', 'delete']}
+						/>
+					</td>
+				</tr>
+			)}
+			<tr>
+				<td>
+					<Button
+						onClick={() => fields.push({})}
+						modifiers={['addItem']}
+					>
+						Přidat položku
+					</Button>
+				</td>
+			</tr>
+		</tbody>
 	);
 };
+
+const calculatePriceTotal = (items, changeFieldValue) => {
+	let price = 0;
+	let vat = 0;
+
+	items.map((item, index) => {
+		if (items[0].vat) {
+			if (Number.isInteger(parseInt(item.quantity, 10))
+				&& Number.isInteger(parseInt(item.vat, 10))
+				&& Number.isInteger(parseInt(item.price, 10))) {
+				vat += (parseFloat(item.price) * parseFloat(item.vat)/100 * parseInt(item.quantity, 10));
+			}
+		}
+		if (Number.isInteger(parseInt(item.quantity, 10))
+			&& Number.isInteger(parseInt(item.price, 10))) {
+			price += (parseFloat(item.price) * parseInt(item.quantity, 10));
+		}
+	});
+
+	changeFieldValue('price', parseFloat(price+vat).toLocaleString('cs-CZ'));
+}
 
 export default reduxForm({
 	form: 'invoice',
 	validate,
 	initialValues: {
-		id: new Date().valueOf(), // TODO: Iakov to the rescue
+		id: new Date().valueOf(),
+		date: dateFormat(new Date(), 'yyyy-mm-dd'),
+		items: [{ text: '', quantity: 1, price: '', vat: '' }]
 	},
 })(InvoiceForm);

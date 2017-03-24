@@ -9,7 +9,7 @@ const suppliers = [{
 	zip: '46601',
 	contact_person: 'David Kolínek',
 	title: 'Živnostník',
-	tax: null,
+	vat: null,
 	currency: 'Kč',
 	due: 14,
 	bank: 'Raiffeisenbank a.s.',

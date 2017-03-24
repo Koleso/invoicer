@@ -23,7 +23,7 @@ const Dropdown = ({
 
 	let defaultValueElement = '';
 	if (defaultValue) {
-		defaultValueElement = (<option value="">{defaultValue}</option>);
+		defaultValueElement = (<option value={defaultValue}>{defaultValue}</option>);
 	}
 
 	return (

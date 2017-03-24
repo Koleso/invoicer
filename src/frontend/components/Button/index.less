@@ -4,6 +4,7 @@
   background: none;
   height: 30px;
   line-height: 28px;
+  position: relative;
   display: inline-block;
   padding: 0 15px;
   color: @gray;
@@ -104,6 +105,26 @@
     &:before {
       opacity: 1;
     }
+  }
+}
+
+.Button--addItem {
+  color: @blue;
+  padding-left: 30px;
+
+  &:before {
+    content: '';
+    background: url(./icons/plus.svg) no-repeat;
+    .square(10px);
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -5px;
+  }
+
+  &:hover {
+    color: @blue;
+    border-color: @blue;
   }
 }
 
