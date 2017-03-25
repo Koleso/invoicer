@@ -17,7 +17,6 @@ const InputField = ({
 	meta: { touched, error },
 }) => {
 	const bm = 'Input';
-	console.log(defaultValue);
 
 	return (
 		<div className={cx(bm, '', modifiers)}>

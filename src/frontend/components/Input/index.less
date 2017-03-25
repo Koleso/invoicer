@@ -9,8 +9,39 @@
   padding-bottom: 15px;
 }
 
+.Input--hidden {
+  display: none;
+}
+
 .Input--currency {
   width: 100px;
+}
+
+.Input--pricePreview,
+.Input--currencyPreview {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Input--pricePreview {
+  width: 150px;
+
+  .Invoice-input {
+    text-align: right;
+  }
+}
+
+.Input--currencyPreview {
+  width: 40px;
+}
+
+.Input--fakeInput .Input-input {
+  border: none;
+  padding-right: 0;
+  color: @black;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: right;
 }
 
 .Input-label {
@@ -36,6 +67,14 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 2.4em;
+  pointer-events: none;
+
+  .Invoice-items & {
+    background-color: @white;
+    top: 1px;
+    right: 10px;
+    padding-left: 10px;
+  }
 }
 
 .Input-input {

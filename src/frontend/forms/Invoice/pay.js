@@ -6,31 +6,31 @@ import { browserHistory } from 'react-router';
 import Form from 'components/Form';
 import Button from 'components/Button';
 
-const SupplierDelete = ({
-	deleteSupplier,
+const InvoicePay = ({
+	payInvoice,
 	submitting,
 	handleSubmit,
 	initialValues,
 }) => {
 	if (initialValues === undefined) {
-		// Subjekt nenalezen
-		browserHistory.push('/subjekty/nenalezeno');
+		// Faktura nenalezena
+		browserHistory.push('/faktury/nenalezeno');
 	} else {
 		return (
-			<Form onSubmit={handleSubmit(deleteSupplier)}>
+			<Form onSubmit={handleSubmit(payInvoice)}>
 				<div className="Form-content">
 					<input name="id" id="id" type="hidden" />
 
-					<p>Opravdu si přejete smazat dodavatele <strong>{initialValues.name}</strong>?</p>
+					<p>Opravdu je faktura č. <strong>{initialValues.id}</strong> uhrazena?</p>
 
 					<Button
 						type="submit"
 						disabled={submitting}
-						modifiers={['negative', 'formLeft', 'big']}
+						modifiers={['primary', 'formLeft', 'big']}
 					>
-						Smazat dodavatele
+						Ano, je uhrazena
 					</Button>
-					<Button to={'/subjekty'} modifiers={['big', 'formLeft']}>Zpět na přehled</Button>
+					<Button to={'/faktury'} modifiers={['big', 'formLeft']}>Zpět na přehled</Button>
 				</div>
 			</Form>
 		);
@@ -40,9 +40,9 @@ const SupplierDelete = ({
 };
 
 export default reduxForm({
-	form: 'supplier',
+	form: 'invoice',
 	onSubmitSuccess: () => {
 		// TODO: Notifications
-		browserHistory.push('/subjekty');
+		browserHistory.push('/faktury');
 	},
-})(SupplierDelete);
+})(InvoicePay);

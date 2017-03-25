@@ -4,7 +4,8 @@ const invoices = [{
 	customer: 1,
 	date: '2017-03-14',
 	due: 14,
-	price: 12500,
+	price_total: 12500,
+	vat_total: 0,
 	currency: 'Kč',
 	description: 'Microsita pro Gorillu',
 	paid: false,
@@ -27,7 +28,8 @@ const invoices = [{
 	customer: 2,
 	date: '2017-01-14',
 	due: 14,
-	price: 17000,
+	price_total: 17000,
+	vat_total: 3570,
 	currency: 'Kč',
 	description: 'Webhosting + prodlouzeni domeny',
 	paid: false,
@@ -49,15 +51,28 @@ const invoices = [{
 	}],
 }, {
 	id: 3,
-	supplier: 2,
-	customer: 3,
+	supplier: 1,
+	customer: 4,
 	date: '2017-01-14',
 	due: 14,
-	price: 1280,
+	price_total: 12500,
+	vat_total: 0,
 	currency: 'Kč',
-	description: 'Webhosting + prodlouzeni domeny',
+	description: 'Microsita pro Gorillu',
 	paid: true,
-	items: {},
+	items: [{
+		text: 'Polozka faktury',
+		quantity: 1,
+		price: 10000,
+	},{
+		text: 'Dalsi polozka faktury',
+		quantity: 1,
+		price: 500,
+	},{
+		text: 'A jeste jedna faktury',
+		quantity: 1,
+		price: 2000,
+	}],
 }];
 
 export default invoices;

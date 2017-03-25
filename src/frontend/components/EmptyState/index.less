@@ -1,0 +1,64 @@
+@import '../../styles/utils.less';
+
+.EmptyState {
+  position: relative;
+  padding: 160px 0 40px;
+  text-align: center;
+  color: @navy;
+  .c;
+
+  &:before {
+    content: '';
+    background: no-repeat center bottom;
+    .size(100%, 140px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  &--small {
+    padding: 120px 0 20px;
+
+    &:before {
+      transform-origin: center 0;
+      .scale(.7);
+    }
+
+    .EmptyState-title {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+  }
+
+  &--big {
+    padding: 200px 0 80px;
+
+    &:before {
+      top: 40px;
+    }
+  }
+
+  &--invoice {
+    &:before {
+      background-image: url(./icons/invoice.svg);
+    }
+  }
+
+  &--subject {
+    &:before {
+      background-image: url(./icons/subject.svg);
+    }
+  }
+
+  &--page {
+    &:before {
+      background-image: url(./icons/page.svg);
+    }
+  }
+}
+
+.EmptyState-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+}

@@ -14,6 +14,7 @@ import Table from 'components/Table';
 import TableRow from 'components/TableRow';
 import TableCell from 'components/TableCell';
 import Link from 'components/Link';
+import EmptyState from 'components/EmptyState';
 
 const actions = [
 	<Button
@@ -27,7 +28,7 @@ const actions = [
 
 const Dashboard = ({
 	subjects,
-	invoicesOverdue,
+	invoicesUnpaid,
 	paidTotal,
 	unpaidTotal,
 }) => (
@@ -39,36 +40,44 @@ const Dashboard = ({
 				</Box>
 
 				<Box title="Neuhrazené faktury" modifiers={['smallMargin']}>
-					<Table>
-						{invoicesOverdue.map(invoice =>
-							<TableRow key={invoice.id}>
-								<TableCell modifiers={['overdue']}>
-									<div className="TableCell--primary">
-										<Link to={`/faktury/${invoice.id}`} modifiers={['tableLink']}>
-											{subjectNameById(subjects, invoice.customer)}
-										</Link>
-									</div>
-									<div className="TableCell--secondary">
-										{dateFormat(dueDate(invoice.date, invoice.due), 'dd. mm. yyyy')}&nbsp;
-										({overdue(invoice.date, invoice.due)} dní po splatnosti)
-									</div>
-								</TableCell>
-								<TableCell>
-									<div className="TableCell--price">
-										<NumberFormat value={invoice.price} displayType={'text'} thousandSeparator={' '} />
-										&nbsp;
-										{invoice.currency}
-									</div>
-								</TableCell>
-								<TableCell modifiers={['actions']}>
-									<Button
-										to={`/faktury/${invoice.id}`}
-										modifiers={['tableBtn', 'iconBtn', 'print']}
-									/>
-								</TableCell>
-							</TableRow>
-						)}
-					</Table>
+					{invoicesUnpaid.length ?
+						<Table>
+							{invoicesUnpaid.map(invoice =>
+								<TableRow key={invoice.id}>
+									<TableCell modifiers={[overdue(invoice.date, invoice.due) > 0 && 'overdue']}>
+										<div className="TableCell--primary">
+											<Link to={`/faktury/${invoice.id}`} modifiers={['tableLink']}>
+												{subjectNameById(subjects, invoice.customer)}
+											</Link>
+										</div>
+										<div className="TableCell--secondary">
+											{dateFormat(dueDate(invoice.date, invoice.due), 'dd. mm. yyyy')}&nbsp;
+											{overdue(invoice.date, invoice.due) > 0 &&
+												<span>({overdue(invoice.date, invoice.due)} dní po splatnosti)</span>
+											}
+										</div>
+									</TableCell>
+									<TableCell>
+										<div className="TableCell--price">
+											<NumberFormat value={invoice.price_total} displayType={'text'} thousandSeparator={' '} />
+											&nbsp;
+											{invoice.currency}
+										</div>
+									</TableCell>
+									<TableCell modifiers={['actions']}>
+										<Button
+											to={`/faktury/${invoice.id}`}
+											modifiers={['tableBtn', 'iconBtn', 'print']}
+										/>
+									</TableCell>
+								</TableRow>
+							)}
+						</Table>
+						:
+						<EmptyState title="Nemáte žádné nezaplacené faktury" modifiers={['small', 'invoice']}>
+							Sice ti nikdo nic nedluží, ale ani ti nikdo nic nepošle.
+						</EmptyState>
+					}
 				</Box>
 			</GridColumn>
 

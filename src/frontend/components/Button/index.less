@@ -134,6 +134,21 @@
   }
 }
 
+.Button--pay {
+  border-color: @blue;
+  opacity: .6;
+
+  &:before {
+    background-image: url('./icons/check.svg');
+    opacity: 1;
+  }
+
+  &:hover {
+    border-color: @blue;
+    opacity: 1;
+  }
+}
+
 .Button--delete {
   &:before {
     background-image: url('./icons/delete.svg');

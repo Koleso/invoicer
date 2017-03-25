@@ -8,16 +8,16 @@ import Box from 'components/Box';
 // Forms
 import InvoiceContainer from 'containers/InvoiceContainer';
 
-const Invoice = (props) => (
+const PayInvoice = (props) => (
 	<Screen title="Faktury">
 		<Grid>
 			<GridColumn>
-				<Box title="Detail faktury">
-					<InvoiceContainer action="detail" invoiceId={props.params.invoiceId} />
+				<Box title="Změnit stav faktury">
+					<InvoiceContainer action="pay" invoiceId={props.params.invoiceId} />
 				</Box>
 			</GridColumn>
 		</Grid>
 	</Screen>
 );
 
-export default Invoice;
+export default PayInvoice;

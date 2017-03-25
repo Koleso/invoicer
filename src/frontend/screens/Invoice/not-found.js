@@ -4,16 +4,16 @@ import React from 'react';
 import { Grid, GridColumn } from 'components/Grid';
 import Screen from 'components/Screen';
 import Box from 'components/Box';
+import EmptyState from 'components/EmptyState';
 
-// Forms
-import InvoiceContainer from 'containers/InvoiceContainer';
-
-const Invoice = (props) => (
+const Invoice = () => (
 	<Screen title="Faktury">
 		<Grid>
 			<GridColumn>
-				<Box title="Detail faktury">
-					<InvoiceContainer action="detail" invoiceId={props.params.invoiceId} />
+				<Box>
+					<EmptyState title="Tato faktura neexistuje" modifiers={['invoice', 'big']}>
+						Nevím co se stalo, ale faktura tu už není. Bureš byl informován.
+					</EmptyState>	
 				</Box>
 			</GridColumn>
 		</Grid>

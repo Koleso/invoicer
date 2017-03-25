@@ -13,6 +13,7 @@ import Table from 'components/Table';
 import TableRow from 'components/TableRow';
 import TableCell from 'components/TableCell';
 import Link from 'components/Link';
+import EmptyState from 'components/EmptyState';
 
 const actions = [
 	<Button
@@ -33,12 +34,13 @@ const Invoices = ({
 		<Grid>
 			<GridColumn>
 				<Box title="Neuhrazené faktury">
+				{invoicesUnpaid.length ? 
 					<Table>
 						{invoicesUnpaid.map(invoice =>
 							<TableRow key={invoice.id}>
 								<TableCell>
 									<div className="TableCell--primary">
-										<Link to={`/faktura/${invoice.id}`} modifiers={['tableLink']}>
+										<Link to={`/faktury/detail/${invoice.id}`} modifiers={['tableLink']}>
 											{subjectNameById(subjects, invoice.customer)}
 										</Link>
 									</div>
@@ -58,32 +60,42 @@ const Invoices = ({
 								</TableCell>
 								<TableCell>
 									<div className="TableCell--price">
-										<NumberFormat value={invoice.price} displayType={'text'} thousandSeparator={' '} />
+										<NumberFormat value={invoice.price_total} displayType={'text'} thousandSeparator={' '} />
 										&nbsp;
 										{invoice.currency}
 									</div>
 								</TableCell>
 								<TableCell modifiers={['actions']}>
 									<Button
-										to={`/faktura/upravit-fakturu/${invoice.id}`}
-										modifiers={['tableBtn', 'iconBtn', 'edit']}
+										to={`/faktury/zmenit-stav/${invoice.id}`}
+										modifiers={['tableBtn', 'iconBtn', 'pay']}
 									/>
 									<Button
-										to={`/faktura/smazat-fakturu/${invoice.id}`}
+										to={`/faktury/pdf/${invoice.id}`}
+										modifiers={['tableBtn', 'iconBtn', 'print']}
+									/>
+									<Button
+										to={`/faktury/smazat/${invoice.id}`}
 										modifiers={['tableBtn', 'iconBtn', 'delete']}
 									/>
 								</TableCell>
 							</TableRow>
 						)}
 					</Table>
+					:
+					<EmptyState title="Nemáte žádné nezaplacené faktury" modifiers={['invoice']}>
+						Sice ti nikdo nic nedluží, ale ani ti nikdo nic nepošle.
+					</EmptyState>	
+				}
 				</Box>
 				<Box title="Uhrazené faktury">
+					{invoicesPaid ?
 					<Table>
 						{invoicesPaid.map(invoice =>
 							<TableRow key={invoice.id}>
 								<TableCell>
 									<div className="TableCell--primary">
-										<Link to={`/faktura/${invoice.id}`} modifiers={['tableLink']}>
+										<Link to={`/faktury/detail/${invoice.id}`} modifiers={['tableLink']}>
 											{subjectNameById(subjects, invoice.customer)}
 										</Link>
 									</div>
@@ -95,20 +107,25 @@ const Invoices = ({
 								</TableCell>
 								<TableCell>
 									<div className="TableCell--price">
-										<NumberFormat value={invoice.price} displayType={'text'} thousandSeparator={' '} />
+										<NumberFormat value={invoice.price_total} displayType={'text'} thousandSeparator={' '} />
 										&nbsp;
 										{invoice.currency}
 									</div>
 								</TableCell>
 								<TableCell modifiers={['actions']}>
 									<Button
-										to={`/faktura/${invoice.id}`}
+										to={`/faktury/pdf/${invoice.id}`}
 										modifiers={['tableBtn', 'iconBtn', 'print']}
 									/>
 								</TableCell>
 							</TableRow>
 						)}
 					</Table>
+					:
+					<EmptyState title="Jaj, nikdo ti nic nezaplatil" modifiers={['invoice']}>
+						Chce to začít něco dělat, ať se to tu zaplní.
+					</EmptyState>	
+				}
 				</Box>
 			</GridColumn>
 		</Grid>

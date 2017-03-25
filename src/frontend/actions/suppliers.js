@@ -2,13 +2,6 @@ import { reset } from 'redux-form';
 import { browserHistory } from 'react-router';
 
 export function addSupplier() {
-/*
-	function afterSubmit() {
-		reset('supplier');
-		browserHistory.push('/subjekty/');
-	}
-*/
-
 	return (dispatch, getState) => {
 		const form = getState().form.supplier.values;
 		const supplier = {
@@ -37,31 +30,10 @@ export function addSupplier() {
 			type: 'ADD_SUPPLIER',
 			payload: supplier,
 		});
-
-		/*
-		return new Promise((resolve) => {
-			dispatch({
-				type: 'ADD_SUPPLIER',
-				payload: supplier,
-			});
-
-			resolve();
-		});
-		*/
-
-		// dispatch(afterSubmit());
-		// TODO: Iakov kamarad mi pomuze
 	};
 }
 
 export function updateSupplier() {
-/*
-	function afterSubmit() {
-		reset('supplier');
-		browserHistory.push('/subjekty/');
-	}
-*/
-
 	return (dispatch, getState) => {
 		const form = getState().form.supplier.values;
 
@@ -91,23 +63,16 @@ export function updateSupplier() {
 			type: 'UPDATE_SUPPLIER',
 			payload: supplier,
 		});
-
-		// dispatch(afterSubmit());
-		// TODO: Iakov kamarad mi pomuze
 	};
 }
 
 export function deleteSupplier() {
 	return (dispatch, getState) => {
-		console.log(getState().form.supplier);
 		const supplierId = getState().form.supplier.values.id;
 
 		dispatch({
 			type: 'DELETE_SUPPLIER',
 			payload: supplierId,
 		});
-
-		// dispatch(afterSubmit());
-		// TODO: Iakov kamarad mi pomuze
 	};
 }

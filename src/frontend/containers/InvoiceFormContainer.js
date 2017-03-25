@@ -16,10 +16,8 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	addInvoice: () => 
-		dispatch(addInvoice()),
-	changeFieldValue: (field, value) => 
-		dispatch(change('invoice', field, value)),
+	addInvoice: () => dispatch(addInvoice()),
+	changeFieldValue: (field, value) => dispatch(change('invoice', field, value)),
 });
 
 export default connect(

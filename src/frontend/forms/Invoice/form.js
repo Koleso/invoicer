@@ -45,7 +45,6 @@ const InvoiceForm = ({
 
 	const customersArray = subjectsForDropdown(customers);
 	const suppliersArray = subjectsForDropdown(suppliers);
-	console.log(invoice);
 
 	const submit = () => {
 		return handleSubmit(addInvoice);
@@ -185,17 +184,6 @@ const InvoiceForm = ({
 											component={InputField}
 										/>
 									</td>
-									<td>
-										<Field
-											id="currency"
-											name="currency"
-											type="text"
-											modifiers={['currency']}
-											label="Měna"
-											required={Boolean(true)}
-											component={InputField}
-										/>
-									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -227,13 +215,73 @@ const InvoiceForm = ({
 					}
 				</div>
 
-				<Field
-					name="price"
-					type="text"
-					component={InputField}
-					modifiers={['fakeInput']}
-					disabled={Boolean(true)}
-				/>
+				{invoice.supplierId &&
+					<table className={cx(bm, 'price')}>
+						<tbody>
+							<tr>
+								<td>Cena celkem{supplier.payer && ' bez DPH'}:</td>
+								<td className="pricePreview">
+									<Field
+										name="price_total"
+										type="text"
+										modifiers={['fakeInput', 'pricePreview']}
+										disabled={Boolean(true)}
+										component={InputField}
+									/>
+									<Field
+										name="currency"
+										type="text"
+										modifiers={['fakeInput', 'currencyPreview']}
+										disabled={Boolean(true)}
+										component={InputField}
+									/>
+								</td>
+							</tr>
+							{supplier.payer &&
+								<tr>
+									<td>DPH:</td>
+									<td className="pricePreview">
+										<Field
+											name="vat_total"
+											type="text"
+											modifiers={['fakeInput', 'pricePreview']}
+											disabled={Boolean(true)}
+											component={InputField}
+										/>
+										<Field
+											name="currency"
+											type="text"
+											modifiers={['fakeInput', 'currencyPreview']}
+											disabled={Boolean(true)}
+											component={InputField}
+										/>
+									</td>
+								</tr>
+							}
+							{supplier.payer &&
+								<tr>
+									<td>Cena celkem s DPH:</td>
+									<td className="pricePreview">
+										<Field
+											name="price_total_sum"
+											type="text"
+											modifiers={['fakeInput', 'pricePreview']}
+											disabled={Boolean(true)}
+											component={InputField}
+										/>
+										<Field
+											name="currency"
+											type="text"
+											modifiers={['fakeInput', 'currencyPreview']}
+											disabled={Boolean(true)}
+											component={InputField}
+										/>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				}
 
 				<div className="Invoice-footer noBorder">
 					<Button
@@ -269,7 +317,7 @@ const invoiceItems = ({ fields, payer, vat, currency, invoice, changeFieldValue 
 							name={`${item}.quantity`}
 							type="number"
 							component={InputField}
-							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue)}
+							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
 						/>
 					</td>
 					{payer && 
@@ -278,7 +326,7 @@ const invoiceItems = ({ fields, payer, vat, currency, invoice, changeFieldValue 
 								name={`${item}.vat`}
 								type="number"
 								component={InputField}
-								onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue)}
+								onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
 							/>
 							<span>%</span>
 						</td>
@@ -289,7 +337,7 @@ const invoiceItems = ({ fields, payer, vat, currency, invoice, changeFieldValue 
 							type="number"
 							placeholder="Cena za kus"
 							component={InputField}
-							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue)}
+							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
 						/>
 					</td>
 					<td className={cx(bm, 'itemDelete')}>
@@ -314,7 +362,7 @@ const invoiceItems = ({ fields, payer, vat, currency, invoice, changeFieldValue 
 	);
 };
 
-const calculatePriceTotal = (items, changeFieldValue) => {
+const calculatePriceTotal = (items, changeFieldValue, payer) => {
 	let price = 0;
 	let vat = 0;
 
@@ -332,7 +380,15 @@ const calculatePriceTotal = (items, changeFieldValue) => {
 		}
 	});
 
-	changeFieldValue('price', parseFloat(price+vat).toLocaleString('cs-CZ'));
+	if (payer) {
+		calculateVatTotal(vat, price, changeFieldValue);
+	}
+	changeFieldValue('price_total', parseFloat(price).toLocaleString('cs-CZ'));
+}
+
+const calculateVatTotal = (vat, price, changeFieldValue) => {
+	changeFieldValue('vat_total', parseFloat(vat).toLocaleString('cs-CZ'));
+	changeFieldValue('price_total_sum', parseFloat(price+vat).toLocaleString('cs-CZ'));
 }
 
 export default reduxForm({
@@ -341,6 +397,13 @@ export default reduxForm({
 	initialValues: {
 		id: new Date().valueOf(),
 		date: dateFormat(new Date(), 'yyyy-mm-dd'),
+		price_total: 0,
+		vat_total: '0',
+		price_total_sum: 0,
 		items: [{ text: '', quantity: 1, price: '', vat: '' }]
+	},
+	onSubmitSuccess: () => {
+		// TODO: Notifications
+		browserHistory.push('/faktury');
 	},
 })(InvoiceForm);
