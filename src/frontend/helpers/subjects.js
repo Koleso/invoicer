@@ -19,4 +19,12 @@ const subjectsForDropdown = (subjects) => {
 	return array;
 };
 
-export { subjectById, subjectNameById, subjectsForDropdown };
+const hasSupplierInvoice = (invoices, subjectId) => {
+	return invoices[invoices.findIndex((obj => obj.supplier === subjectId))];
+};
+
+const hasCustomerInvoice = (invoices, subjectId) => {
+	return invoices[invoices.findIndex((obj => obj.customer === subjectId))];
+};
+
+export { subjectById, subjectNameById, subjectsForDropdown, hasSupplierInvoice, hasCustomerInvoice };

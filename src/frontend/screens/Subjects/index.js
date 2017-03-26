@@ -1,4 +1,5 @@
 import React from 'react';
+import { hasSupplierInvoice, hasCustomerInvoice } from 'helpers/subjects';
 
 // Components
 import { Grid, GridColumn } from 'components/Grid';
@@ -28,7 +29,7 @@ const actions = [
 	</Button>,
 ];
 
-const Subjects = ({ customers, suppliers }) => (
+const Subjects = ({ customers, suppliers, invoices }) => (
 	<Screen title="Subjekty" actions={actions}>
 		<Grid>
 			<GridColumn>
@@ -61,10 +62,12 @@ const Subjects = ({ customers, suppliers }) => (
 											to={`/subjekty/upravit-odberatele/${customer.id}`}
 											modifiers={['tableBtn', 'iconBtn', 'edit']}
 										/>
-										<Button
-											to={`/subjekty/smazat-odberatele/${customer.id}`}
-											modifiers={['tableBtn', 'iconBtn', 'delete']}
-										/>
+										{!hasCustomerInvoice(invoices, customer.id) &&
+											<Button
+												to={`/subjekty/smazat-odberatele/${customer.id}`}
+												modifiers={['tableBtn', 'iconBtn', 'delete']}
+											/>
+										}
 									</TableCell>
 								</TableRow>
 							)}
@@ -105,10 +108,12 @@ const Subjects = ({ customers, suppliers }) => (
 											to={`/subjekty/upravit-dodavatele/${supplier.id}`}
 											modifiers={['tableBtn', 'iconBtn', 'edit']}
 										/>
-										<Button
-											to={`/subjekty/smazat-dodavatele/${supplier.id}`}
-											modifiers={['tableBtn', 'iconBtn', 'delete']}
-										/>
+										{!hasSupplierInvoice(invoices, supplier.id) &&
+											<Button
+												to={`/subjekty/smazat-dodavatele/${supplier.id}`}
+												modifiers={['tableBtn', 'iconBtn', 'delete']}
+											/>
+										}
 									</TableCell>
 								</TableRow>
 							)}

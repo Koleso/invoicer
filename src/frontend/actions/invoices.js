@@ -1,12 +1,11 @@
 export function addInvoice() {
 	return (dispatch, getState) => {
 		const form = getState().form.invoice.values;
-		console.log(form);
 		const invoice = {
 			id: form.id,
 			customer: parseInt(form.customerId, 10),
 			supplier: parseInt(form.supplierId, 10),
-			decription: form.decription,
+			description: form.description,
 			currency: form.currency,
 			date: form.date,
 			due: form.due,

@@ -13,7 +13,7 @@ const AddInvoice = () => (
 		<Grid>
 			<GridColumn>
 				<Box title="Vystavení nové faktury">
-					<InvoiceContainer action="add" id={new Date().valueOf()} />
+					<InvoiceContainer action="add" />
 				</Box>
 			</GridColumn>
 		</Grid>

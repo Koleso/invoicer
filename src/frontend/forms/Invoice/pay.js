@@ -30,7 +30,7 @@ const InvoicePay = ({
 					>
 						Ano, je uhrazena
 					</Button>
-					<Button to={'/faktury'} modifiers={['big', 'formLeft']}>Zpět na přehled</Button>
+					<Button to={'/faktury'} modifiers={['big', 'formLeft']}>Není uhrazena</Button>
 				</div>
 			</Form>
 		);

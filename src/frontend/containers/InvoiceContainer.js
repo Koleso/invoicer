@@ -32,7 +32,7 @@ const mapStateToProps = (state, props) => {
 		invoice,
 		customers: state.customers,
 		suppliers: state.suppliers,
-		id: props.id,
+		id: props.invoiceId,
 		view: props.action,
 		initialValues: invoice,
 	};

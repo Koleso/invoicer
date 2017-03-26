@@ -1,5 +1,5 @@
 const invoices = [{
-	id: 1,
+	id: 20160001,
 	supplier: 1,
 	customer: 1,
 	date: '2017-03-14',
@@ -23,7 +23,7 @@ const invoices = [{
 		price: 2000,
 	}],
 }, {
-	id: 2,
+	id: 20160002,
 	supplier: 2,
 	customer: 2,
 	date: '2017-01-14',
@@ -50,7 +50,7 @@ const invoices = [{
 		price: 2000,
 	}],
 }, {
-	id: 3,
+	id: 20160003,
 	supplier: 1,
 	customer: 4,
 	date: '2017-01-14',

@@ -2,16 +2,16 @@
 //
 html,
 body {
-	.square(100%);
+  .square(100%);
 }
 
 body {
-	background-color: @bgr;
-	font-size: @baseFontSize;
-	line-height: @baseLineHeight;
-	#font > #family > .roboto();
-	color: @textColor;
-	font-weight: 400;
+  background-color: @bgr;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  #font > #family > .roboto();
+  color: @textColor;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -22,29 +22,7 @@ body {
   overflow-y: auto;
 }
 
-
-.i-pageTop {
-  position: relative;
-  margin: 20px 0;
-  .c;
-
-  > h2 {
-    display: inline-block;
-    margin-top: 5px;
-    margin-bottom: 0;
-  }
-}
-
-.i-pageTop-right {
-  float: right;
-
-  > .i-button {
-    float: left;
-    margin-left: 15px;
-  }
-}
-
-.i-content {
-  position: relative;
-  .c;
+@page {
+  size: auto;
+  margin: 0mm;
 }

@@ -391,14 +391,6 @@ const InvoiceForm = ({
 export default reduxForm({
 	form: 'invoice',
 	validate,
-	initialValues: {
-		id: new Date().valueOf(),
-		date: dateFormat(new Date(), 'yyyy-mm-dd'),
-		price_total: 0,
-		vat_total: '0',
-		price_total_sum: 0,
-		items: [{ text: '', quantity: 1, price: '', vat: '' }],
-	},
 	onSubmitSuccess: () => {
 		// TODO: Notifications
 		browserHistory.push('/faktury');

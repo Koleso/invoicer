@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
 	return {
 		customers: state.customers,
 		suppliers: state.suppliers,
+		invoices: state.invoices,
 	};
 };
 

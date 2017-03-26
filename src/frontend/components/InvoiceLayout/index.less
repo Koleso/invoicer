@@ -45,6 +45,7 @@
 }
 
 .Invoice-list {
+  margin-bottom: 0;
   font-size: 16px;
 
   > li {
@@ -254,5 +255,47 @@
     width: 100%;
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+@media print {
+  .Invoice {
+    height: 385mm;
+    padding: 0;
+    zoom: .85;
+  }
+
+  .Invoice-header {
+    padding-top: 0;
+  }
+
+  .Invoice-section {
+    min-height: auto;
+  }
+
+  .Invoice-col {
+    width: 550px;
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .Invoice-list {
+    > li {
+      margin-top: 0;
+    }
+  }
+
+  .Invoice-table {
+    td {
+      padding: 1px 0;
+    }
+  }
+
+  .Invoice-footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
