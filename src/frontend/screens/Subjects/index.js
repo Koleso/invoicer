@@ -39,7 +39,12 @@ const Subjects = ({ customers, suppliers }) => (
 								<TableRow key={customer.id}>
 									<TableCell>
 										<div className="TableCell--primary">
-											<Link to={`/subjekty/upravit-odberatele/${customer.id}`} modifiers={['tableLink']}>{customer.name}</Link>
+											<Link
+												to={`/subjekty/upravit-odberatele/${customer.id}`}
+												modifiers={['tableLink']}
+											>
+												{customer.name}
+											</Link>
 										</div>
 										<div className="TableCell--secondary">IČ: {customer.ic}</div>
 									</TableCell>
@@ -78,7 +83,12 @@ const Subjects = ({ customers, suppliers }) => (
 								<TableRow key={supplier.id}>
 									<TableCell>
 										<div className="TableCell--primary">
-											<Link to={`/subjekty/upravit-dodavatele/${supplier.id}`} modifiers={['tableLink']}>{supplier.name}</Link>
+											<Link
+												to={`/subjekty/upravit-dodavatele/${supplier.id}`}
+												modifiers={['tableLink']}
+											>
+												{supplier.name}
+											</Link>
 										</div>
 										<div className="TableCell--secondary">IČ: {supplier.ic}</div>
 									</TableCell>

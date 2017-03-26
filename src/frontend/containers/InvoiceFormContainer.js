@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getFormValues, change } from 'redux-form';
 

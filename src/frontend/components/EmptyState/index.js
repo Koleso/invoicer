@@ -14,7 +14,7 @@ const EmptyState = ({
 	return (
 		<div className={cx(bm, '', modifiers)}>
 			<div className={cx(bm, 'title')}>{title}</div>
-			{children && 
+			{children &&
 				<div className={cx(bm, 'description')}>{children}</div>
 			}
 		</div>

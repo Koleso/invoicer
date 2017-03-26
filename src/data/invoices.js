@@ -13,11 +13,11 @@ const invoices = [{
 		text: 'Polozka faktury',
 		quantity: 1,
 		price: 10000,
-	},{
+	}, {
 		text: 'Dalsi polozka faktury',
 		quantity: 1,
 		price: 500,
-	},{
+	}, {
 		text: 'A jeste jedna faktury',
 		quantity: 1,
 		price: 2000,
@@ -38,12 +38,12 @@ const invoices = [{
 		quantity: 1,
 		vat: 0.21,
 		price: 10000,
-	},{
+	}, {
 		text: 'Dalsi polozka faktury',
 		quantity: 1,
 		vat: 0.21,
 		price: 5000,
-	},{
+	}, {
 		text: 'A jeste jedna polozka faktury',
 		quantity: 1,
 		vat: 0.21,
@@ -64,11 +64,11 @@ const invoices = [{
 		text: 'Polozka faktury',
 		quantity: 1,
 		price: 10000,
-	},{
+	}, {
 		text: 'Dalsi polozka faktury',
 		quantity: 1,
 		price: 500,
-	},{
+	}, {
 		text: 'A jeste jedna faktury',
 		quantity: 1,
 		price: 2000,

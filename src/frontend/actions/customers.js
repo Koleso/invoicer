@@ -1,14 +1,4 @@
-import { reset } from 'redux-form';
-import { browserHistory } from 'react-router';
-
 export function addCustomer() {
-/*
-	function afterSubmit() {
-		reset('supplier');
-		browserHistory.push('/subjekty/');
-	}
-*/
-
 	return (dispatch, getState) => {
 		const form = getState().form.customer.values;
 		const customer = {
@@ -29,31 +19,10 @@ export function addCustomer() {
 			type: 'ADD_CUSTOMER',
 			payload: customer,
 		});
-
-		/*
-		return new Promise((resolve) => {
-			dispatch({
-				type: 'ADD_SUPPLIER',
-				payload: supplier,
-			});
-
-			resolve();
-		});
-		*/
-
-		// dispatch(afterSubmit());
-		// TODO: Iakov kamarad mi pomuze
 	};
 }
 
 export function updateCustomer() {
-/*
-	function afterSubmit() {
-		reset('supplier');
-		browserHistory.push('/subjekty/');
-	}
-*/
-
 	return (dispatch, getState) => {
 		const form = getState().form.customer.values;
 
@@ -75,9 +44,6 @@ export function updateCustomer() {
 			type: 'UPDATE_CUSTOMER',
 			payload: customer,
 		});
-
-		// dispatch(afterSubmit());
-		// TODO: Iakov kamarad mi pomuze
 	};
 }
 
@@ -89,8 +55,5 @@ export function deleteCustomer() {
 			type: 'DELETE_CUSTOMER',
 			payload: customerId,
 		});
-
-		// dispatch(afterSubmit());
-		// TODO: Iakov kamarad mi pomuze
 	};
 }

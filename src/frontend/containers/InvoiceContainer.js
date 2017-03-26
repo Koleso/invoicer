@@ -1,12 +1,11 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 
 import Invoice from 'components/Invoice';
 import InvoicePay from 'forms/Invoice/pay';
 import InvoiceDelete from 'forms/Invoice/delete';
 
-import { payInvoice, deleteInvoice} from 'actions/invoices';
+import { payInvoice, deleteInvoice } from 'actions/invoices';
 
 const InvoiceContainer = (props) => {
 	if (props.action === 'delete') {
@@ -30,7 +29,7 @@ const mapStateToProps = (state, props) => {
 	});
 
 	return {
-		invoice: invoice,
+		invoice,
 		customers: state.customers,
 		suppliers: state.suppliers,
 		id: props.id,

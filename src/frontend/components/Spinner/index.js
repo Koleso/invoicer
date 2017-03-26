@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
 import cx from 'helpers/classes';
 
 // CSS

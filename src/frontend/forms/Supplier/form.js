@@ -10,7 +10,7 @@ import Checkbox from 'components/Checkbox';
 
 import validate from './validate';
 
-const SupplierForm  = ({
+const SupplierForm = ({
 	addSupplier,
 	updateSupplier,
 	submitting,

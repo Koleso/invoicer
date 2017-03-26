@@ -7,7 +7,7 @@
     "predev": "npm run clean",
     "prebuild": "npm run clean",
     "lint": "eslint ./src/",
-    "dev": "NODE_ENV=development webpack-dev-server",
+    "dev": "NODE_ENV=development DEVSERVER=true webpack-dev-server",
     "build": "NODE_ENV=production webpack -p"
   },
   "private": true,

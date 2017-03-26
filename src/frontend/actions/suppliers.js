@@ -1,6 +1,3 @@
-import { reset } from 'redux-form';
-import { browserHistory } from 'react-router';
-
 export function addSupplier() {
 	return (dispatch, getState) => {
 		const form = getState().form.supplier.values;

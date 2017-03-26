@@ -1,6 +1,3 @@
-import { reset } from 'redux-form';
-import { browserHistory } from 'react-router';
-
 export function addInvoice() {
 	return (dispatch, getState) => {
 		const form = getState().form.invoice.values;

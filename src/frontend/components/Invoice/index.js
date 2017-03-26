@@ -4,7 +4,7 @@ import cx from 'helpers/classes';
 
 import NumberFormat from 'react-number-format';
 import dateFormat from 'dateformat';
-import { overdue, dueDate } from 'helpers/overdue';
+import { dueDate } from 'helpers/overdue';
 import { subjectById } from 'helpers/subjects';
 
 import InvoiceLayout from 'components/InvoiceLayout';
@@ -110,10 +110,10 @@ const Invoice = ({
 							<tr>
 								<th>Položka</th>
 								<th className="right">Mn.</th>
-								{supplier.payer &&  <th className="right">DPH</th> }
+								{supplier.payer && <th className="right">DPH</th>}
 								<th className="right">Cena</th>
 							</tr>
-							{invoice.items.map((item, index )=>
+							{invoice.items.map((item, index) =>
 								<tr key={index}>
 									<td>
 										{item.text}
@@ -123,7 +123,7 @@ const Invoice = ({
 									</td>
 									{supplier.payer &&
 										<td className="right">
-											{supplier.vat*100}%
+											{supplier.vat * 100}%
 										</td>
 									}
 									<td className="right">

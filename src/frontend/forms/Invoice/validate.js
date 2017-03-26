@@ -18,11 +18,13 @@ const validate = (values) => {
 	}
 
 	if (!values.items || !values.items.length) {
-    errors.items = { _error: 'Přidejte alespoň jednu položku faktury' }
-  } else {
-		const itemsArrayErrors = []
+		errors.items = {
+			_error: 'Přidejte alespoň jednu položku faktury',
+		};
+	} else {
+		const itemsArrayErrors = [];
 		values.items.forEach((item, itemIndex) => {
-			const itemErrors = {}
+			const itemErrors = {};
 			if (!item || !item.text) {
 				itemErrors.text = 'Zadejte položku';
 				itemsArrayErrors[itemIndex] = itemErrors;
@@ -36,10 +38,10 @@ const validate = (values) => {
 				itemsArrayErrors[itemIndex] = itemErrors;
 			}
 			return itemErrors;
-		})
+		});
 
-		if(itemsArrayErrors.length) {
-			errors.items = itemsArrayErrors
+		if (itemsArrayErrors.length) {
+			errors.items = itemsArrayErrors;
 		}
 	}
 

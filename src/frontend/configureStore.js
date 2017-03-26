@@ -1,5 +1,3 @@
-/*eslint no-underscore-dangle: "error"*/
-
 import { compose, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { browserHistory } from 'react-router';
@@ -19,6 +17,7 @@ const firebaseConfig = {
 };
 let app = firebase.initializeApp(firebaseConfig);
 */
+// eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middleware = [
@@ -29,6 +28,7 @@ const middleware = [
 const configureStore = () => {
 	const store = createStore(
 		reducers,
+		// eslint-disable-next-line no-underscore-dangle
 		typeof window !== 'undefined' && window.__INITIAL_STATE__ || {},
 		composeEnhancers(applyMiddleware(...middleware))
 	);

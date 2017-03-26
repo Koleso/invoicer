@@ -8,7 +8,7 @@ import Box from 'components/Box';
 // Forms
 import InvoiceFormContainer from 'containers/InvoiceFormContainer';
 
-const Invoice = (props) => (
+const Invoice = () => (
 	<Screen title="Faktury">
 		<Grid>
 			<GridColumn>

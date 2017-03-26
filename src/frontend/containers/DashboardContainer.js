@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { overdue } from 'helpers/overdue';
 
 import Dashboard from 'screens/Dashboard';
 

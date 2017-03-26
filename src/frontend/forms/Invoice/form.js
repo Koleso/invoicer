@@ -3,22 +3,114 @@ import { Field, FieldArray, reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
 import cx from 'helpers/classes';
-import { subjectsForDropdown } from 'helpers/subjects';
+import { subjectsForDropdown, subjectById } from 'helpers/subjects';
 import dateFormat from 'dateformat';
-import { dueDate } from 'helpers/overdue';
-import { subjectById } from 'helpers/subjects';
 
 // Components
 import InvoiceLayout from 'components/InvoiceLayout';
 import Spinner from 'components/Spinner';
 import Button from 'components/Button';
 import InputField from 'components/Input';
-import Link from 'components/Link';
 import Dropdown from 'components/Dropdown';
 
 import validate from './validate';
 
-const InvoiceForm = ({ 
+const calculateVatTotal = (vat, price, changeFieldValue) => {
+	changeFieldValue('vat_total', parseFloat(vat).toLocaleString('cs-CZ'));
+	changeFieldValue('price_total_sum', parseFloat(price + vat).toLocaleString('cs-CZ'));
+};
+
+const calculatePriceTotal = (items, changeFieldValue, payer) => {
+	let price = 0;
+	let vat = 0;
+
+	items.map((item) => {
+		if (items[0].vat) {
+			if (Number.isInteger(parseInt(item.quantity, 10))
+				&& Number.isInteger(parseInt(item.vat, 10))
+				&& Number.isInteger(parseInt(item.price, 10))) {
+				vat += (parseFloat(item.price) * parseFloat(item.vat) / 100 * parseInt(item.quantity, 10));
+			}
+		}
+		if (Number.isInteger(parseInt(item.quantity, 10))
+			&& Number.isInteger(parseInt(item.price, 10))) {
+			price += (parseFloat(item.price) * parseInt(item.quantity, 10));
+		}
+		return null;
+	});
+
+	if (payer) {
+		calculateVatTotal(vat, price, changeFieldValue);
+	}
+	changeFieldValue('price_total', parseFloat(price).toLocaleString('cs-CZ'));
+};
+
+const invoiceItems = ({ fields, payer, invoice, changeFieldValue }) => {
+	const bm = 'Invoice';
+
+	return (
+		<tbody>
+			{fields.map((item, index) =>
+				<tr key={index}>
+					<td className={cx(bm, 'itemText')}>
+						<Field
+							name={`${item}.text`}
+							type="text"
+							placeholder="Položka faktury"
+							component={InputField}
+						/>
+					</td>
+					<td className={cx(bm, 'itemQuantity')}>
+						<Field
+							name={`${item}.quantity`}
+							type="number"
+							component={InputField}
+							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
+						/>
+					</td>
+					{payer &&
+						<td className={cx(bm, 'itemVat')}>
+							<Field
+								name={`${item}.vat`}
+								type="number"
+								component={InputField}
+								onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
+							/>
+							<span>%</span>
+						</td>
+					}
+					<td className={cx(bm, 'itemPrice')}>
+						<Field
+							name={`${item}.price`}
+							type="number"
+							placeholder="Cena za kus"
+							component={InputField}
+							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
+						/>
+					</td>
+					<td className={cx(bm, 'itemDelete')}>
+						<Button
+							onClick={() => fields.remove(index)}
+							modifiers={['tableBtn', 'iconBtn', 'delete']}
+						/>
+					</td>
+				</tr>
+			)}
+			<tr>
+				<td>
+					<Button
+						onClick={() => fields.push({})}
+						modifiers={['addItem']}
+					>
+						Přidat položku
+					</Button>
+				</td>
+			</tr>
+		</tbody>
+	);
+};
+
+const InvoiceForm = ({
 	invoice,
 	customers,
 	suppliers,
@@ -26,20 +118,19 @@ const InvoiceForm = ({
 	handleSubmit,
 	addInvoice,
 	changeFieldValue,
-	...otherProps,
 }) => {
-
 	if (!invoice) {
 		return (
 			<Spinner modifiers={['fullpage']} />
-		)
+		);
 	}
 
-	let customer, supplier = undefined;
-	if (invoice.customerId && invoice.customerId != "0") {
+	let customer = undefined;
+	let supplier = undefined;
+	if (invoice.customerId && invoice.customerId !== '0') {
 		customer = subjectById(customers, parseInt(invoice.customerId, 10));
 	}
-	if (invoice.supplierId && invoice.supplierId != "0") {
+	if (invoice.supplierId && invoice.supplierId !== '0') {
 		supplier = subjectById(suppliers, parseInt(invoice.supplierId, 10));
 	}
 
@@ -48,7 +139,7 @@ const InvoiceForm = ({
 
 	const submit = () => {
 		return handleSubmit(addInvoice);
-	}
+	};
 
 	const bm = 'Invoice';
 	return (
@@ -297,100 +388,6 @@ const InvoiceForm = ({
 	);
 };
 
-const invoiceItems = ({ fields, payer, vat, currency, invoice, changeFieldValue }) => {
-	const bm = 'Invoice';
-
-	return (
-		<tbody>
-			{fields.map((item, index) =>
-				<tr key={index}>
-					<td className={cx(bm, 'itemText')}>
-						<Field
-							name={`${item}.text`}
-							type="text"
-							placeholder="Položka faktury"
-							component={InputField}
-						/>
-					</td>
-					<td className={cx(bm, 'itemQuantity')}>
-						<Field
-							name={`${item}.quantity`}
-							type="number"
-							component={InputField}
-							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
-						/>
-					</td>
-					{payer && 
-						<td className={cx(bm, 'itemVat')}>
-							<Field
-								name={`${item}.vat`}
-								type="number"
-								component={InputField}
-								onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
-							/>
-							<span>%</span>
-						</td>
-					}
-					<td className={cx(bm, 'itemPrice')}>
-						<Field
-							name={`${item}.price`}
-							type="number"
-							placeholder="Cena za kus"
-							component={InputField}
-							onBlur={() => calculatePriceTotal(invoice.items, changeFieldValue, payer)}
-						/>
-					</td>
-					<td className={cx(bm, 'itemDelete')}>
-						<Button
-							onClick={() => fields.remove(index)}
-							modifiers={['tableBtn', 'iconBtn', 'delete']}
-						/>
-					</td>
-				</tr>
-			)}
-			<tr>
-				<td>
-					<Button
-						onClick={() => fields.push({})}
-						modifiers={['addItem']}
-					>
-						Přidat položku
-					</Button>
-				</td>
-			</tr>
-		</tbody>
-	);
-};
-
-const calculatePriceTotal = (items, changeFieldValue, payer) => {
-	let price = 0;
-	let vat = 0;
-
-	items.map((item, index) => {
-		if (items[0].vat) {
-			if (Number.isInteger(parseInt(item.quantity, 10))
-				&& Number.isInteger(parseInt(item.vat, 10))
-				&& Number.isInteger(parseInt(item.price, 10))) {
-				vat += (parseFloat(item.price) * parseFloat(item.vat)/100 * parseInt(item.quantity, 10));
-			}
-		}
-		if (Number.isInteger(parseInt(item.quantity, 10))
-			&& Number.isInteger(parseInt(item.price, 10))) {
-			price += (parseFloat(item.price) * parseInt(item.quantity, 10));
-		}
-	});
-
-	if (payer) {
-		calculateVatTotal(vat, price, changeFieldValue);
-	}
-	changeFieldValue('price_total', parseFloat(price).toLocaleString('cs-CZ'));
-}
-
-const calculateVatTotal = (vat, price, changeFieldValue) => {
-	changeFieldValue('vat_total', parseFloat(vat).toLocaleString('cs-CZ'));
-	changeFieldValue('price_total_sum', parseFloat(price+vat).toLocaleString('cs-CZ'));
-}
-
 export default reduxForm({
 	form: 'invoice',
 	validate,
@@ -400,7 +397,7 @@ export default reduxForm({
 		price_total: 0,
 		vat_total: '0',
 		price_total_sum: 0,
-		items: [{ text: '', quantity: 1, price: '', vat: '' }]
+		items: [{ text: '', quantity: 1, price: '', vat: '' }],
 	},
 	onSubmitSuccess: () => {
 		// TODO: Notifications

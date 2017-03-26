@@ -13,7 +13,7 @@ const Invoice = () => (
 				<Box>
 					<EmptyState title="Tato faktura neexistuje" modifiers={['invoice', 'big']}>
 						Nevím co se stalo, ale faktura tu už není. Bureš byl informován.
-					</EmptyState>	
+					</EmptyState>
 				</Box>
 			</GridColumn>
 		</Grid>

@@ -7,12 +7,12 @@ const subjectNameById = (subjects, id) => {
 };
 
 const subjectsForDropdown = (subjects) => {
-	let array = [];
+	const array = [];
 
 	subjects.map(subject =>
 		array.push({
 			key: subject.id,
-			label: subject.name + ' (IČ: ' + subject.ic + ')',
+			label: `${subject.name} (IČ: ${subject.ic} )`,
 		})
 	);
 
