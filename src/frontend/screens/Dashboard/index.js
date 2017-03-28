@@ -89,11 +89,3 @@ const Dashboard = ({
 );
 
 export default Dashboard;
-
-/*
-<div className="NotificationsList">
-			<Notification>Faktura cislo <strong>20160601</strong> byla uspesne vytvorena</Notification>
-			<Notification>Faktura cislo 20160601 byla uspesne vytvorena</Notification>
-			<Notification type="error">Neco se posralo</Notification>
-		</div>
- */

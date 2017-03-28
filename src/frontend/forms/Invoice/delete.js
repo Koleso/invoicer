@@ -2,6 +2,10 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
+// Notifications
+import { actions as notifActions } from 'redux-notifications';
+const { notifSend } = notifActions;
+
 // Components
 import Form from 'components/Form';
 import Button from 'components/Button';
@@ -41,8 +45,19 @@ const InvoiceDelete = ({
 
 export default reduxForm({
 	form: 'invoice',
-	onSubmitSuccess: () => {
-		// TODO: Notifications
+	onSubmitSuccess: (result, dispatch) => {
 		browserHistory.push('/faktury');
+		dispatch(notifSend({
+			message: 'Faktura byla úspěšně smazána',
+			kind: 'success',
+			dismissAfter: 3000,
+		}));
+	},
+	onSubmitFail: (result, dispatch) => {
+		dispatch(notifSend({
+			message: 'Fakturu se nepodařilo smazat',
+			kind: 'error',
+			dismissAfter: 3000,
+		}));
 	},
 })(InvoiceDelete);

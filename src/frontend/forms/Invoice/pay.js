@@ -2,6 +2,10 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
+// Notifications
+import { actions as notifActions } from 'redux-notifications';
+const { notifSend } = notifActions;
+
 // Components
 import Form from 'components/Form';
 import Button from 'components/Button';
@@ -41,8 +45,19 @@ const InvoicePay = ({
 
 export default reduxForm({
 	form: 'invoice',
-	onSubmitSuccess: () => {
-		// TODO: Notifications
+	onSubmitSuccess: (result, dispatch) => {
 		browserHistory.push('/faktury');
+		dispatch(notifSend({
+			message: 'Stav faktury byl úspěšně změněn na uhrazeno',
+			kind: 'success',
+			dismissAfter: 3000,
+		}));
+	},
+	onSubmitFail: (result, dispatch) => {
+		dispatch(notifSend({
+			message: 'Stav faktury se nepodařilo změnit',
+			kind: 'error',
+			dismissAfter: 3000,
+		}));
 	},
 })(InvoicePay);

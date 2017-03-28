@@ -2,6 +2,10 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
+// Notifications
+import { actions as notifActions } from 'redux-notifications';
+const { notifSend } = notifActions;
+
 // Components
 import Form from 'components/Form';
 import Button from 'components/Button';
@@ -41,8 +45,19 @@ const SupplierDelete = ({
 
 export default reduxForm({
 	form: 'supplier',
-	onSubmitSuccess: () => {
-		// TODO: Notifications
+	onSubmitSuccess: (result, dispatch) => {
 		browserHistory.push('/subjekty');
+		dispatch(notifSend({
+			message: 'Dodavatel byl úspěšně smazán',
+			kind: 'success',
+			dismissAfter: 3000,
+		}));
+	},
+	onSubmitFail: (result, dispatch) => {
+		dispatch(notifSend({
+			message: 'Dodavatele se nepodařilo smazat',
+			kind: 'error',
+			dismissAfter: 3000,
+		}));
 	},
 })(SupplierDelete);

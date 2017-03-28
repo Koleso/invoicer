@@ -2,6 +2,10 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
+// Notifications
+import { actions as notifActions } from 'redux-notifications';
+const { notifSend } = notifActions;
+
 // Components
 import Form from 'components/Form';
 import Button from 'components/Button';
@@ -18,12 +22,12 @@ const SupplierForm = ({
 	action,
 	initialValues,
 }) => {
-	function submit() {
+	const submit = () => {
 		if (action === 'add') {
 			return handleSubmit(addSupplier);
 		}
 		return handleSubmit(updateSupplier);
-	}
+	};
 
 	if (action === 'edit' && initialValues === undefined) {
 		// Subjekt nenalezen
@@ -277,8 +281,27 @@ const SupplierForm = ({
 export default reduxForm({
 	form: 'supplier',
 	validate,
-	onSubmitSuccess: () => {
-		// TODO: Notifications
+	onSubmitSuccess: (result, dispatch, props) => {
 		browserHistory.push('/subjekty');
+		if (props.action === 'edit') {
+			dispatch(notifSend({
+				message: `Dodavatel ${props.values.name} byl úspěšně aktualizován`,
+				kind: 'success',
+				dismissAfter: 3000,
+			}));
+		} else {
+			dispatch(notifSend({
+				message: `Dodavatel ${props.values.name} byl úspěšně vytvořen`,
+				kind: 'success',
+				dismissAfter: 3000,
+			}));
+		}
+	},
+	onSubmitFail: (result, dispatch) => {
+		dispatch(notifSend({
+			message: 'Dodavatele se nepodařilo vytvořit',
+			kind: 'error',
+			dismissAfter: 3000,
+		}));
 	},
 })(SupplierForm);

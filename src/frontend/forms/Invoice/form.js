@@ -6,6 +6,10 @@ import cx from 'helpers/classes';
 import { subjectsForDropdown, subjectById } from 'helpers/subjects';
 import dateFormat from 'dateformat';
 
+// Notifications
+import { actions as notifActions } from 'redux-notifications';
+const { notifSend } = notifActions;
+
 // Components
 import InvoiceLayout from 'components/InvoiceLayout';
 import Spinner from 'components/Spinner';
@@ -391,8 +395,19 @@ const InvoiceForm = ({
 export default reduxForm({
 	form: 'invoice',
 	validate,
-	onSubmitSuccess: () => {
-		// TODO: Notifications
+	onSubmitSuccess: (result, dispatch, props) => {
 		browserHistory.push('/faktury');
+		dispatch(notifSend({
+			message: `Faktura ${props.values.name} byl úspěšně vytvořena`,
+			kind: 'success',
+			dismissAfter: 3000,
+		}));
+	},
+	onSubmitFail: (result, dispatch) => {
+		dispatch(notifSend({
+			message: 'Fakturu se nepodařilo vytvořit',
+			kind: 'error',
+			dismissAfter: 3000,
+		}));
 	},
 })(InvoiceForm);
