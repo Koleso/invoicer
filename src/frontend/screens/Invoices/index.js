@@ -71,7 +71,7 @@ const Invoices = ({
 										modifiers={['tableBtn', 'iconBtn', 'pay']}
 									/>
 									<Button
-										to={`/faktury/pdf/${invoice.id}`}
+										to={`/faktury/detail/${invoice.id}`}
 										modifiers={['tableBtn', 'iconBtn', 'print']}
 									/>
 									<Button

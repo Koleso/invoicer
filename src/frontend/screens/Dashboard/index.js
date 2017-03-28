@@ -66,7 +66,7 @@ const Dashboard = ({
 									</TableCell>
 									<TableCell modifiers={['actions']}>
 										<Button
-											to={`/faktury/${invoice.id}`}
+											to={`/faktury/detail/${invoice.id}`}
 											modifiers={['tableBtn', 'iconBtn', 'print']}
 										/>
 									</TableCell>
