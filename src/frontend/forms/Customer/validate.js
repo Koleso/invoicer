@@ -5,6 +5,10 @@ const validate = (values) => {
 		errors.name = 'Vyplňte jméno zákazníka';
 	}
 
+	if (!values.ic) {
+		errors.ic = 'Vyplňte IČ zákazníka';
+	}
+
 	if (!values.street) {
 		errors.street = 'Vyplňte ulici';
 	}

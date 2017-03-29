@@ -57,6 +57,7 @@ const CustomerForm = ({
 								id="ic"
 								type="text"
 								label="IČ"
+								required={Boolean(true)}
 								component={InputField}
 							/>
 						</div>
@@ -184,6 +185,9 @@ const CustomerForm = ({
 export default reduxForm({
 	form: 'customer',
 	validate,
+	initialValues: {
+		name: '',
+	},
 	onSubmitSuccess: (result, dispatch, props) => {
 		browserHistory.push('/subjekty');
 		if (props.action === 'edit') {

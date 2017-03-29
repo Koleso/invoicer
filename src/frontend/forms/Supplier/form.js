@@ -155,7 +155,7 @@ const SupplierForm = ({
 								name="vat"
 								id="vat"
 								type="number"
-								label="Sazba"
+								label="Sazba DPH"
 								component={InputField}
 							/>
 						</div>

@@ -10,7 +10,7 @@ const Screen = ({
 	title,
 	modifiers,
 	actions,
-	pageTitle
+	pageTitle,
 }) => {
 	const bm = 'Screen';
 

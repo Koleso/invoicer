@@ -5,14 +5,14 @@ export function addCustomer() {
 			id: new Date().valueOf(),
 			name: form.name,
 			ic: form.ic,
-			dic: form.dic,
+			dic: form.dic || '',
 			city: form.city,
 			street: form.street,
 			zip: form.zip,
 			contact_person: form.contact_person,
-			title: form.title,
+			title: form.title || '',
 			email: form.email,
-			phone: form.phone,
+			phone: form.phone || '',
 		};
 
 		dispatch({

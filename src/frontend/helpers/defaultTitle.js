@@ -1,3 +1,3 @@
-const defaultTitle = " | invoicer";
+const defaultTitle = ' | invoicer';
 
 export default defaultTitle;
