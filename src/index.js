@@ -6,7 +6,7 @@ import configureStore from 'frontend/configureStore';
 
 const store = configureStore();
 
-if (DEVSERVER) {
+if (DEVSERVER) { // eslint-disable-line
 	const AppContainer = require('react-hot-loader').AppContainer;
 
 	ReactDOM.render(
