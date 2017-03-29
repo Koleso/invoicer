@@ -7,7 +7,7 @@ import Box from 'components/Box';
 import EmptyState from 'components/EmptyState';
 
 const Invoice = () => (
-	<Screen title="Faktury">
+	<Screen title="Faktury" pageTitle="Faktura nenalezena">
 		<Grid>
 			<GridColumn>
 				<Box>

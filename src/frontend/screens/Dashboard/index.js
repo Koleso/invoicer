@@ -32,7 +32,7 @@ const Dashboard = ({
 	paidTotal,
 	unpaidTotal,
 }) => (
-	<Screen title="Dashboard" actions={actions}>
+	<Screen title="Dashboard" pageTitle="Dashboard" actions={actions}>
 		<Grid size={2}>
 			<GridColumn>
 				<Box title="Pohledávky" modifiers={['smallMargin']}>

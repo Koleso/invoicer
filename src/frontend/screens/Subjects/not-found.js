@@ -7,7 +7,7 @@ import Box from 'components/Box';
 import EmptyState from 'components/EmptyState';
 
 const Subject = () => (
-	<Screen title="Subjekty">
+	<Screen title="Subjekty" pageTitle="Subjekt nenalezen">
 		<Grid>
 			<GridColumn>
 				<Box>

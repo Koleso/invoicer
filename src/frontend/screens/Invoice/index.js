@@ -20,7 +20,7 @@ const actions = [
 ];
 
 const Invoice = (props) => (
-	<Screen title="Faktury" actions={actions}>
+	<Screen title="Faktury" pageTitle={`Faktura č.${props.params.invoiceId}`} actions={actions}>
 		<Grid>
 			<GridColumn>
 				<Box title="Detail faktury">

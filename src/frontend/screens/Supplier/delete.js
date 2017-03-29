@@ -9,7 +9,7 @@ import Box from 'components/Box';
 import SupplierContainer from 'containers/SupplierContainer';
 
 const DeleteSupplier = (props) => (
-	<Screen title="Subjekty">
+	<Screen title="Subjekty" pageTitle="Smazání dodavatele">
 		<Grid>
 			<GridColumn>
 				<Box title="Smazání dodavatele">

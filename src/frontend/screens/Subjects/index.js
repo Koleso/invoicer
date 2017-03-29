@@ -30,7 +30,7 @@ const actions = [
 ];
 
 const Subjects = ({ customers, suppliers, invoices }) => (
-	<Screen title="Subjekty" actions={actions}>
+	<Screen title="Subjekty" pageTitle="Subjekty" actions={actions}>
 		<Grid>
 			<GridColumn>
 				<Box title="Odběratelé">

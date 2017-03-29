@@ -9,7 +9,7 @@ import Box from 'components/Box';
 import InvoiceContainer from 'containers/InvoiceContainer';
 
 const DeleteInvoice = (props) => (
-	<Screen title="Faktury">
+	<Screen title="Faktury" pageTitle={`Faktura č.${props.params.invoiceId}`}>
 		<Grid>
 			<GridColumn>
 				<Box title="Smazání faktury">

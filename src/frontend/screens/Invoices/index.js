@@ -30,7 +30,7 @@ const Invoices = ({
 	invoicesUnpaid,
 	subjects,
 }) => (
-	<Screen title="Faktury" actions={actions}>
+	<Screen title="Faktury" pageTitle="Faktury" actions={actions}>
 		<Grid>
 			<GridColumn>
 				<Box title="Neuhrazené faktury">

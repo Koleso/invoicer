@@ -9,7 +9,7 @@ import Box from 'components/Box';
 import SupplierContainer from 'containers/SupplierContainer';
 
 const AddSupplier = () => (
-	<Screen title="Subjekty">
+	<Screen title="Subjekty" pageTitle="Vytvoření nového dodavatele">
 		<Grid>
 			<GridColumn>
 				<Box title="Vytvoření nového dodavatele">

@@ -9,7 +9,7 @@ import Box from 'components/Box';
 import InvoiceContainer from 'containers/InvoiceContainer';
 
 const AddInvoice = () => (
-	<Screen title="Faktury">
+	<Screen title="Faktury" pageTitle="Vystavení nové faktury">
 		<Grid>
 			<GridColumn>
 				<Box title="Vystavení nové faktury">

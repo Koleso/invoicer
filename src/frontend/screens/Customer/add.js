@@ -9,7 +9,7 @@ import Box from 'components/Box';
 import CustomerContainer from 'containers/CustomerContainer';
 
 const AddCustomer = () => (
-	<Screen title="Subjekty">
+	<Screen title="Subjekty"pageTitle="Vytvoření nového odběratele">
 		<Grid>
 			<GridColumn>
 				<Box title="Vytvoření nového odběratele">

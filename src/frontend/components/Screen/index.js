@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react';
 import cx from 'helpers/classes';
+import defaultTitle from 'helpers/defaultTitle';
 
 // CSS
 import './index.less';
@@ -9,8 +10,13 @@ const Screen = ({
 	title,
 	modifiers,
 	actions,
+	pageTitle
 }) => {
 	const bm = 'Screen';
+
+	if (pageTitle) {
+		document.title = pageTitle + defaultTitle;
+	}
 
 	return (
 		<div className={cx(bm, '', modifiers)}>
@@ -34,6 +40,7 @@ Screen.propTypes = {
 	title: T.string.isRequired,
 	modifiers: T.array,
 	actions: T.array,
+	pageTitle: T.string,
 };
 
 export default Screen;
