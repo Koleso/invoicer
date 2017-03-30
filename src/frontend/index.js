@@ -29,8 +29,6 @@ const renderApp = ({ store }) => (
 	/>
 );
 
-const App = compose(
+export default compose(
 	withStore,
 )(renderApp);
-
-export default App;

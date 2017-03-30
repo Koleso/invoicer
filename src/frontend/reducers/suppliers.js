@@ -1,9 +1,12 @@
-import initialState from 'data/suppliers';
-
-function suppliers(state = initialState, action) {
+function suppliers(state = [], action) {
 	switch (action.type) {
 		case 'ADD_SUPPLIER' : {
 			return [].concat(state).concat([action.payload]);
+		}
+
+		case 'LOAD_SUPPLIERS' : {
+			const array = Object.keys(action.payload).map(key => action.payload[key]);
+			return [].concat(state).concat(array);
 		}
 
 		case 'UPDATE_SUPPLIER' : {

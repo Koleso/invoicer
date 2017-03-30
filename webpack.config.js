@@ -100,6 +100,7 @@ module.exports = {
 		extensions: ['.js', '.json', '.css', '.less'],
 		alias: {
 			'data': path.join(__dirname, 'src/data'),
+			'config': path.join(__dirname, 'src/config'),
 			'actions': path.join(__dirname, 'src/frontend/actions'),
 			'components': path.join(__dirname, 'src/frontend/components'),
 			'containers': path.join(__dirname, 'src/frontend/containers'),

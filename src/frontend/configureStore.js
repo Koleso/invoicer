@@ -2,18 +2,9 @@ import { compose, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-import * as firebase from 'firebase';
 
 import reducers from 'reducers/index';
-
-const firebaseConfig = {
-	apiKey: 'AIzaSyDhzrJr50qFiRCVPxGxMyjPLR5px75HeYA',
-	authDomain: 'invoicer-ff1f7.firebaseapp.com',
-	databaseURL: 'https://invoicer-ff1f7.firebaseio.com',
-	storageBucket: 'invoicer-ff1f7.appspot.com',
-	messagingSenderId: '150210881222',
-};
-const app = firebase.initializeApp(firebaseConfig);
+import app from 'config/firebase';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

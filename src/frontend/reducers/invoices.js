@@ -1,9 +1,12 @@
-import initialState from 'data/invoices';
-
-function invoices(state = initialState, action) {
+function invoices(state = [], action) {
 	switch (action.type) {
 		case 'ADD_INVOICE' : {
 			return [].concat(state).concat([action.payload]);
+		}
+
+		case 'LOAD_INVOICES' : {
+			const array = Object.keys(action.payload).map(key => action.payload[key]);
+			return [].concat(state).concat(array);
 		}
 
 		case 'PAY_INVOICE' : {
