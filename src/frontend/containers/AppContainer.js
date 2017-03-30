@@ -8,6 +8,7 @@ import * as invoicesCreators from 'actions/invoices';
 import { loadData } from 'actions/loadData';
 
 import AppLayout from 'screens/AppLayout';
+import Spinner from 'components/Spinner';
 
 class AppContainer extends React.Component {
 	componentWillMount() {
@@ -21,7 +22,7 @@ class AppContainer extends React.Component {
 			);
 		}
 		return (
-			<div>Hovno</div>
+			<Spinner modifiers={['intro']} />
 		);
 	}
 }
