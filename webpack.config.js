@@ -122,12 +122,6 @@ module.exports = {
 		new ExtractTextPlugin('app.css')
 	],
 
-	performance: {
-		hints: 'warning',
-		maxAssetSize: 200000,
-		maxEntrypointSize: 1000000,
-	},
-
 	devtool: nconf.get('NODE_ENV') === 'production' ? false : '#source-maps',
 	stats: 'minimal',
 

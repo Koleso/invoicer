@@ -31,22 +31,26 @@ const configureRoutes = () => ([
 	<Route path="/" component={AppContainer}>
 		<IndexRoute component={DashboardContainer} />
 
-		<Route path="faktury" component={InvoicesContainer} />
-		<Route path="faktury/nova-faktura" component={NewInvoice} />
-		<Route path="faktury/detail/:invoiceId" component={Invoice} />
-		<Route path="faktury/smazat/:invoiceId" component={DeleteInvoice} />
-		<Route path="faktury/zmenit-stav/:invoiceId" component={PayInvoice} />
-		<Route path="faktury/nenalezeno" component={InvoiceNotFound} />
+		<Route path="faktury">
+			<IndexRoute component={InvoicesContainer} />
+			<Route path="nova-faktura" component={NewInvoice} />
+			<Route path="detail/:invoiceId" component={Invoice} />
+			<Route path="smazat/:invoiceId" component={DeleteInvoice} />
+			<Route path="zmenit-stav/:invoiceId" component={PayInvoice} />
+			<Route path="nenalezeno" component={InvoiceNotFound} />
+		</Route>
 
-		<Route path="subjekty" component={SubjectsContainer} />
-		<Route path="subjekty/nenalezeno" component={SubjectNotFound} />
-		<Route path="subjekty/novy-odberatel" component={AddCustomer} />
-		<Route path="subjekty/upravit-odberatele/:customerId" component={EditCustomer} />
-		<Route path="subjekty/smazat-odberatele/:customerId" component={DeleteCustomer} />
+		<Route path="subjekty">
+			<IndexRoute component={SubjectsContainer} />
+			<Route path="nenalezeno" component={SubjectNotFound} />
+			<Route path="novy-odberatel" component={AddCustomer} />
+			<Route path="upravit-odberatele/:customerId" component={EditCustomer} />
+			<Route path="smazat-odberatele/:customerId" component={DeleteCustomer} />
 
-		<Route path="subjekty/novy-dodavatel" component={AddSupplier} />
-		<Route path="subjekty/upravit-dodavatele/:supplierId" component={EditSupplier} />
-		<Route path="subjekty/smazat-dodavatele/:supplierId" component={DeleteSupplier} />
+			<Route path="novy-dodavatel" component={AddSupplier} />
+			<Route path="upravit-dodavatele/:supplierId" component={EditSupplier} />
+			<Route path="smazat-dodavatele/:supplierId" component={DeleteSupplier} />
+		</Route>
 
 		<Route path="*" component={NotFound} />
 	</Route>,
