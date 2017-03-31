@@ -114,7 +114,7 @@ const Invoices = ({
 									</TableCell>
 									<TableCell modifiers={['actions']}>
 										<Button
-											to={`/faktury/pdf/${invoice.id}`}
+											to={`/faktury/detail/${invoice.id}`}
 											modifiers={['tableBtn', 'iconBtn', 'print']}
 										/>
 									</TableCell>
