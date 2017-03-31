@@ -25,7 +25,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	addInvoice: () => dispatch(addInvoice()),
+	addInvoice: (form) => dispatch(addInvoice(form)),
 	changeFieldValue: (field, value) => dispatch(change('invoice', field, value)),
 });
 

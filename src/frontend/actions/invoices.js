@@ -1,51 +1,56 @@
-export function addInvoice() {
-	return (dispatch, getState) => {
-		const form = getState().form.invoice.values;
-		const invoice = {
-			id: form.id,
-			customer: parseInt(form.customerId, 10),
-			supplier: parseInt(form.supplierId, 10),
-			description: form.description,
-			currency: form.currency,
-			date: form.date,
-			due: form.due,
-			price_total: parseFloat(form.price_total.replace(/\s/g, '')),
-			vat_total: parseFloat(form.vat_total.replace(/\s/g, '')),
-			paid: false,
-			items: form.items,
-		};
+import app from 'config/firebase';
 
-		dispatch({
-			type: 'ADD_INVOICE',
-			payload: invoice,
-		});
+export function addInvoice(form) {
+	const invoice = {
+		id: form.id,
+		customer: parseInt(form.customerId, 10),
+		supplier: parseInt(form.supplierId, 10),
+		description: form.description,
+		currency: form.currency,
+		date: form.date,
+		due: form.due,
+		price_total: parseFloat(form.price_total.replace(/\s/g, '')),
+		vat_total: parseFloat(form.vat_total.replace(/\s/g, '')),
+		paid: false,
+		items: form.items,
 	};
+
+	return ({
+		type: 'ADD_INVOICE',
+		payload: new Promise(resolve => {
+			app.database().ref(`invoices/${form.id}`).set(invoice)
+			.then(() => {
+				resolve(invoice);
+			});
+		}),
+	});
 }
 
-export function payInvoice() {
-	return (dispatch, getState) => {
-		const invoiceId = getState().form.invoice.values.id;
-
-		const invoice = {
-			id: invoiceId,
-			paid: true,
-		};
-
-		dispatch({
-			type: 'PAY_INVOICE',
-			payload: invoice,
-		});
+export function payInvoice(form) {
+	const invoice = {
+		id: form.id,
+		paid: true,
 	};
+
+	return ({
+		type: 'PAY_INVOICE',
+		payload: new Promise(resolve => {
+			app.database().ref(`invoices/${form.id}`).update(invoice)
+			.then(() => {
+				resolve(invoice);
+			});
+		}),
+	});
 }
 
-
-export function deleteInvoice() {
-	return (dispatch, getState) => {
-		const invoiceId = getState().form.invoice.values.id;
-
-		dispatch({
-			type: 'DELETE_INVOICE',
-			payload: invoiceId,
-		});
-	};
+export function deleteInvoice(form) {
+	return ({
+		type: 'DELETE_INVOICE',
+		payload: new Promise(resolve => {
+			app.database().ref(`invoices/${form.id}`).remove()
+			.then(() => {
+				resolve(form.id);
+			});
+		}),
+	});
 }

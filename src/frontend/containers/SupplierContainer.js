@@ -28,9 +28,9 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	addSupplier: () => dispatch(addSupplier()),
-	updateSupplier: () => dispatch(updateSupplier()),
-	deleteSupplier: () => dispatch(deleteSupplier()),
+	addSupplier: (form) => dispatch(addSupplier(form)),
+	updateSupplier: (form) => dispatch(updateSupplier(form)),
+	deleteSupplier: (form) => dispatch(deleteSupplier(form)),
 });
 
 Supplier.propTypes = {

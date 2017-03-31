@@ -39,8 +39,8 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	payInvoice: () => dispatch(payInvoice()),
-	deleteInvoice: () => dispatch(deleteInvoice()),
+	payInvoice: (form) => dispatch(payInvoice(form)),
+	deleteInvoice: (form) => dispatch(deleteInvoice(form)),
 });
 
 export default connect(

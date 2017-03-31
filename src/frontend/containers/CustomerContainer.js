@@ -28,9 +28,9 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	addCustomer: () => dispatch(addCustomer()),
-	updateCustomer: () => dispatch(updateCustomer()),
-	deleteCustomer: () => dispatch(deleteCustomer()),
+	addCustomer: (form) => dispatch(addCustomer(form)),
+	updateCustomer: (form) => dispatch(updateCustomer(form)),
+	deleteCustomer: (form) => dispatch(deleteCustomer(form)),
 });
 
 Customer.propTypes = {

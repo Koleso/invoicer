@@ -2,61 +2,22 @@ import { compose, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
+import promiseMiddleware from 'redux-promise-middleware';
 
 import reducers from 'reducers/index';
-import app from 'config/firebase';
 
-// eslint-disable-next-line no-underscore-dangle
-const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const fbMiddleware = store => next => action => { // eslint-disable-line
-	// Note sure if this is what mighty Iakov had in mind
-	switch (action.type) {
-		case 'ADD_CUSTOMER':
-			app.database().ref(`customers/${action.payload.id}`).set(action.payload);
-			break;
-		case 'UPDATE_CUSTOMER':
-			app.database().ref(`customers/${action.payload.id}`).update(action.payload);
-			break;
-		case 'DELETE_CUSTOMER':
-			app.database().ref(`customers/${action.payload}`).remove();
-			break;
-		case 'ADD_SUPPLIER':
-			app.database().ref(`suppliers/${action.payload.id}`).set(action.payload);
-			break;
-		case 'UPDATE_SUPPLIER':
-			app.database().ref(`suppliers/${action.payload.id}`).update(action.payload);
-			break;
-		case 'DELETE_SUPPLIER':
-			app.database().ref(`suppliers/${action.payload}`).remove();
-			break;
-		case 'ADD_INVOICE':
-			app.database().ref(`invoices/${action.payload.id}`).set(action.payload);
-			break;
-		case 'PAY_INVOICE':
-			app.database().ref(`invoices/${action.payload.id}`).update(action.payload);
-			break;
-		case 'DELETE_INVOICE':
-			app.database().ref(`invoices/${action.payload}`).remove();
-			break;
-		default:
-			break;
-	}
-	const result = next(action);
-	return result;
-};
+const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
 const middleware = [
 	routerMiddleware(browserHistory),
-	fbMiddleware,
+	promiseMiddleware(),
 	thunkMiddleware,
 ];
 
 const configureStore = () => {
 	const store = createStore(
 		reducers,
-		// eslint-disable-next-line no-underscore-dangle
-		typeof window !== 'undefined' && window.__INITIAL_STATE__ || {},
+		typeof window !== 'undefined' && window.__INITIAL_STATE__ || {}, // eslint-disable-line
 		composeEnhancers(applyMiddleware(...middleware))
 	);
 
