@@ -88,7 +88,7 @@ module.exports = {
 			{
 				test: /\.css$|\.less$/,
 				loader: 'style-loader!css-loader!less-loader?sourceMap',
-			}
+			},
 		]
 	},
 

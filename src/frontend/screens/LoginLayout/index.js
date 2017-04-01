@@ -30,7 +30,7 @@ export default class Button extends React.Component {
 
 		const bottomLinkSignup = (<p>
 			Máte již uživatelský účet? &nbsp;
-			<Link to="/registrace" className="Link">
+			<Link to="/prihlaseni" className="Link">
 				Přihlašte se!
 			</Link>
 		</p>);

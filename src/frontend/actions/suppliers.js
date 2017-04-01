@@ -26,7 +26,7 @@ export function addSupplier(form) {
 	return ({
 		type: 'ADD_SUPPLIER',
 		payload: new Promise(resolve => {
-			app.database().ref(`suppliers/${form.id}`).set(supplier)
+			app.database().ref(`${app.auth().currentUser.uid}/suppliers/${form.id}`).set(supplier)
 			.then(() => {
 				resolve(supplier);
 			});
@@ -60,7 +60,7 @@ export function updateSupplier(form) {
 	return ({
 		type: 'UPDATE_SUPPLIER',
 		payload: new Promise(resolve => {
-			app.database().ref(`suppliers/${form.id}`).update(supplier)
+			app.database().ref(`${app.auth().currentUser.uid}/suppliers/${form.id}`).update(supplier)
 			.then(() => {
 				resolve(supplier);
 			});
@@ -72,7 +72,7 @@ export function deleteSupplier(form) {
 	return ({
 		type: 'DELETE_SUPPLIER',
 		payload: new Promise(resolve => {
-			app.database().ref(`suppliers/${form.id}`).remove()
+			app.database().ref(`${app.auth().currentUser.uid}/suppliers/${form.id}`).remove()
 			.then(() => {
 				resolve(form.id);
 			});

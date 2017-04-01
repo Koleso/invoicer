@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import AppContainer from 'containers/AppContainer';
+import EnsureLoggedInContainer from 'containers/EnsureLoggedInContainer';
 
 import Login from 'screens/Login';
 import Signup from 'screens/Signup';
@@ -26,36 +27,38 @@ import AddSupplier from 'screens/Supplier/add';
 import EditSupplier from 'screens/Supplier/edit';
 import DeleteSupplier from 'screens/Supplier/delete';
 
-// TODO: Iakov to the rescue, fokin activeClassName not working
-const configureRoutes = () => ([
+const configureRoutes = () => (
 	<Route path="/" component={AppContainer}>
-		<IndexRoute component={DashboardContainer} />
+		<Route path="prihlaseni" component={Login} />
+		<Route path="registrace" component={Signup} />
 
-		<Route path="faktury">
-			<IndexRoute component={InvoicesContainer} />
-			<Route path="nova-faktura" component={NewInvoice} />
-			<Route path="detail/:invoiceId" component={Invoice} />
-			<Route path="smazat/:invoiceId" component={DeleteInvoice} />
-			<Route path="zmenit-stav/:invoiceId" component={PayInvoice} />
-			<Route path="nenalezeno" component={InvoiceNotFound} />
-		</Route>
+		<Route component={EnsureLoggedInContainer}>
+			<IndexRoute component={DashboardContainer} />
 
-		<Route path="subjekty">
-			<IndexRoute component={SubjectsContainer} />
-			<Route path="nenalezeno" component={SubjectNotFound} />
-			<Route path="novy-odberatel" component={AddCustomer} />
-			<Route path="upravit-odberatele/:customerId" component={EditCustomer} />
-			<Route path="smazat-odberatele/:customerId" component={DeleteCustomer} />
+			<Route path="faktury">
+				<IndexRoute component={InvoicesContainer} />
+				<Route path="nova-faktura" component={NewInvoice} />
+				<Route path="detail/:invoiceId" component={Invoice} />
+				<Route path="smazat/:invoiceId" component={DeleteInvoice} />
+				<Route path="zmenit-stav/:invoiceId" component={PayInvoice} />
+				<Route path="nenalezeno" component={InvoiceNotFound} />
+			</Route>
 
-			<Route path="novy-dodavatel" component={AddSupplier} />
-			<Route path="upravit-dodavatele/:supplierId" component={EditSupplier} />
-			<Route path="smazat-dodavatele/:supplierId" component={DeleteSupplier} />
+			<Route path="subjekty">
+				<IndexRoute component={SubjectsContainer} />
+				<Route path="nenalezeno" component={SubjectNotFound} />
+				<Route path="novy-odberatel" component={AddCustomer} />
+				<Route path="upravit-odberatele/:customerId" component={EditCustomer} />
+				<Route path="smazat-odberatele/:customerId" component={DeleteCustomer} />
+
+				<Route path="novy-dodavatel" component={AddSupplier} />
+				<Route path="upravit-dodavatele/:supplierId" component={EditSupplier} />
+				<Route path="smazat-dodavatele/:supplierId" component={DeleteSupplier} />
+			</Route>
 		</Route>
 
 		<Route path="*" component={NotFound} />
-	</Route>,
-	<Route path="login" component={Login} />,
-	<Route path="registrace" component={Signup} />,
-]);
+	</Route>
+);
 
 export default configureRoutes;

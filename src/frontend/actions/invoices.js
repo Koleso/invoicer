@@ -18,7 +18,7 @@ export function addInvoice(form) {
 	return ({
 		type: 'ADD_INVOICE',
 		payload: new Promise(resolve => {
-			app.database().ref(`invoices/${form.id}`).set(invoice)
+			app.database().ref(`${app.auth().currentUser.uid}/invoices/${form.id}`).set(invoice)
 			.then(() => {
 				resolve(invoice);
 			});
@@ -35,7 +35,7 @@ export function payInvoice(form) {
 	return ({
 		type: 'PAY_INVOICE',
 		payload: new Promise(resolve => {
-			app.database().ref(`invoices/${form.id}`).update(invoice)
+			app.database().ref(`${app.auth().currentUser.uid}/invoices/${form.id}`).update(invoice)
 			.then(() => {
 				resolve(invoice);
 			});
@@ -47,7 +47,7 @@ export function deleteInvoice(form) {
 	return ({
 		type: 'DELETE_INVOICE',
 		payload: new Promise(resolve => {
-			app.database().ref(`invoices/${form.id}`).remove()
+			app.database().ref(`${app.auth().currentUser.uid}/invoices/${form.id}`).remove()
 			.then(() => {
 				resolve(form.id);
 			});
