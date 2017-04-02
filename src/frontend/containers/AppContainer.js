@@ -15,7 +15,6 @@ class AppContainer extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		isLoggedIn: state.user.loggedIn,
-		redirectUrl: state.redirectUrl,
 	};
 };
 

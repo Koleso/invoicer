@@ -18,7 +18,7 @@ class EnsureLoggedInContainer extends React.Component {
 
 	render() {
 		if (this.props.isLoggedIn) {
-			if (this.props.customers[0] !== undefined) {
+			if (this.props.customers.length === 0 || this.props.customers[0] !== undefined) {
 				return (
 					<AppLayout {...this.props} />
 				);
@@ -33,13 +33,12 @@ class EnsureLoggedInContainer extends React.Component {
 	}
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
 	return {
 		customers: state.customers,
 		suppliers: state.suppliers,
 		invoices: state.invoices,
 		isLoggedIn: state.user.loggedIn,
-		currentURL: ownProps.location.pathname,
 	};
 };
 
