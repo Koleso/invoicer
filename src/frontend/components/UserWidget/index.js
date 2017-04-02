@@ -20,6 +20,7 @@ const UserWidget = (props) => {
 			<Button
 				onClick={() => { return props.logout(); }}
 				modifiers={['iconBtn', 'logout']}
+				title="Odhlásit se"
 			/>
 		</div>
 	);

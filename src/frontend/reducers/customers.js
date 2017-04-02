@@ -2,7 +2,7 @@ function customers(state = [], action) {
 	switch (action.type) {
 		case 'LOAD_CUSTOMERS' : {
 			const array = Object.keys(action.payload).map(key => action.payload[key]);
-			return [].concat(state).concat(array);
+			return [].concat(state).concat(array.reverse());
 		}
 
 		case 'ADD_CUSTOMER_FULFILLED' : {

@@ -2,7 +2,7 @@ function invoices(state = [], action) {
 	switch (action.type) {
 		case 'LOAD_INVOICES' : {
 			const array = Object.keys(action.payload).map(key => action.payload[key]);
-			return [].concat(state).concat(array);
+			return [].concat(state).concat(array.reverse());
 		}
 
 		case 'ADD_INVOICE_FULFILLED' : {

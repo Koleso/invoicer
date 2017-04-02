@@ -36,7 +36,7 @@ const Invoices = ({
 				<Box title="Neuhrazené faktury">
 				{invoicesUnpaid.length ?
 					<Table>
-						{invoicesUnpaid.reverse().map(invoice =>
+						{invoicesUnpaid.map(invoice =>
 							<TableRow key={invoice.id}>
 								<TableCell>
 									<div className="TableCell--primary">
@@ -89,9 +89,9 @@ const Invoices = ({
 				}
 				</Box>
 				<Box title="Uhrazené faktury">
-					{invoicesPaid ?
+					{invoicesPaid.length ?
 						<Table>
-							{invoicesPaid.reverse().map(invoice =>
+							{invoicesPaid.map(invoice =>
 								<TableRow key={invoice.id}>
 									<TableCell>
 										<div className="TableCell--primary">

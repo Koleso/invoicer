@@ -3,6 +3,7 @@ import NumberFormat from 'react-number-format';
 import dateFormat from 'dateformat';
 import { overdue, dueDate } from 'helpers/overdue';
 import { subjectNameById } from 'helpers/subjects';
+import { last6Months } from 'helpers/invoices';
 
 // Components
 import { Grid, GridColumn } from 'components/Grid';
@@ -10,6 +11,7 @@ import Screen from 'components/Screen';
 import Box from 'components/Box';
 import Button from 'components/Button';
 import WidgetSummary from 'components/WidgetSummary';
+import BarChart from 'components/BarChart';
 import Table from 'components/Table';
 import TableRow from 'components/TableRow';
 import TableCell from 'components/TableCell';
@@ -28,6 +30,7 @@ const actions = [
 
 const Dashboard = ({
 	subjects,
+	invoicesPaid,
 	invoicesUnpaid,
 	paidTotal,
 	unpaidTotal,
@@ -80,9 +83,16 @@ const Dashboard = ({
 					}
 				</Box>
 			</GridColumn>
-
 			<GridColumn>
-				<Box title="Příjem za posledních 6 měsíců" modifiers={['smallMargin']} />
+				<Box title="Příjem za posledních 6 měsíců" modifiers={['smallMargin']}>
+					{invoicesPaid.length ?
+						<BarChart data={last6Months(invoicesPaid)} />
+						:
+						<EmptyState title="Nemáte žádnou vystavenou fakturu" modifiers={['small', 'invoice']}>
+							Chce to začít něco dělat, ať se to tu zaplní.
+						</EmptyState>
+					}
+				</Box>
 			</GridColumn>
 		</Grid>
 	</Screen>

@@ -2,7 +2,7 @@ function suppliers(state = [], action) {
 	switch (action.type) {
 		case 'LOAD_SUPPLIERS' : {
 			const array = Object.keys(action.payload).map(key => action.payload[key]);
-			return [].concat(state).concat(array);
+			return [].concat(state).concat(array.reverse());
 		}
 
 		case 'ADD_SUPPLIER_FULFILLED' : {

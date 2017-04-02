@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
 	return {
 		subjects: state.customers,
 		invoicesUnpaid,
+		invoicesPaid,
 		paidTotal,
 		unpaidTotal,
 	};

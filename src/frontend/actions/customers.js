@@ -18,7 +18,7 @@ export function addCustomer(form) {
 	return ({
 		type: 'ADD_CUSTOMER',
 		payload: new Promise(resolve => {
-			app.database().ref(`${app.auth().currentUser.uid}/customers/${form.id}`).set(customer)
+			app.database().ref(`${app.auth().currentUser.uid}/customers/${customer.id}`).set(customer)
 			.then(() => {
 				resolve(customer);
 			});
@@ -44,7 +44,7 @@ export function updateCustomer(form) {
 	return ({
 		type: 'UPDATE_CUSTOMER',
 		payload: new Promise(resolve => {
-			app.database().ref(`${app.auth().currentUser.uid}/customers/${form.id}`).update(customer)
+			app.database().ref(`${app.auth().currentUser.uid}/customers/${customer.id}`).update(customer)
 			.then(() => {
 				resolve(customer);
 			});
