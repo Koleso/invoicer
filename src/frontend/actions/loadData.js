@@ -4,20 +4,21 @@ export function loadData(dispatch) {
 	return app.database().ref(app.auth().currentUser.uid).once('value')
 	.then(
 		response => {
+			let res = response;
 			if (!response) {
-				response = {};
+				res = {};
 			}
 			dispatch({
 				type: 'LOAD_CUSTOMERS',
-				payload: response.customers || {},
+				payload: res.customers || {},
 			});
 			dispatch({
 				type: 'LOAD_SUPPLIERS',
-				payload: response.suppliers || {},
+				payload: res.suppliers || {},
 			});
 			dispatch({
 				type: 'LOAD_INVOICES',
-				payload: response.invoices || {},
+				payload: res.invoices || {},
 			});
 		}
 	);

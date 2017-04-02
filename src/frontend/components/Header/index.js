@@ -5,6 +5,7 @@ import cx from 'helpers/classes';
 import Wrap from 'components/Wrap';
 import Logo from 'components/Logo';
 import Navigation from 'components/Navigation';
+import UserWidget from 'components/UserWidget';
 
 // CSS
 import './index.less';
@@ -19,6 +20,7 @@ const Header = ({
 			<Wrap>
 				<Logo />
 				<Navigation />
+				<UserWidget />
 			</Wrap>
 		</div>
 	);

@@ -6,6 +6,7 @@
   line-height: 28px;
   position: relative;
   display: inline-block;
+  vertical-align: middle;
   padding: 0 15px;
   color: @gray;
   outline: none;
@@ -163,6 +164,15 @@
     text-align: center;
     line-height: 30px;
     font-size: 10px;
+  }
+}
+
+.Button--logout {
+  border: none !important;
+  box-shadow: none !important;
+
+  &:before {
+    background-image: url('./icons/logout.svg');
   }
 }
 

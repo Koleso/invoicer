@@ -1,4 +1,5 @@
 import app from 'config/firebase';
+import { browserHistory } from 'react-router';
 
 export function register(form) {
 	return ({
@@ -38,6 +39,7 @@ export function logout() {
 			app.auth().signOut()
 			.then(() => {
 				resolve('signout');
+				browserHistory.replace('/prihlaseni');
 			})
 			.catch(error => {
 				alert(error.message); // eslint-disable-line
