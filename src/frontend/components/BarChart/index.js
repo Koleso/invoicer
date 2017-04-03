@@ -45,7 +45,7 @@ class BarChart extends React.Component {
 						xmlnsXlink="http://www.w3.org/1999/xlink"
 						className={cx(bm, 'chart')}
 					>
-						{false && // lastMonth
+						{this.state.maxValue &&
 							<g>
 								{this.props.data.map((item, index) =>
 									<rect

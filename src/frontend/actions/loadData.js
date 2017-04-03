@@ -2,7 +2,7 @@ import app from 'config/firebase';
 
 export function loadData(dispatch) {
 	return app.database().ref(app.auth().currentUser.uid).once('value')
-	.then( snapshot => snapshot.val() )
+	.then(snapshot => snapshot.val())
 	.then(
 		response => {
 			let res = response;

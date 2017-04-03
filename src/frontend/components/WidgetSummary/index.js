@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
 import cx from 'helpers/classes';
 import numeral from 'numeral';
 
@@ -23,11 +23,6 @@ const WidgetSummary = ({
 			</div>
 		</div>
 	);
-};
-
-WidgetSummary.propTypes = {
-	notPaid: T.number.isRequired,
-	paid: T.number.isRequired,
 };
 
 export default WidgetSummary;

@@ -17,6 +17,7 @@ import TableRow from 'components/TableRow';
 import TableCell from 'components/TableCell';
 import Link from 'components/Link';
 import EmptyState from 'components/EmptyState';
+import Spinner from 'components/Spinner';
 
 const actions = [
 	<Button
@@ -39,7 +40,16 @@ const Dashboard = ({
 		<Grid size={2}>
 			<GridColumn>
 				<Box title="Pohledávky" modifiers={['smallMargin']}>
-					<WidgetSummary paid={paidTotal} notPaid={unpaidTotal} />
+					{invoicesPaid.length ?
+						paidTotal ?
+							<WidgetSummary paid={paidTotal} notPaid={unpaidTotal} />
+							:
+							<Spinner modifiers={['widgetSummary']} />
+						:
+						<EmptyState title="Nemáte žádné faktury" modifiers={['small', 'invoice']}>
+							Chce to začít něco dělat, ať se to tu zaplní.
+						</EmptyState>
+					}
 				</Box>
 
 				<Box title="Neuhrazené faktury" modifiers={['smallMargin']}>
@@ -88,9 +98,7 @@ const Dashboard = ({
 					{invoicesPaid.length ?
 						<BarChart data={last6Months(invoicesPaid)} />
 						:
-						<EmptyState title="Nemáte žádnou vystavenou fakturu" modifiers={['small', 'invoice']}>
-							Chce to začít něco dělat, ať se to tu zaplní.
-						</EmptyState>
+						<Spinner modifiers={['barChart']} />
 					}
 				</Box>
 			</GridColumn>

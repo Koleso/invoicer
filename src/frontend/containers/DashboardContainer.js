@@ -7,10 +7,10 @@ const mapStateToProps = (state) => {
 	const invoicesPaid = state.invoices.filter((value) => { return value.paid === true; });
 	const invoicesUnpaid = state.invoices.filter((value) => { return value.paid === false; });
 
-	let paidTotal = 0;
+	let paidTotal = null;
 	invoicesPaid.map(invoice => (paidTotal += invoice.price_total));
 
-	let unpaidTotal = 0;
+	let unpaidTotal = null;
 	invoicesUnpaid.map(invoice => (unpaidTotal += invoice.price_total));
 
 	return {
