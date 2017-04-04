@@ -32,6 +32,11 @@ const CustomerForm = ({
 		// Subjekt nenalezen
 		browserHistory.push('/subjekty/nenalezeno');
 	} else {
+		let editMode = false;
+		if (action === 'edit') {
+			editMode = true;
+		}
+
 		return (
 			<Form onSubmit={submit()}>
 				<div className="Form-col">
@@ -45,6 +50,7 @@ const CustomerForm = ({
 								type="text"
 								label="Jméno / Název"
 								required={Boolean(true)}
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>
@@ -58,6 +64,7 @@ const CustomerForm = ({
 								type="text"
 								label="IČ"
 								required={Boolean(true)}
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>
@@ -67,6 +74,7 @@ const CustomerForm = ({
 								id="dic"
 								type="text"
 								label="DIČ"
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>

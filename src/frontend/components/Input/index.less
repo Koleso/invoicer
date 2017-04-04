@@ -99,4 +99,12 @@
     border-color: @red !important;
     box-shadow: 0 0 5px 1px rgba(177,0,0,.15) !important;
   }
+
+  &[disabled] {
+    background-color: @light;
+
+    .Input--fakeInput & {
+      background-color: @white;
+    }
+  }
 }

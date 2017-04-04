@@ -33,6 +33,11 @@ const SupplierForm = ({
 		// Subjekt nenalezen
 		browserHistory.push('/subjekty/nenalezeno');
 	} else {
+		let editMode = false;
+		if (action === 'edit') {
+			editMode = true;
+		}
+
 		return (
 			<Form onSubmit={submit()}>
 				<div className="Form-col">
@@ -46,6 +51,7 @@ const SupplierForm = ({
 								type="text"
 								label="Jméno / Název"
 								required={Boolean(true)}
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>
@@ -58,6 +64,7 @@ const SupplierForm = ({
 								id="ic"
 								type="text"
 								label="IČ"
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>
@@ -67,6 +74,7 @@ const SupplierForm = ({
 								id="dic"
 								type="text"
 								label="DIČ"
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>
@@ -166,6 +174,7 @@ const SupplierForm = ({
 								id="currency"
 								type="text"
 								label="Měna"
+								disabled={editMode}
 								component={InputField}
 							/>
 						</div>

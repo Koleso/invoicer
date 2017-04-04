@@ -10,6 +10,7 @@ const WidgetSummary = ({
 	paid,
 }) => {
 	const bm = 'WidgetSummary';
+	console.log(notPaid, paid);
 
 	return (
 		<div className={cx(bm, '')}>
