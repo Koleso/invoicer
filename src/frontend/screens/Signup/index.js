@@ -6,7 +6,7 @@ import SignupContainer from 'containers/SignupContainer';
 const Signup = () => (
 	<LoginLayout page="signup">
 		<div>
-			<h1>Registrace</h1>
+			<h1 className="introTitle">Registrace</h1>
 			<p>Taky je už slyšíte cinkat?</p>
 			<SignupContainer action="register" />
 		</div>
