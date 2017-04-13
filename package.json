@@ -21,10 +21,7 @@
   "keywords": [
     "react",
     "redux",
-    "reselect",
-    "recompose",
-    "functional",
-    "boilerplate"
+    "functional"
   ],
   "author": "David Kolinek <david.kolinek@gmail.com>",
   "license": "MIT",
