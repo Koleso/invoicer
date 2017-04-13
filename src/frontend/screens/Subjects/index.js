@@ -24,7 +24,7 @@ const actions = [
 
 const Subjects = () => (
 	<Screen title="Subjekty" pageTitle="Subjekty" actions={actions}>
-		<SubjectsContainer/>
+		<SubjectsContainer />
 	</Screen>
 );
 

@@ -17,7 +17,7 @@ const actions = [
 
 const Dashboard = () => (
 	<Screen title="Dashboard" pageTitle="Dashboard" actions={actions}>
-		<DashboardContainer/>
+		<DashboardContainer />
 	</Screen>
 );
 

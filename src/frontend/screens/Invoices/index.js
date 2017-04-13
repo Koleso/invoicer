@@ -17,7 +17,7 @@ const actions = [
 
 const Invoices = () => (
 	<Screen title="Faktury" pageTitle="Faktury" actions={actions}>
-		<InvoicesContainer/>
+		<InvoicesContainer />
 	</Screen>
 );
 
