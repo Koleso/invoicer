@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Invoices from 'screens/Invoices';
+import Invoices from 'components/Invoices';
 
 const mapStateToProps = (state) => {
 	const invoicesPaid = state.invoices.filter((value) => { return value.paid === true; });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Subjects from 'screens/Subjects';
+import Subjects from 'components/Subjects';
 
 const mapStateToProps = (state) => {
 	return {

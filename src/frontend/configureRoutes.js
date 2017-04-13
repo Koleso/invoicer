@@ -8,11 +8,11 @@ import Login from 'screens/Login';
 import Signup from 'screens/Signup';
 import NotFound from 'screens/not-found';
 
-import DashboardContainer from 'containers/DashboardContainer';
-import SubjectsContainer from 'containers/SubjectsContainer';
+import Dashboard from 'screens/Dashboard';
+import Subjects from 'screens/Subjects';
 import SubjectNotFound from 'screens/Subjects/not-found';
 
-import InvoicesContainer from 'containers/InvoicesContainer';
+import Invoices from 'screens/Invoices';
 import NewInvoice from 'screens/Invoice/new';
 import Invoice from 'screens/Invoice';
 import DeleteInvoice from 'screens/Invoice/delete';
@@ -33,10 +33,10 @@ const configureRoutes = () => (
 		<Route path="registrace" component={Signup} />
 
 		<Route component={EnsureLoggedInContainer}>
-			<IndexRoute component={DashboardContainer} />
+			<IndexRoute component={Dashboard} />
 
 			<Route path="faktury">
-				<IndexRoute component={InvoicesContainer} />
+				<IndexRoute component={Invoices} />
 				<Route path="nova-faktura" component={NewInvoice} />
 				<Route path="detail/:invoiceId" component={Invoice} />
 				<Route path="smazat/:invoiceId" component={DeleteInvoice} />
@@ -45,7 +45,7 @@ const configureRoutes = () => (
 			</Route>
 
 			<Route path="subjekty">
-				<IndexRoute component={SubjectsContainer} />
+				<IndexRoute component={Subjects} />
 				<Route path="nenalezeno" component={SubjectNotFound} />
 				<Route path="novy-odberatel" component={AddCustomer} />
 				<Route path="upravit-odberatele/:customerId" component={EditCustomer} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Dashboard from 'screens/Dashboard';
+import Dashboard from 'components/Dashboard';
 
 const mapStateToProps = (state) => {
 	const invoicesPaid = state.invoices.filter((value) => { return value.paid === true; });
