@@ -17,7 +17,7 @@ const Subjects = ({ customers, suppliers, invoices }) => (
 			<Box title="Odběratelé">
 				{customers.length ?
 					<Table>
-						{customers.map(customer =>
+						{customers.reverse().map(customer =>
 							<TableRow key={customer.id}>
 								<TableCell>
 									<div className="TableCell--primary">
@@ -63,7 +63,7 @@ const Subjects = ({ customers, suppliers, invoices }) => (
 			<Box title="Dodavatelé">
 				{suppliers.length ?
 					<Table>
-						{suppliers.map(supplier =>
+						{suppliers.reverse().map(supplier =>
 							<TableRow key={supplier.id}>
 								<TableCell>
 									<div className="TableCell--primary">

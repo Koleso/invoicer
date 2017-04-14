@@ -19,7 +19,7 @@ const getNextInvoiceId = (invoices) => {
 		return parseInt(new Date().getFullYear() + '0001', 10); // eslint-disable-line
 	}
 
-	return (invoices[0].id + 1);
+	return (invoices[invoices.length - 1].id + 1);
 };
 
 const last6Months = (invoices) => {
