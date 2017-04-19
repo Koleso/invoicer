@@ -6,7 +6,12 @@ import promiseMiddleware from 'redux-promise-middleware';
 
 import reducers from 'reducers/index';
 
-const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
+const composeEnhancers = (
+	NODE_ENV !== 'production' &&
+	typeof window !== 'undefined' && 
+	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
+	compose
+);
 
 const middleware = [
 	routerMiddleware(browserHistory),

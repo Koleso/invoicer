@@ -1,5 +1,6 @@
 import app from 'config/firebase';
 import { browserHistory } from 'react-router';
+import { SubmissionError } from 'redux-form';
 
 export function register(form) {
 	return ({
@@ -10,6 +11,7 @@ export function register(form) {
 				resolve(form.email, form.password);
 			})
 			.catch(error => {
+				throw new SubmissionError({ password: 'Wrong password', _error: 'Login failed!' });
 				alert(error.message); // eslint-disable-line
 			});
 		}),
@@ -26,6 +28,7 @@ export function login(form) {
 				resolve(form.email, form.password);
 			})
 			.catch(error => {
+				throw new SubmissionError({ password: 'Wrong password', _error: 'Login failed!' });
 				alert(error.message); // eslint-disable-line
 			});
 		}),

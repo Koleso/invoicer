@@ -18,8 +18,8 @@ nconf
 	});
 
 const definitions = {
-	NODE_ENV: nconf.get('NODE_ENV'),
-	DEVSERVER: nconf.get('DEVSERVER'),
+	NODE_ENV: JSON.stringify(nconf.get('NODE_ENV')),
+	DEVSERVER: JSON.stringify(nconf.get('DEVSERVER')),
 };
 
 const commonsPluginOptions = {
